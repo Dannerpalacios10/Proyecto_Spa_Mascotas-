@@ -1,0 +1,341 @@
+/* ================================================= */
+/* RESET */
+/* ================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+    background:#0f172a;
+    min-height:100vh;
+    overflow-x:hidden;
+    color:white;
+    position:relative;
+}
+
+/* ================================================= */
+/* FONDO */
+/* ================================================= */
+
+.background-animation{
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    background:
+    linear-gradient(
+    45deg,
+    #2563eb,
+    #7c3aed
+    );
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    top:-200px;
+    left:-200px;
+
+    z-index:-1;
+
+    animation:float 8s ease-in-out infinite;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-40px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* ================================================= */
+/* NAVBAR */
+/* ================================================= */
+
+.navbar{
+
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 40px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+
+    font-size:24px;
+    font-weight:700;
+    color:white;
+}
+
+.menu{
+
+    display:flex;
+    gap:20px;
+}
+
+.menu-item{
+
+    text-decoration:none;
+    color:#e2e8f0;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    transition:.3s;
+}
+
+.menu-item:hover{
+
+    background:rgba(255,255,255,.08);
+}
+
+.menu-item.active{
+
+    background:
+    linear-gradient(
+    45deg,
+    #2563eb,
+    #7c3aed
+    );
+
+    color:white;
+}
+
+/* ================================================= */
+/* USER */
+/* ================================================= */
+
+.user-section{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.user-section button{
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+    45deg,
+    #ef4444,
+    #dc2626
+    );
+
+    color:white;
+
+    cursor:pointer;
+}
+
+/* ================================================= */
+/* MAIN */
+/* ================================================= */
+
+.main{
+
+    padding:40px;
+}
+
+/* ================================================= */
+/* CONTAINER */
+/* ================================================= */
+
+.container{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.3);
+}
+
+/* ================================================= */
+/* HEADER */
+/* ================================================= */
+
+.header-page{
+
+    margin-bottom:30px;
+}
+
+.header-page h1{
+
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.header-page p{
+
+    color:#cbd5e1;
+}
+
+/* ================================================= */
+/* TABLE */
+/* ================================================= */
+
+.table-container{
+
+    overflow-x:auto;
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+
+    background:rgba(255,255,255,.08);
+}
+
+th{
+
+    padding:18px;
+    text-align:left;
+}
+
+td{
+
+    padding:18px;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.08);
+
+    color:#e2e8f0;
+}
+
+tr{
+
+    transition:.3s;
+}
+
+tr:hover{
+
+    background:rgba(255,255,255,.05);
+}
+
+/* ================================================= */
+/* BADGE */
+/* ================================================= */
+
+.action-badge{
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+    45deg,
+    #2563eb,
+    #7c3aed
+    );
+
+    font-size:13px;
+
+    font-weight:600;
+}
+
+/* ================================================= */
+/* ANIMACIÓN */
+/* ================================================= */
+
+.fadeIn{
+
+    animation:fadeIn .8s ease;
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================================================= */
+/* RESPONSIVE */
+/* ================================================= */
+
+@media(max-width:900px){
+
+    .navbar{
+
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .menu{
+
+        flex-wrap:wrap;
+    }
+
+    .main{
+
+        padding:20px;
+    }
+}
+
+@media(max-width:600px){
+
+    .menu{
+
+        flex-direction:column;
+        width:100%;
+    }
+
+    .menu-item{
+
+        width:100%;
+    }
+
+    table{
+
+        min-width:700px;
+    }
+}

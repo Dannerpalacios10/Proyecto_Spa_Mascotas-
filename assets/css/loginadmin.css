@@ -1,0 +1,251 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#0f0f0f;
+    position:relative;
+}
+
+.background{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:
+    linear-gradient(rgba(0,0,0,.75),
+    rgba(0,0,0,.85)),
+    url('https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1920');
+    background-size:cover;
+    background-position:center;
+    filter:blur(5px);
+    transform:scale(1.1);
+}
+
+.login-card{
+    position:relative;
+    z-index:2;
+    width:420px;
+    padding:45px;
+    border-radius:25px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 10px 40px rgba(0,0,0,.6);
+    color:white;
+}
+
+.logo{
+    width:85px;
+    height:85px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ff2e2e,#8b0000);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:35px;
+    box-shadow:0 10px 30px rgba(255,0,0,.35);
+}
+
+h2{
+    text-align:center;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#ccc;
+    margin-bottom:30px;
+    font-size:15px;
+}
+
+.input-box{
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-icon{
+    position: absolute;
+    top: 18px;
+    left: 15px;
+    color: #bbb;
+}
+
+.input-box input{
+    width: 100%;
+    padding: 16px 45px;
+    border: none;
+    outline: none;
+    border-radius: 14px;
+    background: rgba(255,255,255,.12);
+    color: white;
+    font-size: 15px;
+}
+
+.input-box input::placeholder{
+    color: #ddd;
+}
+
+.eye{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #bbb;
+}
+
+.login-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#ff2e2e,#b30000);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(255,0,0,.3);
+}
+
+.login-btn:hover{
+    transform:translateY(-3px);
+    background:linear-gradient(135deg,#ff4444,#d10000);
+}
+
+.error-box{
+    background:#ff3434;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:20px;
+    text-align:center;
+    font-size:14px;
+}
+
+.footer{
+    margin-top:25px;
+    text-align:center;
+    color:#bbb;
+    font-size:13px;
+}
+
+.password-container{
+    position:relative;
+}
+
+.password-container input{
+    padding-right:55px;
+}
+
+.toggle-password{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    background:none;
+    border:none;
+    color:#ddd;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.toggle-password:hover{
+    color:#fff;
+}
+
+.captcha-box{
+    margin-bottom:25px;
+}
+
+.captcha-label{
+    display:block;
+    margin-bottom:12px;
+    color:#f1f5f9;
+    font-size:14px;
+    font-weight:500;
+}
+
+.captcha-wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+}
+
+.captcha-code{
+
+    width:100%;
+
+    padding:16px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    letter-spacing:8px;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff2e2e,
+        #7f1d1d
+    );
+
+    box-shadow:
+    0 10px 25px rgba(255,0,0,.25);
+
+    user-select:none;
+}
+
+.captcha-input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:
+    rgba(255,255,255,.12);
+
+    color:white;
+
+    outline:none;
+
+    text-align:center;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.captcha-input::placeholder{
+    color:#ddd;
+}
+
+.captcha-input:focus{
+
+    border:1px solid #ff4d4d;
+
+    box-shadow:
+    0 0 15px rgba(255,0,0,.3);
+}

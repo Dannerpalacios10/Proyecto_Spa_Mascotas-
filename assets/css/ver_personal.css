@@ -1,0 +1,169 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+    background:#0f172a;
+    min-height:100vh;
+    overflow:hidden;
+    position:relative;
+    padding:40px;
+}
+
+.background-animation{
+
+    position:absolute;
+    width:700px;
+    height:700px;
+    background:linear-gradient(45deg,#2563eb,#7c3aed);
+    border-radius:50%;
+    filter:blur(120px);
+    animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-30px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+.container{
+
+    position:relative;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    border-radius:25px;
+    padding:40px;
+    z-index:10;
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.fadeIn{
+
+    animation:fadeIn .8s ease;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.header{
+
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+
+    color:white;
+    font-size:35px;
+}
+
+.header p{
+
+    color:#cbd5e1;
+    margin-top:10px;
+}
+
+.table-container{
+
+    overflow:auto;
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+
+    background:rgba(255,255,255,.1);
+}
+
+th{
+
+    padding:18px;
+    color:white;
+    text-align:left;
+}
+
+td{
+
+    padding:16px;
+    color:#e2e8f0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+tr{
+
+    transition:.3s;
+}
+
+tr:hover{
+
+    background:rgba(255,255,255,.05);
+}
+
+.badge{
+
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.active{
+
+    background:#16a34a;
+    color:white;
+}
+
+.inactive{
+
+    background:#dc2626;
+    color:white;
+}
+
+.role{
+
+    background:#2563eb;
+    color:white;
+}
+
+.btn-toggle{
+
+    text-decoration:none;
+    padding:10px 14px;
+    border-radius:10px;
+    background:linear-gradient(45deg,#2563eb,#7c3aed);
+    color:white;
+    transition:.3s;
+}
+
+.btn-toggle:hover{
+
+    opacity:.8;
+}

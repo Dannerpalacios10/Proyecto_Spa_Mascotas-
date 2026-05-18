@@ -1,0 +1,353 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background:#0f172a;
+}
+
+/* ======================================== */
+/* FONDO */
+/* ======================================== */
+
+.background{
+
+    position:fixed;
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.72),
+        rgba(0,0,0,.78)
+    ),
+    url('https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1920');
+
+    background-size:cover;
+    background-position:center;
+
+    filter:blur(5px);
+
+    transform:scale(1.1);
+}
+
+/* ======================================== */
+/* CONTENEDOR */
+/* ======================================== */
+
+.container{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+/* ======================================== */
+/* CARD */
+/* ======================================== */
+
+.card{
+
+    width:100%;
+    max-width:500px;
+
+    padding:40px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,.45);
+
+    color:white;
+
+    animation:fade .5s ease;
+}
+
+@keyframes fade{
+
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ======================================== */
+/* LOGO */
+/* ======================================== */
+
+.logo{
+
+    width:85px;
+    height:85px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff2e2e,
+        #b30000
+    );
+
+    box-shadow:
+    0 10px 25px rgba(255,0,0,.35);
+}
+
+.logo i{
+    font-size:35px;
+}
+
+/* ======================================== */
+/* TITULOS */
+/* ======================================== */
+
+.card h1{
+
+    text-align:center;
+
+    margin-bottom:12px;
+
+    font-size:34px;
+
+    font-weight:800;
+}
+
+.subtitle{
+
+    text-align:center;
+
+    line-height:1.6;
+
+    opacity:.85;
+
+    margin-bottom:25px;
+}
+
+/* ======================================== */
+/* TIMER */
+/* ======================================== */
+
+.timer-box{
+
+    background:#ffb300;
+
+    color:black;
+
+    padding:15px;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 8px 20px rgba(255,179,0,.35);
+}
+
+#timer{
+
+    font-size:22px;
+
+    margin:0 5px;
+}
+
+/* ======================================== */
+/* ALERTAS */
+/* ======================================== */
+
+.error-box{
+
+    background:#ff3434;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    margin-bottom:20px;
+
+    text-align:center;
+
+    font-weight:600;
+}
+
+.success-box{
+
+    background:#16a34a;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    margin-bottom:20px;
+
+    text-align:center;
+
+    font-weight:600;
+}
+
+/* ======================================== */
+/* INPUTS */
+/* ======================================== */
+
+.input-box{
+
+    position:relative;
+
+    margin-bottom:20px;
+}
+
+.icon{
+
+    position:absolute;
+
+    top:18px;
+    left:16px;
+
+    color:#cbd5e1;
+}
+
+.input-box input{
+
+    width:100%;
+
+    padding:16px 52px 16px 48px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.10);
+
+    color:white;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.input-box input::placeholder{
+    color:#d1d5db;
+}
+
+.input-box input:focus{
+
+    border:1px solid #ff4d4d;
+
+    box-shadow:
+    0 0 15px rgba(255,77,77,.35);
+}
+
+/* ======================================== */
+/* OJO PASSWORD */
+/* ======================================== */
+
+.eye{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #bbb;
+}
+
+/* ======================================== */
+/* BOTON */
+/* ======================================== */
+
+.btn-save{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff2e2e,
+        #b30000
+    );
+
+    color:white;
+
+    font-size:16px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    margin-top:10px;
+
+    box-shadow:
+    0 10px 25px rgba(255,0,0,.35);
+}
+
+.btn-save:hover{
+
+    transform:translateY(-2px);
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff4444,
+        #d10000
+    );
+}
+
+/* ======================================== */
+/* RESPONSIVE */
+/* ======================================== */
+
+@media(max-width:600px){
+
+    .card{
+        padding:30px 25px;
+    }
+
+    .card h1{
+        font-size:28px;
+    }
+}
