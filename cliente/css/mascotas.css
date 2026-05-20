@@ -1,0 +1,227 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f1f5f9;
+    display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:260px;
+    height:100vh;
+    background:#0f172a;
+    color:white;
+    position:fixed;
+    padding:25px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:40px;
+}
+
+.logo i{
+    font-size:30px;
+    color:#38bdf8;
+}
+
+.menu{
+    list-style:none;
+}
+
+.menu li{
+    margin-bottom:12px;
+}
+
+.menu li a{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:14px;
+    border-radius:12px;
+    text-decoration:none;
+    color:white;
+    transition:.3s;
+}
+
+.menu li a:hover,
+.menu .active a{
+    background:#1e293b;
+}
+
+/* MAIN */
+
+.main-content{
+    margin-left:260px;
+    padding:40px;
+    width:100%;
+}
+
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.topbar h1{
+    font-size:32px;
+    color:#0f172a;
+}
+
+.topbar p{
+    color:#64748b;
+    margin-top:5px;
+}
+
+.btn-add{
+    background:#2563eb;
+    color:white;
+    padding:14px 22px;
+    border-radius:12px;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    transition:.3s;
+}
+
+.btn-add:hover{
+    background:#1d4ed8;
+}
+
+/* GRID */
+
+.pets-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fill,minmax(320px,1fr));
+    gap:25px;
+}
+
+/* CARD */
+
+.pet-card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.pet-card:hover{
+    transform:translateY(-5px);
+}
+
+.pet-header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.pet-icon{
+    width:65px;
+    height:65px;
+    background:#dbeafe;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.pet-icon i{
+    font-size:28px;
+    color:#2563eb;
+}
+
+.pet-header h2{
+    color:#0f172a;
+}
+
+.pet-header span{
+    color:#64748b;
+    font-size:14px;
+}
+
+.pet-info{
+    margin-bottom:20px;
+}
+
+.pet-info p{
+    margin-bottom:10px;
+    color:#334155;
+}
+
+/* ACTIONS */
+
+.pet-actions{
+    display:flex;
+    gap:10px;
+}
+
+.edit-btn,
+.delete-btn{
+    flex:1;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+    text-align:center;
+    font-size:14px;
+    transition:.3s;
+}
+
+.edit-btn{
+    background:#2563eb;
+    color:white;
+}
+
+.edit-btn:hover{
+    background:#1d4ed8;
+}
+
+.delete-btn{
+    background:#ef4444;
+    color:white;
+}
+
+.delete-btn:hover{
+    background:#dc2626;
+}
+
+/* EMPTY */
+
+.empty{
+    width:100%;
+    background:white;
+    padding:60px;
+    border-radius:20px;
+    text-align:center;
+    grid-column:1/-1;
+}
+
+.empty i{
+    font-size:60px;
+    color:#94a3b8;
+    margin-bottom:20px;
+}
+
+.empty h2{
+    margin-bottom:10px;
+    color:#0f172a;
+}
+
+.empty p{
+    color:#64748b;
+}
+

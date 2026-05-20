@@ -8,6 +8,9 @@ session_start();
 
 include("../config/database.php");
 
+/** @var mysqli $conn */
+
+
 
 $mensaje = "";
 $tipo = "";

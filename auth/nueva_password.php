@@ -5,6 +5,9 @@ ini_set('display_errors',1);
 
 include("../config/database.php");
 
+/** @var mysqli $conn */
+
+
 $mensaje = "";
 $tipo = "";
 $icono = "";

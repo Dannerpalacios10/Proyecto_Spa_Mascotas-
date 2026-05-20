@@ -4,6 +4,9 @@ session_start();
 
 include("../config/database.php");
 
+/** @var mysqli $conn */
+
+
 
 /* ===================================================== */
 /* CONSULTA AUDITORIA */

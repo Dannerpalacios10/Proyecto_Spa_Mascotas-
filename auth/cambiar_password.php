@@ -4,9 +4,10 @@ session_start();
 
 include("../config/database.php");
 
-/* ===================================================== */
-/* VALIDAR LOGIN */
-/* ===================================================== */
+/** @var mysqli $conn */
+
+
+/* 1. VALIDAR LOGIN */
 
 if(
     !isset($_SESSION['id_usuario'])
@@ -17,9 +18,9 @@ if(
 
 $idUsuario = $_SESSION['id_usuario'];
 
-/* ===================================================== */
+
 /* TEMPORIZADOR 10 MINUTOS */
-/* ===================================================== */
+
 
 if(!isset($_SESSION['inicio_cambio_password'])){
 
@@ -42,9 +43,7 @@ if($segundosRestantes <= 0){
     exit();
 }
 
-/* ===================================================== */
 /* CAMBIAR PASSWORD */
-/* ===================================================== */
 
 $mensaje = "";
 $error = "";

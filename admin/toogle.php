@@ -1,6 +1,10 @@
 <?php
 session_start();
+
 include("../config/database.php");
+
+/** @var mysqli $conn */
+
 
 if(!isset($_GET['id'])){
     die("ID no válido");

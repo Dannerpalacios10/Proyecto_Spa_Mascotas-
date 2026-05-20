@@ -1,0 +1,332 @@
+/* ========================================== */
+/* RESET */
+/* ========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f1f5f9;
+
+    color:#0f172a;
+}
+
+/* ========================================== */
+/* CONTAINER */
+/* ========================================== */
+
+.container{
+
+    display:flex;
+
+    min-height:100vh;
+}
+
+/* ========================================== */
+/* SIDEBAR */
+/* ========================================== */
+
+.sidebar{
+
+    width:260px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #0f172a,
+        #1e293b
+    );
+
+    color:white;
+
+    padding:30px 20px;
+
+    position:fixed;
+
+    height:100vh;
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:40px;
+}
+
+.logo i{
+
+    font-size:30px;
+
+    color:#38bdf8;
+}
+
+.logo h2{
+
+    font-size:22px;
+
+    font-weight:700;
+}
+
+.menu{
+
+    list-style:none;
+}
+
+.menu li{
+
+    margin-bottom:12px;
+}
+
+.menu li a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 16px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    color:#cbd5e1;
+
+    transition:.3s;
+}
+
+.menu li a:hover,
+.menu li.active a{
+
+    background:#2563eb;
+
+    color:white;
+}
+
+/* ========================================== */
+/* MAIN */
+/* ========================================== */
+
+.main{
+
+    margin-left:260px;
+
+    flex:1;
+
+    padding:35px;
+}
+
+/* ========================================== */
+/* TOPBAR */
+/* ========================================== */
+
+.topbar{
+
+    margin-bottom:35px;
+}
+
+.topbar h1{
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+    color:#0f172a;
+}
+
+.topbar p{
+
+    color:#64748b;
+
+    font-size:15px;
+}
+
+/* ========================================== */
+/* GRID */
+/* ========================================== */
+
+.services-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
+
+    gap:25px;
+}
+
+/* ========================================== */
+/* CARD */
+/* ========================================== */
+
+.service-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    box-shadow:
+    0 4px 20px rgba(0,0,0,.06);
+
+    transition:.3s;
+}
+
+.service-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.10);
+}
+
+/* ========================================== */
+/* ICON */
+/* ========================================== */
+
+.service-icon{
+
+    width:70px;
+    height:70px;
+
+    border-radius:18px;
+
+    background:#dbeafe;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:20px;
+}
+
+.service-icon i{
+
+    font-size:30px;
+
+    color:#2563eb;
+}
+
+/* ========================================== */
+/* TITLES */
+/* ========================================== */
+
+.service-card h2{
+
+    font-size:24px;
+
+    margin-bottom:18px;
+
+    color:#0f172a;
+}
+
+/* ========================================== */
+/* INFO */
+/* ========================================== */
+
+.service-info{
+
+    margin-bottom:25px;
+}
+
+.service-info p{
+
+    margin-bottom:12px;
+
+    color:#475569;
+
+    font-size:15px;
+}
+
+.service-info strong{
+
+    color:#0f172a;
+}
+
+/* ========================================== */
+/* BUTTON */
+/* ========================================== */
+
+.btn{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    text-decoration:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.btn:hover{
+
+    background:#1d4ed8;
+}
+
+/* ========================================== */
+/* RESPONSIVE */
+/* ========================================== */
+
+@media(max-width:900px){
+
+    .sidebar{
+
+        width:90px;
+
+        padding:25px 10px;
+    }
+
+    .logo h2,
+    .menu li a span{
+
+        display:none;
+    }
+
+    .main{
+
+        margin-left:90px;
+    }
+}
+
+@media(max-width:700px){
+
+    .main{
+
+        padding:20px;
+    }
+
+    .services-grid{
+
+        grid-template-columns:1fr;
+    }
+}

@@ -4,16 +4,12 @@ ob_start();
 
 session_start();
 
-/* EVITAR CACHE Y REENVÍO */
-
-header("Cache-Control: no-cache, no-store, must-revalidate");
-
-header("Pragma: no-cache");
-
-header("Expires: 0");
 
 include("../config/database.php");
 include("../config/log.php");
+
+/** @var mysqli $conn */
+
 
 /* ================= CAPTCHA ================= */
 
@@ -172,13 +168,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-/* EVITAR REENVÍO DEL FORMULARIO */
-
-if($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['id_usuario'])){
-
-    header("Location: login.php", true, 303);
-    exit();
-}
 ob_end_flush();
 
 ?>

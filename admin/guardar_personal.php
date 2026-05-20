@@ -3,6 +3,9 @@ session_start();
 
 include("../config/database.php");
 
+/** @var mysqli $conn */
+
+
 
 $nombre = $_POST['nombre'];
 $email = $_POST['email'];
@@ -11,6 +14,7 @@ $password = $_POST['password'];
 $rol = $_POST['rol'];
 
 /* VALIDACIÓN FUERTE */
+
 if(
 strlen($password) < 8 ||
 !preg_match('/[A-Z]/',$password) ||

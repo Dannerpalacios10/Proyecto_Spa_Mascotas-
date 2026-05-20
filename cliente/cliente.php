@@ -1,5 +1,10 @@
 <?php
+
 session_start();
+
+include("../config/database.php");
+
+/** @var mysqli $conn */
 
 if(!isset($_SESSION['id_usuario'])){
     header("Location: ../auth/login.php");
@@ -11,7 +16,87 @@ if($_SESSION['rol'] != "CLIENTE"){
     exit();
 }
 
+$idCliente = $_SESSION['id_usuario'];
 $nombre = $_SESSION['nombre'];
+
+/* TOTAL MASCOTAS */
+
+$sqlMascotas = "
+
+SELECT COUNT(*) AS total
+FROM mascota
+WHERE id_cliente='$idCliente'
+
+";
+
+$resultMascotas = mysqli_query($conn,$sqlMascotas);
+$totalMascotas = mysqli_fetch_assoc($resultMascotas)['total'];
+
+/* TOTAL CITAS PENDIENTES */
+
+$sqlCitas = "
+
+SELECT COUNT(*) AS total
+FROM cita
+
+INNER JOIN mascota
+ON cita.id_mascota = mascota.id_mascota
+
+WHERE mascota.id_cliente='$idCliente'
+AND cita.estado IN(
+'EN_REVISION',
+'AGENDADA',
+'CONFIRMADA'
+)
+
+";
+
+$resultCitas = mysqli_query($conn,$sqlCitas);
+$totalCitas = mysqli_fetch_assoc($resultCitas)['total'];
+
+/* TOTAL SERVICIOS ACTIVOS */
+
+$sqlServicios = "
+
+SELECT COUNT(*) AS total
+FROM servicio
+WHERE estado_activo=1
+
+";
+
+$resultServicios = mysqli_query($conn,$sqlServicios);
+$totalServicios = mysqli_fetch_assoc($resultServicios)['total'];
+
+/* ÚLTIMAS ACTIVIDADES */
+
+$sqlHistorial = "
+
+SELECT
+
+cita.fecha_inicio,
+cita.estado,
+
+servicio.nombre AS servicio,
+mascota.nombre AS mascota
+
+FROM cita
+
+INNER JOIN mascota
+ON cita.id_mascota = mascota.id_mascota
+
+INNER JOIN servicio
+ON cita.id_servicio = servicio.id_servicio
+
+WHERE mascota.id_cliente='$idCliente'
+
+ORDER BY cita.fecha_inicio DESC
+
+LIMIT 5
+
+";
+
+$resultHistorial = mysqli_query($conn,$sqlHistorial);
+
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +146,7 @@ rel="stylesheet">
 
         <li class="active">
 
-            <a href="#">
+            <a href="cliente.php">
 
                 <i class="fa-solid fa-house"></i>
 
@@ -75,7 +160,7 @@ rel="stylesheet">
 
         <li>
 
-            <a href="#">
+            <a href="mascotas.php">
 
                 <i class="fa-solid fa-dog"></i>
 
@@ -89,7 +174,7 @@ rel="stylesheet">
 
         <li>
 
-            <a href="#">
+            <a href="citas.php">
 
                 <i class="fa-solid fa-calendar-days"></i>
 
@@ -103,7 +188,7 @@ rel="stylesheet">
 
         <li>
 
-            <a href="#">
+            <a href="servicios.php">
 
                 <i class="fa-solid fa-scissors"></i>
 
@@ -117,7 +202,7 @@ rel="stylesheet">
 
         <li>
 
-            <a href="#">
+            <a href="perfil.php">
 
                 <i class="fa-solid fa-user"></i>
 
@@ -158,12 +243,16 @@ rel="stylesheet">
         <div>
 
             <h1>
+
                 Bienvenido,
                 <?php echo $nombre; ?>
+
             </h1>
 
             <p>
+
                 Gestiona tus mascotas y citas fácilmente.
+
             </p>
 
         </div>
@@ -180,6 +269,8 @@ rel="stylesheet">
 
     <div class="cards">
 
+        <!-- MASCOTAS -->
+
         <div class="card">
 
             <div class="card-icon blue">
@@ -190,13 +281,23 @@ rel="stylesheet">
 
             <div>
 
-                <h2>3</h2>
+                <h2>
 
-                <p>Mascotas Registradas</p>
+                    <?php echo $totalMascotas; ?>
+
+                </h2>
+
+                <p>
+
+                    Mascotas Registradas
+
+                </p>
 
             </div>
 
         </div>
+
+        <!-- CITAS -->
 
         <div class="card">
 
@@ -208,13 +309,23 @@ rel="stylesheet">
 
             <div>
 
-                <h2>5</h2>
+                <h2>
 
-                <p>Citas Pendientes</p>
+                    <?php echo $totalCitas; ?>
+
+                </h2>
+
+                <p>
+
+                    Citas Pendientes
+
+                </p>
 
             </div>
 
         </div>
+
+        <!-- SERVICIOS -->
 
         <div class="card">
 
@@ -226,9 +337,17 @@ rel="stylesheet">
 
             <div>
 
-                <h2>2</h2>
+                <h2>
 
-                <p>Servicios Activos</p>
+                    <?php echo $totalServicios; ?>
+
+                </h2>
+
+                <p>
+
+                    Servicios Disponibles
+
+                </p>
 
             </div>
 
@@ -243,7 +362,9 @@ rel="stylesheet">
         <div class="panel-header">
 
             <h2>
+
                 Últimas Actividades
+
             </h2>
 
         </div>
@@ -255,6 +376,7 @@ rel="stylesheet">
                 <tr>
 
                     <th>Fecha</th>
+                    <th>Mascota</th>
                     <th>Servicio</th>
                     <th>Estado</th>
 
@@ -264,17 +386,62 @@ rel="stylesheet">
 
             <tbody>
 
+            <?php
+
+            if(mysqli_num_rows($resultHistorial) > 0){
+
+                while($fila = mysqli_fetch_assoc($resultHistorial)){
+
+                    $estado = $fila['estado'];
+
+                    $clase = "pending";
+
+                    if($estado == "COMPLETADA"){
+                        $clase = "success";
+                    }
+
+                    if($estado == "CANCELADA"){
+                        $clase = "cancel";
+                    }
+
+            ?>
+
                 <tr>
-
-                    <td>10/05/2026</td>
-
-                    <td>Baño Completo</td>
 
                     <td>
 
-                        <span class="status success">
+                        <?php
+                        echo date(
+                            "d/m/Y H:i",
+                            strtotime($fila['fecha_inicio'])
+                        );
+                        ?>
 
-                            Finalizado
+                    </td>
+
+                    <td>
+
+                        <?php
+                        echo $fila['mascota'];
+                        ?>
+
+                    </td>
+
+                    <td>
+
+                        <?php
+                        echo $fila['servicio'];
+                        ?>
+
+                    </td>
+
+                    <td>
+
+                        <span class="status <?php echo $clase; ?>">
+
+                            <?php
+                            echo $estado;
+                            ?>
 
                         </span>
 
@@ -282,23 +449,25 @@ rel="stylesheet">
 
                 </tr>
 
+            <?php
+
+                }
+
+            }else{
+
+            ?>
+
                 <tr>
 
-                    <td>11/05/2026</td>
+                    <td colspan="4">
 
-                    <td>Corte de Pelo</td>
-
-                    <td>
-
-                        <span class="status pending">
-
-                            Pendiente
-
-                        </span>
+                        No existen actividades recientes.
 
                     </td>
 
                 </tr>
+
+            <?php } ?>
 
             </tbody>
 
@@ -312,3 +481,4 @@ rel="stylesheet">
 
 </body>
 </html>
+```

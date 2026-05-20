@@ -3,6 +3,10 @@
 session_start();
 
 include("../config/database.php");
+include("../config/log.php");
+
+/** @var mysqli $conn */
+
 
 
 

@@ -7,6 +7,9 @@ session_start();
 
 include("../config/database.php");
 
+/** @var mysqli $conn */
+
+
 
 $mensaje = "";
 $tipo = "";
@@ -49,9 +52,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $verificar =
     $_POST['verificar_password'];
 
-    /* ========================================= */
     /* VALIDAR PASSWORD */
-    /* ========================================= */
+
 
     if($password !== $verificar){
 
@@ -83,9 +85,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         }else{
 
-            /* ========================================= */
             /* VERIFICAR EMAIL */
-            /* ========================================= */
 
             $check =
             mysqli_query(
@@ -104,9 +104,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             }else{
 
-                /* ========================================= */
                 /* HASH PASSWORD */
-                /* ========================================= */
 
                 $passwordHash =
                 password_hash(
@@ -114,10 +112,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 PASSWORD_DEFAULT
                 );
 
-                /* ========================================= */
                 /* OBTENER ROL CLIENTE */
-                /* ========================================= */
-
+                
                 $rolQuery =
                 mysqli_query(
                 $conn,

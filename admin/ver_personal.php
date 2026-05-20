@@ -2,6 +2,9 @@
 
 include("../config/database.php");
 
+/** @var mysqli $conn */
+
+
 
 $sql = mysqli_query($conn,"
 SELECT 

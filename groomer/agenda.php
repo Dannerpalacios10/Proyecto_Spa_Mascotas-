@@ -19,57 +19,49 @@ if($_SESSION['rol'] != "GROOMER"){
 $idGroomer = $_SESSION['id_usuario'];
 $nombre = $_SESSION['nombre'];
 
-/* ========================= */
-/* CITAS DEL DIA */
-/* ========================= */
+/* ===================================== */
+/* FILTRO */
+/* ===================================== */
 
-$sqlHoy = "
-SELECT COUNT(*) AS total
-FROM cita
-WHERE id_groomer='$idGroomer'
-AND DATE(fecha_inicio)=CURDATE()
-";
+$filtro = isset($_GET['filtro'])
+? $_GET['filtro']
+: 'HOY';
 
-$resultHoy = mysqli_query($conn,$sqlHoy);
-$totalHoy = mysqli_fetch_assoc($resultHoy)['total'];
+/* ===================================== */
+/* CONSULTA */
+/* ===================================== */
 
-/* ========================= */
-/* SERVICIOS FINALIZADOS */
-/* ========================= */
+$whereFecha = "";
 
-$sqlFinalizados = "
-SELECT COUNT(*) AS total
-FROM cita
-WHERE id_groomer='$idGroomer'
-AND estado='FINALIZADA'
-";
+if($filtro == "HOY"){
 
-$resultFinalizados = mysqli_query($conn,$sqlFinalizados);
-$totalFinalizados = mysqli_fetch_assoc($resultFinalizados)['total'];
+    $whereFecha =
+    "AND DATE(cita.fecha_inicio)=CURDATE()";
 
-/* ========================= */
-/* EN PROCESO */
-/* ========================= */
+}
+elseif($filtro == "SEMANA"){
 
-$sqlProceso = "
-SELECT COUNT(*) AS total
-FROM cita
-WHERE id_groomer='$idGroomer'
-AND estado='EN_PROGRESO'
-";
+    $whereFecha =
+    "AND YEARWEEK(cita.fecha_inicio,1)=YEARWEEK(CURDATE(),1)";
+}
 
-$resultProceso = mysqli_query($conn,$sqlProceso);
-$totalProceso = mysqli_fetch_assoc($resultProceso)['total'];
+/* ===================================== */
+/* CITAS */
+/* ===================================== */
 
-/* ========================= */
-/* PROXIMAS CITAS */
-/* ========================= */
-
-$sqlCitas = "
+$sql = "
 SELECT
+
 cita.*,
+
 mascota.nombre AS mascota_nombre,
-servicio.nombre AS servicio_nombre
+mascota.raza,
+mascota.tamano,
+
+servicio.nombre AS servicio_nombre,
+
+usuario.nombre AS cliente_nombre
+
 FROM cita
 
 INNER JOIN mascota
@@ -78,14 +70,17 @@ ON cita.id_mascota = mascota.id_mascota
 INNER JOIN servicio
 ON cita.id_servicio = servicio.id_servicio
 
+INNER JOIN usuario
+ON mascota.id_cliente = usuario.id_usuario
+
 WHERE cita.id_groomer='$idGroomer'
 
-AND DATE(cita.fecha_inicio)=CURDATE()
+$whereFecha
 
 ORDER BY cita.fecha_inicio ASC
 ";
 
-$citas = mysqli_query($conn,$sqlCitas);
+$citas = mysqli_query($conn,$sql);
 
 ?>
 
@@ -101,12 +96,12 @@ name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>
-Dashboard Groomer
+Agenda Groomer
 </title>
 
 <link
 rel="stylesheet"
-href="../groomer/css/g.css?v=2">
+href="../groomer/css/agenda.css">
 
 <link
 rel="stylesheet"
@@ -136,21 +131,21 @@ rel="stylesheet">
 
         <ul class="menu">
 
-            <li class="active">
+            <li>
 
                 <a href="groomer.php">
 
                     <i class="fa-solid fa-house"></i>
 
                     <span>
-                        Inicio
+                        Dashboard
                     </span>
 
                 </a>
 
             </li>
 
-            <li>
+            <li class="active">
 
                 <a href="agenda.php">
 
@@ -166,7 +161,7 @@ rel="stylesheet">
 
             <li>
 
-                <a href="ficha.php">
+                <a href="#">
 
                     <i class="fa-solid fa-clipboard-list"></i>
 
@@ -180,7 +175,7 @@ rel="stylesheet">
 
             <li>
 
-                <a href="registrar_insumos.php">
+                <a href="#">
 
                     <i class="fa-solid fa-box-open"></i>
 
@@ -221,112 +216,47 @@ rel="stylesheet">
             <div>
 
                 <h1>
-
-                    Bienvenido,
-                    <?php echo $nombre; ?>
-
+                    Agenda Groomer
                 </h1>
 
                 <p>
-                    Gestiona tus servicios y mascotas asignadas.
+                    Gestiona tus servicios asignados.
                 </p>
-
-            </div>
-
-            <div class="profile">
-
-                <i class="fa-solid fa-user"></i>
 
             </div>
 
         </div>
 
-        <!-- CARDS -->
+        <!-- FILTROS -->
 
-        <div class="cards">
+        <div class="filters">
 
-            <div class="card">
+            <a
+            href="?filtro=HOY"
+            class="<?php echo ($filtro=='HOY') ? 'active-filter' : ''; ?>">
 
-                <div class="card-icon blue">
+                Hoy
 
-                    <i class="fa-solid fa-calendar-check"></i>
+            </a>
 
-                </div>
+            <a
+            href="?filtro=SEMANA"
+            class="<?php echo ($filtro=='SEMANA') ? 'active-filter' : ''; ?>">
 
-                <div>
+                Semana
 
-                    <h2>
-
-                        <?php echo $totalHoy; ?>
-
-                    </h2>
-
-                    <p>
-                        Citas Hoy
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <div class="card-icon green">
-
-                    <i class="fa-solid fa-scissors"></i>
-
-                </div>
-
-                <div>
-
-                    <h2>
-
-                        <?php echo $totalFinalizados; ?>
-
-                    </h2>
-
-                    <p>
-                        Servicios Finalizados
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <div class="card-icon orange">
-
-                    <i class="fa-solid fa-spinner"></i>
-
-                </div>
-
-                <div>
-
-                    <h2>
-
-                        <?php echo $totalProceso; ?>
-
-                    </h2>
-
-                    <p>
-                        En Proceso
-                    </p>
-
-                </div>
-
-            </div>
+            </a>
 
         </div>
 
         <!-- TABLA -->
 
-        <div class="panel">
+        <div class="table-card">
 
-            <div class="panel-header">
+            <div class="table-header">
 
                 <h2>
-                    Agenda del Día
+                    Servicios Asignados
                 </h2>
 
             </div>
@@ -339,6 +269,9 @@ rel="stylesheet">
 
                         <th>Hora</th>
                         <th>Mascota</th>
+                        <th>Raza</th>
+                        <th>Tamaño</th>
+                        <th>Cliente</th>
                         <th>Servicio</th>
                         <th>Estado</th>
                         <th>Acciones</th>
@@ -359,7 +292,7 @@ rel="stylesheet">
 
                             <?php
                             echo date(
-                                "H:i",
+                                "d/m/Y H:i",
                                 strtotime($c['fecha_inicio'])
                             );
                             ?>
@@ -370,6 +303,30 @@ rel="stylesheet">
 
                             <?php
                             echo $c['mascota_nombre'];
+                            ?>
+
+                        </td>
+
+                        <td>
+
+                            <?php
+                            echo $c['raza'];
+                            ?>
+
+                        </td>
+
+                        <td>
+
+                            <?php
+                            echo $c['tamano'];
+                            ?>
+
+                        </td>
+
+                        <td>
+
+                            <?php
+                            echo $c['cliente_nombre'];
                             ?>
 
                         </td>
@@ -394,17 +351,63 @@ rel="stylesheet">
 
                         </td>
 
-                        <td>
+                        <td class="actions">
+
+                            <!-- INICIAR -->
+
+                            <?php if(
+                            $c['estado'] == 'CONFIRMADA'
+                            ||
+                            $c['estado'] == 'AGENDADA'
+                            ){ ?>
+
+                            <a
+                            href="iniciar_servicio.php?id=<?php echo $c['id_cita']; ?>"
+                            class="btn start">
+
+                                <i class="fa-solid fa-play"></i>
+
+                                Iniciar
+
+                            </a>
+
+                            <?php } ?>
+
+                            <!-- FICHA -->
+
+                            <?php
+                            while($c = mysqli_fetch_assoc($citas)){
+                            ?>
+
+                            <tr>
+
+                            <td>
+                            <?php echo $c['mascota_nombre']; ?>
+                            </td>
+
+                            <td>
+                            <?php echo $c['servicio_nombre']; ?>
+                            </td>
+
+                            <td>
+                            <?php echo $c['estado']; ?>
+                            </td>
+
+                            <td>
 
                             <a
                             href="ficha.php?id=<?php echo $c['id_cita']; ?>"
-                            class="btn-action">
+                            class="btn-ficha">
 
-                                <i class="fa-solid fa-eye"></i>
-
-                                Ver Ficha
+                            Abrir Ficha
 
                             </a>
+
+                            </td>
+
+                            </tr>
+
+                            <?php } ?>
 
                         </td>
 
@@ -421,8 +424,6 @@ rel="stylesheet">
     </div>
 
 </div>
-
-<script src="../groomer/js/g.js"></script>
 
 </body>
 </html>
