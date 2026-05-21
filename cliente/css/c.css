@@ -24,6 +24,8 @@ body{
     padding:30px 20px;
     position:fixed;
     height:100%;
+    top:0;
+    left:0;
 }
 
 .logo{
@@ -40,6 +42,7 @@ body{
 
 .logo h2{
     font-size:24px;
+    font-weight:700;
 }
 
 .menu{
@@ -54,10 +57,14 @@ body{
     display:flex;
     align-items:center;
     gap:15px;
-    padding:14px;
-    border-radius:12px;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
     color:#cbd5e1;
     text-decoration:none;
+
     transition:.3s;
 }
 
@@ -81,29 +88,64 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     margin-bottom:35px;
+
+    background:#fff;
+
+    padding:20px 25px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
 }
 
 .topbar h1{
     font-size:30px;
     color:#0f172a;
+    margin-bottom:5px;
 }
 
 .topbar p{
     color:#64748b;
-    margin-top:5px;
+    font-size:15px;
 }
 
+/* PERFIL */
+
 .profile{
-    width:55px;
-    height:55px;
-    background:#2563eb;
-    border-radius:50%;
     display:flex;
-    justify-content:center;
     align-items:center;
-    color:white;
-    font-size:22px;
+    justify-content:center;
+}
+
+.profile a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    background:#2563eb;
+    color:#fff;
+
+    padding:12px 22px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    font-size:15px;
+    font-weight:600;
+
+    transition:.3s ease;
+}
+
+.profile a:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+.profile a i{
+    font-size:16px;
 }
 
 /* CARDS */
@@ -119,10 +161,13 @@ body{
     background:white;
     padding:25px;
     border-radius:20px;
+
     display:flex;
     align-items:center;
     gap:20px;
+
     box-shadow:0 8px 20px rgba(0,0,0,.05);
+
     transition:.3s;
 }
 
@@ -133,10 +178,13 @@ body{
 .card-icon{
     width:70px;
     height:70px;
+
     border-radius:18px;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     color:white;
     font-size:28px;
 }
@@ -160,14 +208,18 @@ body{
 
 .card p{
     color:#64748b;
+    margin-top:5px;
 }
 
 /* PANEL */
 
 .panel{
     background:white;
+
     border-radius:20px;
+
     padding:25px;
+
     box-shadow:0 8px 20px rgba(0,0,0,.05);
 }
 
@@ -177,6 +229,7 @@ body{
 
 .panel-header h2{
     color:#0f172a;
+    font-size:24px;
 }
 
 /* TABLE */
@@ -198,15 +251,31 @@ td{
 
 th{
     color:#1e3a8a;
+    font-size:14px;
+    font-weight:600;
 }
 
 tbody tr{
     border-bottom:1px solid #e2e8f0;
+    transition:.2s;
 }
+
+tbody tr:hover{
+    background:#f8fafc;
+}
+
+td{
+    color:#334155;
+    font-size:14px;
+}
+
+/* STATUS */
 
 .status{
     padding:8px 14px;
+
     border-radius:20px;
+
     font-size:13px;
     font-weight:600;
 }
@@ -219,6 +288,64 @@ tbody tr{
 .pending{
     background:#fef3c7;
     color:#92400e;
+}
+
+.cancel{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* BUTTONS */
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:10px 16px;
+
+    border:none;
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-size:14px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-primary:hover{
+    background:#1d4ed8;
+}
+
+.btn-success{
+    background:#22c55e;
+    color:white;
+}
+
+.btn-success:hover{
+    background:#16a34a;
+}
+
+.btn-danger{
+    background:#ef4444;
+    color:white;
+}
+
+.btn-danger:hover{
+    background:#dc2626;
 }
 
 /* RESPONSIVE */
@@ -237,6 +364,12 @@ tbody tr{
     .main-content{
         margin-left:80px;
     }
+
+    .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
 }
 
 @media(max-width:600px){
@@ -245,9 +378,25 @@ tbody tr{
         grid-template-columns:1fr;
     }
 
+    .main-content{
+        padding:20px;
+    }
+
     .topbar{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:15px;
+        padding:20px;
+    }
+
+    table{
+        font-size:12px;
+    }
+
+    th,
+    td{
+        padding:12px;
+    }
+
+    .profile a{
+        width:100%;
+        justify-content:center;
     }
 }

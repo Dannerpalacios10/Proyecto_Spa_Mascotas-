@@ -116,7 +116,7 @@ Dashboard Cliente
 
 <link
 rel="stylesheet"
-href="../cliente/c.css">
+href="../cliente/css/c.css?v=2">
 
 <link
 rel="stylesheet"
@@ -202,20 +202,6 @@ rel="stylesheet">
 
         <li>
 
-            <a href="perfil.php">
-
-                <i class="fa-solid fa-user"></i>
-
-                <span>
-                    Perfil
-                </span>
-
-            </a>
-
-        </li>
-
-        <li>
-
             <a href="../auth/logout.php">
 
                 <i class="fa-solid fa-right-from-bracket"></i>
@@ -259,7 +245,13 @@ rel="stylesheet">
 
         <div class="profile">
 
-            <i class="fa-solid fa-user"></i>
+            <a href="perfil.php" class="profile-link">
+
+                <i class="fa-solid fa-user-pen"></i>
+
+                <span>Editar Perfil</span>
+
+            </a>
 
         </div>
 
@@ -477,7 +469,7 @@ rel="stylesheet">
 
 </div>
 
-<script src="../cliente/c.js"></script>
+<script src="../cliente/js/c.js"></script>
 
 </body>
 </html>

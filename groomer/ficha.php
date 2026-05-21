@@ -152,42 +152,69 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         );
     }
 
-    /* INSERTAR FICHA */
+    /* VALIDAR SI YA EXISTE FICHA */
 
+    $sqlExiste = "
+    SELECT id_ficha
+    FROM ficha_grooming
+    WHERE id_cita='$idCita'
+    ";
+
+    $resultExiste = mysqli_query($conn,$sqlExiste);
+
+    if(mysqli_num_rows($resultExiste) > 0){
+
+        die("La ficha de esta cita ya fue registrada.");
+    }
+
+    /* INSERTAR FICHA */
+    
     $sqlFicha = "
     INSERT INTO ficha_grooming
     (
         id_cita,
         estado_ingreso,
         observaciones,
-        checklist_bano,
-        checklist_corte,
-        checklist_unas,
-        checklist_oidos,
-        checklist_glandulas,
-        checklist_perfume,
+
+        check_bano,
+        check_corte,
+        check_unas,
+        check_oidos,
+        check_glandulas,
+        check_perfume,
+
         foto_antes,
         foto_despues,
+
         recomendaciones,
-        estado_servicio,
+
+        estado_final,
+
         fecha_inicio,
         fecha_cierre
     )
     VALUES
     (
         '$idCita',
+
         '$estadoIngreso',
+
         '$observaciones',
+
         '$checkBano',
         '$checkCorte',
         '$checkUnas',
         '$checkOidos',
         '$checkGlandulas',
         '$checkPerfume',
+
         '$fotoAntes',
         '$fotoDespues',
+
         '$recomendaciones',
+
         'FINALIZADO',
+
         NOW(),
         NOW()
     )
@@ -378,7 +405,8 @@ Foto Antes
 
 <input
 type="file"
-name="foto_antes">
+name="foto_antes"
+accept="image/*">
 
 </div>
 
@@ -390,7 +418,8 @@ Foto Después
 
 <input
 type="file"
-name="foto_despues">
+name="foto_despues"
+accept="image/*">
 
 </div>
 

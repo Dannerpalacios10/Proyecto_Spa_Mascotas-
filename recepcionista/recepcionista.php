@@ -1,9 +1,12 @@
 <?php
+
 session_start();
 
-if(
-    !isset($_SESSION['id_usuario'])
-){
+/** @var mysqli $conn */
+
+include("../config/database.php");
+
+if(!isset($_SESSION['id_usuario'])){
     header("Location: ../auth/login.php");
     exit();
 }
@@ -13,7 +16,215 @@ if($_SESSION['rol'] != "RECEPCIONISTA"){
     exit();
 }
 
+$idRecepcionista = $_SESSION['id_usuario'];
 $nombre = $_SESSION['nombre'];
+
+/* CONFIRMAR CITA */
+
+if(isset($_GET['confirmar'])){
+
+    $idCita = intval($_GET['confirmar']);
+    $idGroomer = intval($_GET['groomer']);
+
+    /* OBTENER DATOS DE LA CITA */
+
+    $sqlCita = "
+    SELECT *
+    FROM cita
+    WHERE id_cita='$idCita'
+    ";
+
+    $resultCita = mysqli_query($conn,$sqlCita);
+    $citaData = mysqli_fetch_assoc($resultCita);
+
+    if($citaData){
+
+        $fechaInicio = $citaData['fecha_inicio'];
+        $fechaFin = $citaData['fecha_fin'];
+
+        /* VALIDAR SI EL GROOMER YA TIENE CITA */
+
+        $sqlValidar = "
+        SELECT *
+        FROM cita
+        WHERE id_groomer='$idGroomer'
+        AND estado IN
+        (
+            'CONFIRMADA',
+            'EN_PROGRESO'
+        )
+        AND (
+            fecha_inicio < '$fechaFin'
+            AND
+            fecha_fin > '$fechaInicio'
+        )
+        ";
+
+        $validacion = mysqli_query($conn,$sqlValidar);
+
+        /* VALIDAR BLOQUEOS */
+
+        $sqlBloqueo = "
+        SELECT *
+        FROM bloqueo_horario
+        WHERE
+        (
+            id_groomer='$idGroomer'
+            OR id_groomer IS NULL
+        )
+        AND (
+            fecha_inicio < '$fechaFin'
+            AND
+            fecha_fin > '$fechaInicio'
+        )
+        ";
+
+        $bloqueos = mysqli_query($conn,$sqlBloqueo);
+
+        if(
+            mysqli_num_rows($validacion) > 0
+            ||
+            mysqli_num_rows($bloqueos) > 0
+        ){
+
+            $_SESSION['error'] =
+            "El groomer no está disponible en ese horario.";
+
+        }else{
+
+            $sqlConfirmar = "
+            UPDATE cita
+            SET
+            estado='CONFIRMADA',
+            id_groomer='$idGroomer',
+            notificado='1',
+            fecha_confirmacion=NOW(),
+            confirmado_por='$idRecepcionista'
+            WHERE id_cita='$idCita'
+            ";
+
+            mysqli_query($conn,$sqlConfirmar);
+
+            $_SESSION['success'] =
+            "Cita confirmada correctamente.";
+        }
+    }
+
+    header("Location: recepcionista.php");
+    exit();
+}
+
+/* CANCELAR CITA */
+
+if(isset($_GET['cancelar'])){
+
+    $idCita = intval($_GET['cancelar']);
+
+    $sqlCancelar = "
+    UPDATE cita
+    SET estado='CANCELADA'
+    WHERE id_cita='$idCita'
+    ";
+
+    mysqli_query($conn,$sqlCancelar);
+
+    $_SESSION['success'] =
+    "Cita cancelada correctamente.";
+
+    header("Location: recepcionista.php");
+    exit();
+}
+
+/* KPIs */
+
+$sqlPendientes = "
+SELECT COUNT(*) AS total
+FROM cita
+WHERE estado='PENDIENTE'
+";
+
+$resultPendientes =
+mysqli_query($conn,$sqlPendientes);
+
+$totalPendientes =
+mysqli_fetch_assoc($resultPendientes)['total'];
+
+/* ========================================= */
+
+$sqlConfirmadas = "
+SELECT COUNT(*) AS total
+FROM cita
+WHERE estado='CONFIRMADA'
+";
+
+$resultConfirmadas =
+mysqli_query($conn,$sqlConfirmadas);
+
+$totalConfirmadas =
+mysqli_fetch_assoc($resultConfirmadas)['total'];
+
+/* ========================================= */
+
+$sqlHoy = "
+SELECT COUNT(*) AS total
+FROM cita
+WHERE DATE(fecha_inicio)=CURDATE()
+";
+
+$resultHoy =
+mysqli_query($conn,$sqlHoy);
+
+$totalHoy =
+mysqli_fetch_assoc($resultHoy)['total'];
+
+/* GROOMERS */
+
+$sqlGroomers = "
+SELECT
+usuario.id_usuario,
+usuario.nombre
+FROM usuario
+
+INNER JOIN rol
+ON usuario.id_rol = rol.id_rol
+
+WHERE rol.nombre='GROOMER'
+";
+
+$groomers =
+mysqli_query($conn,$sqlGroomers);
+
+/* CITAS PENDIENTES */
+
+$sqlCitas = "
+SELECT
+
+cita.*,
+
+mascota.nombre AS mascota_nombre,
+
+servicio.nombre AS servicio_nombre,
+
+usuario.nombre AS cliente_nombre
+
+FROM cita
+
+INNER JOIN mascota
+ON cita.id_mascota = mascota.id_mascota
+
+INNER JOIN servicio
+ON cita.id_servicio = servicio.id_servicio
+
+INNER JOIN usuario
+ON mascota.id_cliente = usuario.id_usuario
+
+WHERE cita.estado='PENDIENTE'
+
+ORDER BY cita.fecha_inicio ASC
+";
+
+$citas = mysqli_query($conn,$sqlCitas);
+
 ?>
 
 <!DOCTYPE html>
@@ -28,182 +239,400 @@ name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>
-Panel Recepcionista
+Recepción
 </title>
 
 <link
 rel="stylesheet"
-href="../recepcionista/r.css">
+href="../recepcionista/css/r.css?v=5">
 
 <link
 rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
 </head>
 
 <body>
 
-<div class="sidebar">
+<div class="container">
 
-    <div class="logo">
+    <!-- SIDEBAR -->
 
-        <i class="fa-solid fa-headset"></i>
+    <div class="sidebar">
 
-        <h2>SPA PET</h2>
+        <div class="logo">
 
-    </div>
+            <i class="fa-solid fa-desktop"></i>
 
-    <ul class="menu">
-
-        <li class="active">
-            <a href="#">
-                <i class="fa-solid fa-house"></i>
-                Inicio
-            </a>
-        </li>
-
-        <li>
-            <a href="#">
-                <i class="fa-solid fa-calendar-days"></i>
-                Agendar Citas
-            </a>
-        </li>
-
-        <li>
-            <a href="#">
-                <i class="fa-solid fa-users"></i>
-                Clientes
-            </a>
-        </li>
-
-        <li>
-            <a href="#">
-                <i class="fa-solid fa-phone"></i>
-                Contactos
-            </a>
-        </li>
-
-        <li>
-            <a href="#">
-                <i class="fa-solid fa-user"></i>
-                Perfil
-            </a>
-        </li>
-
-        <li>
-            <a href="../auth/logout.php">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                Cerrar Sesión
-            </a>
-        </li>
-
-    </ul>
-
-</div>
-
-<div class="main-content">
-
-    <div class="topbar">
-
-        <h1>
-            Bienvenida,
-            <?php echo $nombre; ?>
-        </h1>
-
-    </div>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <i class="fa-solid fa-calendar-plus"></i>
-
-            <h2>15</h2>
-
-            <p>Citas Registradas</p>
+            <h2>SPA PAW PATROL</h2>
 
         </div>
 
-        <div class="card">
+        <ul class="menu">
 
-            <i class="fa-solid fa-users"></i>
+            <li class="active">
 
-            <h2>28</h2>
+                <a href="recepcionista.php">
 
-            <p>Clientes Atendidos</p>
+                    <i class="fa-solid fa-house"></i>
 
-        </div>
+                    Dashboard
 
-        <div class="card">
+                </a>
 
-            <i class="fa-solid fa-phone-volume"></i>
+            </li>
 
-            <h2>10</h2>
+            <li>
 
-            <p>Llamadas Pendientes</p>
+                <a href="calendario.php">
 
-        </div>
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Calendario
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="pagos.php">
+
+                    <i class="fa-solid fa-money-bill"></i>
+
+                    Pagos
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="bloqueos.php">
+
+                    <i class="fa-solid fa-ban"></i>
+
+                    Bloqueos
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="promociones.php">
+
+                    <i class="fa-solid fa-tags"></i>
+
+                    Promociones
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="../auth/logout.php">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Salir
+
+                </a>
+
+            </li>
+
+        </ul>
 
     </div>
 
-    <div class="panel">
+    <!-- MAIN -->
 
-        <h2>
-            Agenda del Día
-        </h2>
+    <div class="main-content">
 
-        <table>
+        <!-- TOPBAR -->
 
-            <thead>
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+
+                    Bienvenida,
+                    <?php echo $nombre; ?>
+
+                </h1>
+
+                <p>
+                    Gestión operativa del SPA
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ALERTAS -->
+
+        <?php if(isset($_SESSION['success'])){ ?>
+
+        <div class="alert success">
+
+            <?php
+            echo $_SESSION['success'];
+            unset($_SESSION['success']);
+            ?>
+
+        </div>
+
+        <?php } ?>
+
+        <?php if(isset($_SESSION['error'])){ ?>
+
+        <div class="alert error">
+
+            <?php
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+            ?>
+
+        </div>
+
+        <?php } ?>
+
+        <!-- CARDS -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="icon blue">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+
+                        <?php echo $totalPendientes; ?>
+
+                    </h2>
+
+                    <p>
+                        Pendientes
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon green">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+
+                        <?php echo $totalConfirmadas; ?>
+
+                    </h2>
+
+                    <p>
+                        Confirmadas
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon orange">
+
+                    <i class="fa-solid fa-calendar-day"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+
+                        <?php echo $totalHoy; ?>
+
+                    </h2>
+
+                    <p>
+                        Citas Hoy
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TABLA -->
+
+        <div class="table-card">
+
+            <div class="table-header">
+
+                <h2>
+                    Solicitudes Pendientes
+                </h2>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Mascota</th>
+                        <th>Cliente</th>
+                        <th>Servicio</th>
+                        <th>Fecha</th>
+                        <th>Asignar Groomer</th>
+                        <th>Acciones</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                <?php
+                while($c = mysqli_fetch_assoc($citas)){
+                ?>
 
                 <tr>
 
-                    <th>Hora</th>
-                    <th>Cliente</th>
-                    <th>Mascota</th>
-                    <th>Estado</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                <tr>
-
-                    <td>10:00</td>
-                    <td>Carlos Pérez</td>
-                    <td>Rocky</td>
                     <td>
-                        <span class="status success">
-                            Confirmado
-                        </span>
+
+                        <?php
+                        echo $c['mascota_nombre'];
+                        ?>
+
                     </td>
 
-                </tr>
-
-                <tr>
-
-                    <td>12:30</td>
-                    <td>María López</td>
-                    <td>Luna</td>
                     <td>
-                        <span class="status pending">
-                            Pendiente
-                        </span>
+
+                        <?php
+                        echo $c['cliente_nombre'];
+                        ?>
+
                     </td>
 
+                    <td>
+
+                        <?php
+                        echo $c['servicio_nombre'];
+                        ?>
+
+                    </td>
+
+                    <td>
+
+                        <?php
+                        echo date(
+                            "d/m/Y H:i",
+                            strtotime($c['fecha_inicio'])
+                        );
+                        ?>
+
+                    </td>
+
+                    <!-- GROOMER -->
+
+                    <td>
+
+                        <form action="confcita.php" method="GET" class="form-actions">
+
+                            <input
+                            type="hidden"
+                            name="id"
+                            value="<?php echo $c['id_cita']; ?>">
+
+                            <select
+                            name="groomer"
+                            required>
+
+                                <option value="">
+                                    Groomer
+                                </option>
+
+                                <?php
+
+                                mysqli_data_seek($groomers,0);
+
+                                while($g = mysqli_fetch_assoc($groomers)){
+                                ?>
+
+                                <option value="<?php echo $g['id_usuario']; ?>">
+
+                                    <?php echo $g['nombre']; ?>
+
+                                </option>
+
+                                <?php } ?>
+
+                            </select>
+
+                    </td>
+
+                    <!-- ACCIONES -->
+
+                    <td class="actions">
+
+                            <button
+                            type="submit"
+                            class="btn confirm">
+
+                                <i class="fa-solid fa-check"></i>
+
+                                Confirmar
+
+                            </button>
+
+                        </form>
+
+                        <a
+                        href="cancita.php?id=<?php echo $c['id_cita']; ?>"
+                        class="btn cancel">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                            Cancelar
+
+                        </a>
+
+                    </td>
+
+
                 </tr>
 
-            </tbody>
+                <?php } ?>
 
-        </table>
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
 </div>
-
-<script src="../recepcionista/ra.js"></script>
 
 </body>
 </html>

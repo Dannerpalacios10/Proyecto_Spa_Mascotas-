@@ -22,9 +22,7 @@ $nombre = $_SESSION['nombre'];
 $mensaje = "";
 $tipo = "";
 
-/* ========================================= */
 /* REGISTRAR CITA */
-/* ========================================= */
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
@@ -42,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     $idGroomer =
     !empty($_POST['id_groomer'])
-    ? "'".$_POST['id_groomer']."'"
+    ? $_POST['id_groomer']
     : "NULL";
 
     $fecha =
@@ -54,97 +52,129 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $fechaInicio =
     $fecha . " " . $hora . ":00";
 
-    /* SERVICIO */
+    /* VALIDAR FECHA Y HORA */
 
-    $sqlServicio = "
-    SELECT *
-    FROM servicio
-    WHERE id_servicio='$idServicio'
-    ";
+    $fechaActual = date("Y-m-d");
+    $horaActual = date("H:i");
 
-    $resultadoServicio =
-    mysqli_query($conn,$sqlServicio);
-
-    $servicio =
-    mysqli_fetch_assoc($resultadoServicio);
-
-    $duracion =
-    $servicio['duracion_base'];
-
-    $fechaFin =
-    date(
-        "Y-m-d H:i:s",
-        strtotime($fechaInicio . " +$duracion minutes")
-    );
-
-    /* VALIDAR HORARIO */
-
-    $sqlValidar = "
-    SELECT *
-    FROM cita
-    WHERE fecha_inicio='$fechaInicio'
-    AND estado IN
-    ('AGENDADA','CONFIRMADA','EN_PROGRESO')
-    ";
-
-    $resultadoValidar =
-    mysqli_query($conn,$sqlValidar);
-
-    if(mysqli_num_rows($resultadoValidar) > 0){
+    if(
+        $fecha == $fechaActual
+        &&
+        $hora < $horaActual
+    ){
 
         $mensaje =
-        "Ya existe una cita en ese horario.";
+        "No puedes reservar una hora pasada.";
 
         $tipo =
         "error";
 
     }else{
 
-        $sqlInsert = "
-        INSERT INTO cita
-        (
-            id_mascota,
-            id_groomer,
-            id_servicio,
-            fecha_inicio,
-            fecha_fin,
-            estado,
-            creado_por
-        )
-        VALUES
-        (
-            '$idMascota',
-            $idGroomer,
-            '$idServicio',
-            '$fechaInicio',
-            '$fechaFin',
-            'AGENDADA',
-            '$idCliente'
-        )
+        /* SERVICIO */
+
+        $sqlServicio = "
+        SELECT *
+        FROM servicio
+        WHERE id_servicio='$idServicio'
         ";
 
-        if(mysqli_query($conn,$sqlInsert)){
+        $resultadoServicio =
+        mysqli_query($conn,$sqlServicio);
+
+        $servicio =
+        mysqli_fetch_assoc($resultadoServicio);
+
+        $duracion =
+        $servicio['duracion_base'];
+
+        $fechaFin =
+        date(
+            "Y-m-d H:i:s",
+            strtotime($fechaInicio . " +$duracion minutes")
+        );
+
+        /* VALIDAR HORARIO */
+
+        $sqlValidar = "
+
+        SELECT *
+        FROM cita
+
+        WHERE
+
+        id_mascota = '$idMascota'
+
+        AND fecha_inicio = '$fechaInicio'
+
+        AND estado IN
+        (
+            'PENDIENTE',
+            'CONFIRMADA',
+            'EN_PROGRESO'
+        )
+
+        ";
+
+        $resultadoValidar =
+        mysqli_query($conn,$sqlValidar);
+
+        if(mysqli_num_rows($resultadoValidar) > 0){
 
             $mensaje =
-            "Solicitud de cita enviada correctamente.";
-
-            $tipo =
-            "success";
-
-        }else{
-
-            $mensaje =
-            "Error al registrar cita.";
+            "La mascota ya tiene una cita en ese horario.";
 
             $tipo =
             "error";
+
+        }else{
+
+            /* INSERTAR CITA */
+
+            $sqlInsert = "
+            INSERT INTO cita
+            (
+                id_mascota,
+                id_groomer,
+                id_servicio,
+                fecha_inicio,
+                fecha_fin,
+                estado,
+                creado_por
+            )
+            VALUES
+            (
+                '$idMascota',
+                $idGroomer,
+                '$idServicio',
+                '$fechaInicio',
+                '$fechaFin',
+                'PENDIENTE',
+                '$idCliente'
+            )
+            ";
+
+            if(mysqli_query($conn,$sqlInsert)){
+
+                $mensaje =
+                "Solicitud de cita enviada correctamente.";
+
+                $tipo =
+                "success";
+
+            }else{
+
+                $mensaje =
+                "Error al registrar cita.";
+
+                $tipo =
+                "error";
+            }
         }
     }
 }
 
-/* ========================================= */
 /* MASCOTAS */
-/* ========================================= */
 
 $sqlMascotas = "
 SELECT *
@@ -156,9 +186,7 @@ ORDER BY nombre ASC
 $mascotas =
 mysqli_query($conn,$sqlMascotas);
 
-/* ========================================= */
 /* SERVICIOS */
-/* ========================================= */
 
 $sqlServicios = "
 SELECT *
@@ -169,37 +197,44 @@ ORDER BY nombre ASC
 $servicios =
 mysqli_query($conn,$sqlServicios);
 
-/* ========================================= */
 /* GROOMERS */
-/* ========================================= */
 
 $sqlGroomers = "
-SELECT usuario.id_usuario,
+SELECT
+usuario.id_usuario,
 usuario.nombre
 FROM usuario
+
 INNER JOIN rol
 ON usuario.id_rol = rol.id_rol
+
 WHERE rol.nombre='GROOMER'
 ";
 
 $groomers =
 mysqli_query($conn,$sqlGroomers);
 
-/* ========================================= */
 /* CITAS */
-/* ========================================= */
 
 $sqlCitas = "
 SELECT
+
 cita.*,
+
 mascota.nombre AS mascota_nombre,
+
 servicio.nombre AS servicio_nombre
+
 FROM cita
+
 INNER JOIN mascota
 ON cita.id_mascota = mascota.id_mascota
+
 INNER JOIN servicio
 ON cita.id_servicio = servicio.id_servicio
+
 WHERE mascota.id_cliente='$idCliente'
+
 ORDER BY cita.fecha_inicio DESC
 ";
 
@@ -225,7 +260,7 @@ Mis Citas
 
 <link
 rel="stylesheet"
-href="../cliente/css/citas.css">
+href="../cliente/css/citas.css?v=3">
 
 <link
 rel="stylesheet"
@@ -497,7 +532,6 @@ rel="stylesheet">
                         <input
                         type="date"
                         name="fecha"
-                        min="<?php echo date('Y-m-d'); ?>"
                         required>
 
                     </div>
@@ -518,33 +552,13 @@ rel="stylesheet">
                                 Seleccione horario
                             </option>
 
-                            <option value="08:00">
-                                08:00 AM
-                            </option>
-
-                            <option value="09:00">
-                                09:00 AM
-                            </option>
-
-                            <option value="10:00">
-                                10:00 AM
-                            </option>
-
-                            <option value="11:00">
-                                11:00 AM
-                            </option>
-
-                            <option value="14:00">
-                                02:00 PM
-                            </option>
-
-                            <option value="15:00">
-                                03:00 PM
-                            </option>
-
-                            <option value="16:00">
-                                04:00 PM
-                            </option>
+                            <option value="08:00">08:00 AM</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
 
                         </select>
 
@@ -602,8 +616,6 @@ rel="stylesheet">
 
                 <tr>
 
-                    <!-- MASCOTA -->
-
                     <td>
 
                         <?php
@@ -612,8 +624,6 @@ rel="stylesheet">
 
                     </td>
 
-                    <!-- SERVICIO -->
-
                     <td>
 
                         <?php
@@ -621,8 +631,6 @@ rel="stylesheet">
                         ?>
 
                     </td>
-
-                    <!-- FECHA -->
 
                     <td>
 
@@ -635,8 +643,6 @@ rel="stylesheet">
 
                     </td>
 
-                    <!-- ESTADO -->
-
                     <td>
 
                         <span class="estado <?php echo strtolower($c['estado']); ?>">
@@ -648,8 +654,6 @@ rel="stylesheet">
                         </span>
 
                     </td>
-
-                    <!-- ACCIONES -->
 
                     <td>
 

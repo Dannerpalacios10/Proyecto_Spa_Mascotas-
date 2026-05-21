@@ -19,17 +19,13 @@ if($_SESSION['rol'] != "GROOMER"){
 $idGroomer = $_SESSION['id_usuario'];
 $nombre = $_SESSION['nombre'];
 
-/* ===================================== */
 /* FILTRO */
-/* ===================================== */
 
 $filtro = isset($_GET['filtro'])
 ? $_GET['filtro']
 : 'HOY';
 
-/* ===================================== */
 /* CONSULTA */
-/* ===================================== */
 
 $whereFecha = "";
 
@@ -45,9 +41,7 @@ elseif($filtro == "SEMANA"){
     "AND YEARWEEK(cita.fecha_inicio,1)=YEARWEEK(CURDATE(),1)";
 }
 
-/* ===================================== */
 /* CITAS */
-/* ===================================== */
 
 $sql = "
 SELECT
@@ -74,6 +68,13 @@ INNER JOIN usuario
 ON mascota.id_cliente = usuario.id_usuario
 
 WHERE cita.id_groomer='$idGroomer'
+
+AND cita.estado IN
+(
+    'CONFIRMADA',
+    'EN_PROGRESO',
+    'COMPLETADA'
+)
 
 $whereFecha
 
@@ -161,21 +162,7 @@ rel="stylesheet">
 
             <li>
 
-                <a href="#">
-
-                    <i class="fa-solid fa-clipboard-list"></i>
-
-                    <span>
-                        Fichas
-                    </span>
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#">
+                <a href="insumos.php">
 
                     <i class="fa-solid fa-box-open"></i>
 
@@ -353,63 +340,54 @@ rel="stylesheet">
 
                         <td class="actions">
 
-                            <!-- INICIAR -->
+                        <!-- INICIAR -->
 
-                            <?php if(
-                            $c['estado'] == 'CONFIRMADA'
-                            ||
-                            $c['estado'] == 'AGENDADA'
-                            ){ ?>
+                        <?php if(
+                        $c['estado'] == 'CONFIRMADA'
+            
+                        ){ ?>
 
-                            <a
-                            href="iniciar_servicio.php?id=<?php echo $c['id_cita']; ?>"
-                            class="btn start">
+                        <a
+                        href="iniciar_servicio.php?id=<?php echo $c['id_cita']; ?>"
+                        class="btn start">
 
-                                <i class="fa-solid fa-play"></i>
+                            <i class="fa-solid fa-play"></i>
 
-                                Iniciar
+                            Iniciar
 
-                            </a>
+                        </a>
 
-                            <?php } ?>
+                        <?php } ?>
 
-                            <!-- FICHA -->
+                        <!-- FICHA -->
 
-                            <?php
-                            while($c = mysqli_fetch_assoc($citas)){
-                            ?>
+                        <?php if(
+                        $c['estado'] == 'CONFIRMADA'
+                        ||
+                        $c['estado'] == 'EN_PROGRESO'
+                        ){ ?>
 
-                            <tr>
+                        <a
+                        href="ficha.php?id=<?php echo $c['id_cita']; ?>"
+                        class="btn-action">
 
-                            <td>
-                            <?php echo $c['mascota_nombre']; ?>
-                            </td>
+                            <i class="fa-solid fa-clipboard"></i>
 
-                            <td>
-                            <?php echo $c['servicio_nombre']; ?>
-                            </td>
+                            Ficha
 
-                            <td>
-                            <?php echo $c['estado']; ?>
-                            </td>
+                        </a>
 
-                            <td>
+                        <?php }else{ ?>
 
-                            <a
-                            href="ficha.php?id=<?php echo $c['id_cita']; ?>"
-                            class="btn-ficha">
+                        <span class="finalizado">
 
-                            Abrir Ficha
+                            Servicio Finalizado
 
-                            </a>
+                        </span>
 
-                            </td>
+                        <?php } ?>
 
-                            </tr>
-
-                            <?php } ?>
-
-                        </td>
+                    </td>
 
                     </tr>
 

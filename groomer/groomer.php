@@ -166,21 +166,7 @@ rel="stylesheet">
 
             <li>
 
-                <a href="ficha.php">
-
-                    <i class="fa-solid fa-clipboard-list"></i>
-
-                    <span>
-                        Fichas
-                    </span>
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="registrar_insumos.php">
+                <a href="insumos.php">
 
                     <i class="fa-solid fa-box-open"></i>
 
