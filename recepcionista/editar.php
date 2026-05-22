@@ -252,7 +252,7 @@ Editar Perfil
 
 <link
 rel="stylesheet"
-href="../recepcionista/css/editar.css">
+href="../recepcionista/css/editar.css?v=2">
 
 <link
 rel="stylesheet"
@@ -274,8 +274,6 @@ rel="stylesheet">
 
         <div class="logo">
 
-            <i class="fa-solid fa-desktop"></i>
-
             <h2>SPA PAW PATROL</h2>
 
         </div>
@@ -288,7 +286,7 @@ rel="stylesheet">
 
                     <i class="fa-solid fa-house"></i>
 
-                    <span>Dashboard</span>
+                    <span>Inicio</span>
 
                 </a>
 
@@ -306,19 +304,18 @@ rel="stylesheet">
 
             </li>
 
-            <li>
-
-                <a href="../auth/logout.php">
-
-                    <i class="fa-solid fa-right-from-bracket"></i>
-
-                    <span>Salir</span>
-
-                </a>
-
-            </li>
-
         </ul>
+
+        <div class="logout">
+
+            <a href="../auth/logout.php">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Cerrar Sesion
+            </a>
+
+        </div>
 
     </div>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-05-2026 a las 19:49:41
+-- Tiempo de generación: 22-05-2026 a las 23:25:31
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -51,7 +51,128 @@ INSERT INTO `auditoria` (`id_auditoria`, `id_usuario`, `accion`, `fecha`, `ip_us
 (133, 10, 'Inicio de sesión ADMIN', '2026-05-21 13:45:35', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
 (134, 10, 'Cerró sesión del sistema', '2026-05-21 13:45:55', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
 (135, 14, 'Inicio de sesión', '2026-05-21 13:49:02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
-(136, 14, 'Cerró sesión del sistema', '2026-05-21 13:49:10', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36');
+(136, 14, 'Cerró sesión del sistema', '2026-05-21 13:49:10', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(137, 14, 'Inicio de sesión', '2026-05-21 16:29:03', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(138, 14, 'Inicio de sesión', '2026-05-21 17:10:29', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(139, 14, 'Cerró sesión del sistema', '2026-05-21 17:36:48', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(140, 12, 'Inicio de sesión', '2026-05-21 17:37:14', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(141, 12, 'Cerró sesión del sistema', '2026-05-21 17:41:07', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(142, 11, 'Inicio de sesión', '2026-05-21 17:41:22', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(143, 14, 'Inicio de sesión', '2026-05-21 17:43:50', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(144, 12, 'Inicio de sesión', '2026-05-21 17:44:27', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(145, 14, 'Inicio de sesión', '2026-05-21 17:46:12', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(146, 11, 'Inicio de sesión', '2026-05-21 17:46:50', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(147, 14, 'Inicio de sesión', '2026-05-21 18:04:02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(148, 12, 'Inicio de sesión', '2026-05-21 18:06:41', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(149, 11, 'Inicio de sesión', '2026-05-21 18:17:21', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(150, 12, 'Inicio de sesión', '2026-05-21 18:17:56', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(151, 12, 'Cerró sesión del sistema', '2026-05-21 18:22:00', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(152, 14, 'Inicio de sesión', '2026-05-21 18:22:40', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(153, 11, 'Inicio de sesión', '2026-05-21 18:23:14', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(154, 12, 'Inicio de sesión', '2026-05-21 18:45:17', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(155, 11, 'Inicio de sesión', '2026-05-21 18:46:05', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(156, 11, 'Cerró sesión del sistema', '2026-05-21 18:46:18', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(157, 14, 'Inicio de sesión', '2026-05-21 18:46:41', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(158, 12, 'Inicio de sesión', '2026-05-21 18:48:29', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(159, 14, 'Inicio de sesión', '2026-05-21 18:49:55', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(160, 14, 'Cerró sesión del sistema', '2026-05-21 18:54:56', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(161, 12, 'Inicio de sesión', '2026-05-21 18:55:29', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(162, 14, 'Inicio de sesión', '2026-05-21 18:56:30', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(163, 11, 'Inicio de sesión', '2026-05-21 18:57:08', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(164, 14, 'Inicio de sesión', '2026-05-21 19:02:30', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(165, 11, 'Inicio de sesión', '2026-05-21 19:23:16', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(166, 11, 'Cerró sesión del sistema', '2026-05-21 19:27:19', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(167, 11, 'Inicio de sesión', '2026-05-21 19:27:53', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(168, 11, 'Cerró sesión del sistema', '2026-05-21 19:51:00', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(169, 14, 'Inicio de sesión', '2026-05-21 19:52:49', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(170, 14, 'Cerró sesión del sistema', '2026-05-21 19:56:32', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(171, 11, 'Inicio de sesión', '2026-05-21 19:56:47', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(172, 12, 'Inicio de sesión', '2026-05-21 19:57:09', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(173, 11, 'Inicio de sesión', '2026-05-21 19:58:05', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(174, 14, 'Inicio de sesión', '2026-05-21 20:02:55', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(175, 12, 'Inicio de sesión', '2026-05-21 20:03:37', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(176, 14, 'Inicio de sesión', '2026-05-21 20:04:14', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(177, 12, 'Inicio de sesión', '2026-05-21 20:05:23', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(178, 11, 'Inicio de sesión', '2026-05-21 20:05:53', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(179, 14, 'Inicio de sesión', '2026-05-21 20:07:29', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(180, 12, 'Inicio de sesión', '2026-05-21 20:07:51', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(181, 11, 'Inicio de sesión', '2026-05-21 20:15:36', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(182, 11, 'Cerró sesión del sistema', '2026-05-21 20:31:10', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(183, 11, 'Inicio de sesión', '2026-05-21 20:31:24', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(184, 11, 'Inicio de sesión', '2026-05-21 20:32:56', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(185, 12, 'Inicio de sesión', '2026-05-21 21:12:05', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(186, 14, 'Inicio de sesión', '2026-05-21 21:12:29', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(187, 12, 'Inicio de sesión', '2026-05-21 21:22:00', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(188, 11, 'Inicio de sesión', '2026-05-21 21:24:48', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(189, 12, 'Inicio de sesión', '2026-05-21 21:27:27', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(190, 14, 'Inicio de sesión', '2026-05-21 21:27:53', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(191, 12, 'Inicio de sesión', '2026-05-21 21:35:25', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(192, 12, 'Cerró sesión del sistema', '2026-05-21 21:42:18', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(193, 11, 'Inicio de sesión', '2026-05-21 21:42:39', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(194, 11, 'Cerró sesión del sistema', '2026-05-21 21:44:38', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(195, 12, 'Inicio de sesión', '2026-05-21 21:44:51', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(196, 14, 'Inicio de sesión', '2026-05-21 21:47:52', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(197, 14, 'Cerró sesión del sistema', '2026-05-21 22:02:39', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(198, 12, 'Inicio de sesión', '2026-05-21 22:03:24', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(199, 12, 'Cerró sesión del sistema', '2026-05-21 22:09:27', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(200, 12, 'Inicio de sesión', '2026-05-21 22:10:44', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(201, 12, 'Inicio de sesión', '2026-05-21 22:46:27', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(202, 12, 'Inicio de sesión', '2026-05-22 09:28:59', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(203, 12, 'Inicio de sesión', '2026-05-22 09:35:53', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(204, 12, 'Inicio de sesión', '2026-05-22 09:36:52', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(205, 12, 'Inicio de sesión', '2026-05-22 10:14:11', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(206, 12, 'Inicio de sesión', '2026-05-22 10:30:28', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(207, 11, 'Inicio de sesión', '2026-05-22 10:31:56', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(208, 12, 'Inicio de sesión', '2026-05-22 10:34:01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(209, 12, 'Cerró sesión del sistema', '2026-05-22 10:57:29', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(210, 14, 'Inicio de sesión', '2026-05-22 10:58:03', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(211, 14, 'Cerró sesión del sistema', '2026-05-22 11:22:12', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(212, 11, 'Inicio de sesión', '2026-05-22 11:22:31', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(213, 11, 'Cerró sesión del sistema', '2026-05-22 11:24:02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(214, 12, 'Inicio de sesión', '2026-05-22 11:24:17', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(215, 12, 'Inicio de sesión', '2026-05-22 11:26:55', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(216, 12, 'Cerró sesión del sistema', '2026-05-22 14:08:51', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(217, 12, 'Inicio de sesión', '2026-05-22 14:09:08', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(218, 12, 'Inicio de sesión', '2026-05-22 14:48:16', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(219, 12, 'Cerró sesión del sistema', '2026-05-22 15:21:26', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(220, 10, 'Inicio de sesión ADMIN', '2026-05-22 15:22:58', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(221, 10, 'Cerró sesión del sistema', '2026-05-22 15:30:50', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(222, 11, 'Inicio de sesión', '2026-05-22 15:31:09', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(223, 12, 'Inicio de sesión', '2026-05-22 15:41:18', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(224, 11, 'Inicio de sesión', '2026-05-22 15:44:59', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(225, 12, 'Inicio de sesión', '2026-05-22 15:45:30', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(226, 11, 'Inicio de sesión', '2026-05-22 15:57:12', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(227, 11, 'Cerró sesión del sistema', '2026-05-22 15:59:38', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(228, 14, 'Inicio de sesión', '2026-05-22 16:07:37', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(229, 14, 'Cerró sesión del sistema', '2026-05-22 16:13:32', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(230, 14, 'Inicio de sesión', '2026-05-22 17:00:01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(231, 14, 'Cerró sesión del sistema', '2026-05-22 17:07:28', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(232, 11, 'Inicio de sesión', '2026-05-22 17:07:44', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(233, 11, 'Cerró sesión del sistema', '2026-05-22 17:07:49', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(234, 12, 'Inicio de sesión', '2026-05-22 17:08:01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(235, 12, 'Cerró sesión del sistema', '2026-05-22 17:09:47', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36'),
+(236, 11, 'Inicio de sesión', '2026-05-22 17:10:02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `bloqueos`
+--
+
+CREATE TABLE `bloqueos` (
+  `id_bloqueo` int(11) NOT NULL,
+  `tipo` enum('feriado','mantenimiento','descanso') NOT NULL,
+  `fecha` date NOT NULL,
+  `descripcion` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `bloqueos`
+--
+
+INSERT INTO `bloqueos` (`id_bloqueo`, `tipo`, `fecha`, `descripcion`) VALUES
+(1, 'feriado', '2026-05-22', 'Por dia del Estado Plurinacional no habra atencion Gracias '),
+(2, 'descanso', '2026-05-22', 'Hora de descanso');
 
 -- --------------------------------------------------------
 
@@ -109,6 +230,29 @@ INSERT INTO `categoria` (`id_categoria`, `nombre`, `padre_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `categoria_producto`
+--
+
+CREATE TABLE `categoria_producto` (
+  `id_categoria` int(11) NOT NULL,
+  `nombre` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categoria_producto`
+--
+
+INSERT INTO `categoria_producto` (`id_categoria`, `nombre`) VALUES
+(1, 'Shampoos'),
+(2, 'Accesorios'),
+(3, 'Juguetes'),
+(4, 'Perros'),
+(5, 'Gatos'),
+(6, 'Limpieza');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `checklist_grooming`
 --
 
@@ -153,6 +297,17 @@ CREATE TABLE `cita` (
   `fecha_confirmacion` datetime DEFAULT NULL,
   `confirmado_por` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cita`
+--
+
+INSERT INTO `cita` (`id_cita`, `id_mascota`, `id_groomer`, `id_servicio`, `fecha_inicio`, `fecha_fin`, `observaciones`, `motivo_cancelacion`, `politica_aceptada`, `fecha_creacion`, `estado`, `creado_por`, `reprogramado_por`, `fecha_reprogramacion`, `duracion_real`, `fecha_cancelacion`, `cancelado_por`, `mensaje_recepcion`, `leido_cliente`, `notificado`, `fecha_confirmacion`, `confirmado_por`) VALUES
+(12, 7, 11, 1, '2026-05-21 14:00:00', '2026-05-21 15:00:00', NULL, NULL, 0, '2026-05-21 22:54:49', 'COMPLETADA', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-21 18:55:56', 12),
+(13, 8, 11, 4, '2026-05-21 14:00:00', '2026-05-21 16:30:00', NULL, NULL, 0, '2026-05-21 23:55:20', 'COMPLETADA', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-21 19:57:37', 12),
+(14, 7, NULL, 3, '2026-05-21 14:00:00', '2026-05-21 14:45:00', NULL, NULL, 0, '2026-05-21 23:55:54', 'CANCELADA', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL),
+(15, 7, 11, 4, '2026-05-21 15:00:00', '2026-05-21 17:30:00', NULL, NULL, 0, '2026-05-22 00:05:04', 'COMPLETADA', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-21 20:07:55', 12),
+(16, 7, 11, 2, '2026-05-22 18:00:00', '2026-05-22 19:30:00', NULL, NULL, 0, '2026-05-22 21:07:14', '', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-22 17:08:08', 12);
 
 -- --------------------------------------------------------
 
@@ -238,6 +393,16 @@ CREATE TABLE `ficha_grooming` (
   `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `ficha_grooming`
+--
+
+INSERT INTO `ficha_grooming` (`id_ficha`, `id_cita`, `estado_ingreso`, `comportamiento`, `observaciones`, `check_bano`, `check_corte`, `check_unas`, `check_oidos`, `check_glandulas`, `check_perfume`, `foto_antes`, `foto_despues`, `recomendaciones`, `fecha_inicio`, `raza_tamano`, `temperatura`, `notas_internas`, `consumido_inventario`, `fecha_cierre`, `estado_final`, `creado_en`) VALUES
+(3, 12, 'Con pelo largo', NULL, 'NN', 1, 0, 0, 0, 0, 0, '1779404505_antes_Pensum26.jpg', '1779404505_despues_Pensum26.jpg', 'Shampoo', '2026-05-21 19:01:45', NULL, NULL, NULL, 0, '2026-05-21 19:01:45', 'FINALIZADO', '2026-05-21 23:01:45'),
+(4, 13, 'CON PELO SUCIO ', NULL, 'NN', 1, 1, 1, 1, 1, 1, '1779408406_antes_Pensum26.jpg', '1779408406_despues_Pensum26.jpg', 'NN', '2026-05-21 20:06:46', NULL, NULL, NULL, 0, '2026-05-21 20:06:46', 'FINALIZADO', '2026-05-22 00:06:46'),
+(5, 15, 'EN BUEN ESTADO', NULL, 'NN', 1, 1, 1, 1, 1, 1, '1779409037_antes_Pensum26.jpg', '1779409037_despues_Pensum26.jpg', 'NN', '2026-05-21 20:17:17', NULL, NULL, NULL, 0, '2026-05-21 20:17:17', 'FINALIZADO', '2026-05-22 00:17:17'),
+(6, 16, 'NN', NULL, 'NN', 1, 0, 0, 0, 0, 0, '1779484849_antes_Pensum26.jpg', '1779484849_despues_Pensum26.jpg', 'NN', '2026-05-22 17:20:49', NULL, NULL, NULL, 0, '2026-05-22 17:20:49', 'FINALIZADO', '2026-05-22 21:20:49');
+
 -- --------------------------------------------------------
 
 --
@@ -315,6 +480,14 @@ CREATE TABLE `mascota` (
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `mascota`
+--
+
+INSERT INTO `mascota` (`id_mascota`, `nombre`, `especie`, `sexo`, `raza`, `tamano`, `peso`, `temperamento`, `fecha_nacimiento`, `restricciones`, `alergias`, `carnet_vacunas`, `id_cliente`, `fecha_registro`) VALUES
+(7, 'Zeus', 'Gato', NULL, 'Chapi', 'PEQUEÑO', 10.00, 'TRANQUILO', '2026-05-01', 'NN', 'NN', '../uploads/carnets/1779403867_Autoevaluacion.pdf', 14, '2026-05-21 22:51:07'),
+(8, 'Beyli', 'Perro', NULL, 'Chapi', 'MEDIANO', 25.00, 'TRANQUILO', '2025-01-01', 'NN', 'NN', '../uploads/carnets/1779407688_Autoevaluacion.pdf', 14, '2026-05-21 23:54:48');
+
 -- --------------------------------------------------------
 
 --
@@ -355,8 +528,18 @@ CREATE TABLE `pago` (
   `monto` decimal(10,2) DEFAULT NULL,
   `metodo` varchar(50) DEFAULT NULL,
   `referencia` varchar(100) DEFAULT NULL,
-  `estado` enum('COMPLETADO','PENDIENTE','FALLIDO') DEFAULT NULL
+  `estado` enum('COMPLETADO','PENDIENTE','FALLIDO') DEFAULT NULL,
+  `id_cita` int(11) NOT NULL,
+  `metodo_pago` varchar(50) DEFAULT NULL,
+  `fecha_pago` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pago`
+--
+
+INSERT INTO `pago` (`id_pago`, `id_factura`, `monto`, `metodo`, `referencia`, `estado`, `id_cita`, `metodo_pago`, `fecha_pago`) VALUES
+(1, NULL, 70.00, NULL, 'NN', NULL, 16, 'QR', '2026-05-22 17:09:26');
 
 -- --------------------------------------------------------
 
@@ -371,19 +554,38 @@ CREATE TABLE `producto` (
   `stock` int(11) DEFAULT NULL,
   `stock_minimo` int(11) DEFAULT NULL,
   `imagen` varchar(255) DEFAULT NULL,
-  `id_categoria` int(11) DEFAULT NULL
+  `id_categoria` int(11) NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `precio` decimal(10,2) DEFAULT NULL,
+  `estado` enum('DISPONIBLE','NO_DISPONIBLE') DEFAULT 'DISPONIBLE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id_producto`, `nombre`, `sku`, `stock`, `stock_minimo`, `imagen`, `id_categoria`) VALUES
-(3, 'Shampoo Canino', 'SKU001', 20, 5, '', 1),
-(4, 'Croquetas Premium', 'SKU002', 50, 10, '', 2),
-(5, 'Pelota de Goma', 'SKU003', 30, 5, '', 3),
-(6, 'adad', '123d', 22, 22, '', 1),
-(7, 'fdaf', 'adfa', -1, 1, '', 1);
+INSERT INTO `producto` (`id_producto`, `nombre`, `sku`, `stock`, `stock_minimo`, `imagen`, `id_categoria`, `descripcion`, `precio`, `estado`) VALUES
+(3, 'Shampoo Canino', 'SKU001', 20, 5, '', 3, NULL, NULL, 'DISPONIBLE'),
+(4, 'Croquetas Premium', 'SKU002', 50, 10, '', 2, NULL, NULL, 'DISPONIBLE'),
+(5, 'Pelota de Goma', 'SKU003', 30, 5, '', 3, NULL, NULL, 'DISPONIBLE'),
+(6, 'adad', '123d', 22, 22, '', 1, NULL, NULL, 'DISPONIBLE'),
+(7, 'fdaf', 'adfa', -1, 1, '', 1, NULL, NULL, 'DISPONIBLE'),
+(8, 'Collar Premium Perro', NULL, 20, NULL, 'collar_perro.jpg', 1, 'Collar resistente y cómodo para perros grandes y pequeños.', 45.00, 'DISPONIBLE'),
+(9, 'Correa Profesional', NULL, 15, NULL, 'correa.jpg', 1, 'Correa reforzada ideal para paseos diarios.', 60.00, 'DISPONIBLE'),
+(10, 'Cama Deluxe Canina', NULL, 10, NULL, 'cama_perro.jpg', 1, 'Cama acolchonada suave para máximo descanso.', 150.00, 'DISPONIBLE'),
+(11, 'Juguete Hueso', NULL, 30, NULL, 'hueso.jpg', 1, 'Juguete resistente para entretenimiento.', 35.00, 'DISPONIBLE'),
+(12, 'Comida Premium Dog', NULL, 25, NULL, 'comida_perro.jpg', 1, 'Alimento balanceado para perros adultos.', 120.00, 'DISPONIBLE'),
+(13, 'Arena Premium', NULL, 40, NULL, 'arena.jpg', 2, 'Arena sanitaria absorbente para gatos.', 55.00, 'DISPONIBLE'),
+(14, 'Rascador Felino', NULL, 12, NULL, 'rascador.jpg', 2, 'Rascador grande para entretenimiento.', 95.00, 'DISPONIBLE'),
+(15, 'Cama para Gato', NULL, 14, NULL, 'cama_gato.jpg', 2, 'Cama suave y cómoda para gatos.', 110.00, 'DISPONIBLE'),
+(16, 'Juguete Ratón', NULL, 35, NULL, 'raton.jpg', 2, 'Juguete interactivo para gatos activos.', 25.00, 'DISPONIBLE'),
+(17, 'Comida Cat Premium', NULL, 20, NULL, 'comida_gato.jpg', 2, 'Alimento balanceado para gatos.', 130.00, 'DISPONIBLE'),
+(18, 'Champú Antipulgas', NULL, 18, NULL, 'champu_antipulgas.jpg', 3, 'Champú especializado contra pulgas y garrapatas.', 70.00, 'DISPONIBLE'),
+(19, 'Champú Hidratante', NULL, 16, NULL, 'champu_hidratante.jpg', 3, 'Champú para piel sensible y brillante.', 65.00, 'DISPONIBLE'),
+(20, 'Perfume Mascotas', NULL, 22, NULL, 'perfume.jpg', 3, 'Fragancia suave para perros y gatos.', 40.00, 'DISPONIBLE'),
+(21, 'Toallitas Húmedas', NULL, 28, NULL, 'toallitas.jpg', 3, 'Toallitas de limpieza rápida para mascotas.', 30.00, 'DISPONIBLE'),
+(22, 'Cepillo Profesional', NULL, 19, NULL, 'cepillo.jpg', 3, 'Cepillo para pelaje suave y brillante.', 50.00, 'DISPONIBLE'),
+(23, 'Kit Dental Mascotas', NULL, 14, NULL, 'kit_dental.jpg', 3, 'Kit completo de higiene dental para perros y gatos con cepillo y pasta especializada.', 85.00, 'DISPONIBLE');
 
 -- --------------------------------------------------------
 
@@ -497,7 +699,7 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `email`, `password_hash`, `two_fa
 (10, 'Administrador', 'admin@spa.com', '$2y$10$oRJXux7PsOJ67YIw4fbDf.FQN44aJP9VL9FHomYWUmoAP1qFFC4Rm', NULL, 0, NULL, 1, 2, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0),
 (11, 'Juan', 'obitopalacios10@gmail.com', '$2y$10$uWQTycn7JJ2EmO9Kd4URVeE.i8GWvpXwpIMJmw.p2JRh9/Ur6Xrf.', NULL, 0, NULL, 1, 4, 'Montes', 'AV. LAS PALMERAS', '77774444', 1, NULL, NULL, NULL, 1),
 (12, 'Jessica', 'mamanipalaciosdanner@gmail.com', '$2y$10$6tlOkZmljBS6FlnJRmvkOeHlwgevtvceWhNhBRwjXc2AGblv.juL2', NULL, 0, NULL, 1, 3, 'Lazarte', 'AV. ECUADOR', '77889999', 1, NULL, NULL, NULL, 1),
-(14, 'Annder', 'anndermunoz941@gmail.com', '$2y$10$M0izqPpsX1EdKBKXcUKMU.t7JcKmFvSeRSkTB/hfTpr9SXXF5kEnq', NULL, 0, NULL, 1, 1, 'Palacios', 'AV. LAS PALMERAS', '77774444', 1, NULL, NULL, NULL, 1);
+(14, 'Annder', 'anndermunoz941@gmail.com', '$2y$10$jm0V/jTLEdC/vBvJetPCOODXRIKDoP5v2CMjKvdsn/7N6y7TYCdqe', NULL, 0, NULL, 1, 1, 'Palacios', 'AV. LAS PALMERAS', '77774444', 1, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -527,6 +729,12 @@ ALTER TABLE `auditoria`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
+-- Indices de la tabla `bloqueos`
+--
+ALTER TABLE `bloqueos`
+  ADD PRIMARY KEY (`id_bloqueo`);
+
+--
 -- Indices de la tabla `bloqueo_horario`
 --
 ALTER TABLE `bloqueo_horario`
@@ -545,6 +753,12 @@ ALTER TABLE `carrito`
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`),
   ADD KEY `padre_id` (`padre_id`);
+
+--
+-- Indices de la tabla `categoria_producto`
+--
+ALTER TABLE `categoria_producto`
+  ADD PRIMARY KEY (`id_categoria`);
 
 --
 -- Indices de la tabla `checklist_grooming`
@@ -650,7 +864,8 @@ ALTER TABLE `notificacion`
 --
 ALTER TABLE `pago`
   ADD PRIMARY KEY (`id_pago`),
-  ADD KEY `id_factura` (`id_factura`);
+  ADD KEY `id_factura` (`id_factura`),
+  ADD KEY `fk_pago_cita` (`id_cita`);
 
 --
 -- Indices de la tabla `producto`
@@ -711,7 +926,13 @@ ALTER TABLE `variante_producto`
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
+
+--
+-- AUTO_INCREMENT de la tabla `bloqueos`
+--
+ALTER TABLE `bloqueos`
+  MODIFY `id_bloqueo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `bloqueo_horario`
@@ -732,6 +953,12 @@ ALTER TABLE `categoria`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `categoria_producto`
+--
+ALTER TABLE `categoria_producto`
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `checklist_grooming`
 --
 ALTER TABLE `checklist_grooming`
@@ -741,7 +968,7 @@ ALTER TABLE `checklist_grooming`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_carrito`
@@ -759,7 +986,7 @@ ALTER TABLE `factura`
 -- AUTO_INCREMENT de la tabla `ficha_grooming`
 --
 ALTER TABLE `ficha_grooming`
-  MODIFY `id_ficha` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_ficha` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `foto_mascota`
@@ -783,7 +1010,7 @@ ALTER TABLE `inventario`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `id_mascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_mascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `notificacion`
@@ -795,13 +1022,13 @@ ALTER TABLE `notificacion`
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -939,6 +1166,7 @@ ALTER TABLE `notificacion`
 -- Filtros para la tabla `pago`
 --
 ALTER TABLE `pago`
+  ADD CONSTRAINT `fk_pago_cita` FOREIGN KEY (`id_cita`) REFERENCES `cita` (`id_cita`),
   ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`id_factura`) REFERENCES `factura` (`id_factura`);
 
 --

@@ -58,13 +58,14 @@
             SERVICIOS
         </a>
 
-        <a href="#contacto">
-            TIENDA
-        </a>
-
         <a href="#nosotros">
             NOSOTROS
         </a>
+
+         <a href="tienda/tienda.php">
+            TIENDA
+        </a>
+
 
         <a href="#contacto">
             CONTACTO
@@ -186,11 +187,11 @@ id="servicios">
 
             <div class="service-info">
 
-                <h3>
+                <h4>
 
                     BAÑO Y LIMPIEZA
 
-                </h3>
+                </h4>
 
                 <p>
 
@@ -213,11 +214,84 @@ id="servicios">
 
             <div class="service-info">
 
-                <h3>
+                <h4>
 
                     CORTE DE PELO
 
-                </h3>
+                </h4>
+
+                <p>
+
+                    Grooming profesional
+                    para todas las razas.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="service-card">
+
+            <img
+            src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop"
+            alt="Corte de pelo">
+
+            <div class="service-info">
+
+                <h4>
+
+                    TRATAMIENTOS
+
+                </h4>
+
+                <p>
+
+                    Grooming profesional
+                    para todas las razas.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="service-card">
+
+            <img
+            src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop"
+            alt="Corte de pelo">
+
+            <div class="service-info">
+
+                <h5>
+
+                    LIMPIEZA DE DIENTES
+
+                </h5>
+
+                <p>
+
+                    Grooming profesional
+                    para todas las razas.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="service-card">
+
+            <img
+            src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop"
+            alt="Corte de pelo">
+
+            <div class="service-info">
+
+                <h4>
+                    VACUNAS
+                </h4>
 
                 <p>
 
@@ -240,11 +314,9 @@ id="servicios">
 
             <div class="service-info">
 
-                <h3>
-
+                <h4>
                     CUIDADO ESPECIAL
-
-                </h3>
+                </h4>
 
                 <p>
 
@@ -268,12 +340,10 @@ id="nosotros">
 
     <!-- IMAGEN -->
 
-    <div class="about-image">
+   <div class="about-image"> 
 
-        <img
-        src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop"
-        alt="Pet Spa">
-
+    <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop" alt="Pet Spa">
+ 
     </div>
 
     <!-- TEXTO -->

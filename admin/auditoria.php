@@ -75,7 +75,7 @@ rel="stylesheet">
 
     <div class="logo">
 
-        SPA PET SYSTEM
+        SPA PAW PATROL
 
     </div>
 
@@ -85,7 +85,7 @@ rel="stylesheet">
         class="menu-item"
         href="dashboard.php">
 
-            Dashboard
+            Inicio
 
         </a>
 
@@ -93,7 +93,7 @@ rel="stylesheet">
         class="menu-item"
         href="crear_personal.php">
 
-            Crear Personal
+            Registrar Personal
 
         </a>
 

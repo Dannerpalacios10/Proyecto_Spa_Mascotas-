@@ -41,8 +41,8 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != "ADMIN") {
         <a
         class="menu-item active"
         href="dashboard.php">
-
-        Dashboard
+        
+        Inicio
 
         </a>
 
@@ -50,7 +50,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != "ADMIN") {
         class="menu-item"
         href="crear_personal.php">
 
-        Crear Personal
+        Registrar Personal
 
         </a>
 

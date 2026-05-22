@@ -45,7 +45,7 @@ Servicios
 
 <link
 rel="stylesheet"
-href="../cliente/css/servicios.css">
+href="../cliente/css/servicios.css?v=1">
 
 <link
 rel="stylesheet"
@@ -66,9 +66,7 @@ rel="stylesheet">
     <div class="sidebar">
 
         <div class="logo">
-
-            <i class="fa-solid fa-paw"></i>
-
+            
             <h2>SPA PAW PATROL</h2>
 
         </div>
@@ -131,21 +129,19 @@ rel="stylesheet">
 
             </li>
 
-            <li>
-
-                <a href="../auth/logout.php">
-
-                    <i class="fa-solid fa-right-from-bracket"></i>
-
-                    <span>
-                        Cerrar Sesión
-                    </span>
-
-                </a>
-
-            </li>
-
         </ul>
+
+        <div class="logout">
+
+            <a href="../auth/logout.php">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Cerrar Sesion
+                
+            </a>
+
+        </div>
 
     </div>
 

@@ -1,12 +1,4 @@
-/* ========================================== */
-/* GOOGLE FONT */
-/* ========================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-/* ========================================== */
-/* RESET */
-/* ========================================== */
 
 *{
     margin:0;
@@ -14,9 +6,7 @@
     box-sizing:border-box;
 }
 
-/* ========================================== */
 /* BODY */
-/* ========================================== */
 
 body{
 
@@ -28,9 +18,7 @@ body{
     color:#1e293b;
 }
 
-/* ========================================== */
 /* LAYOUT */
-/* ========================================== */
 
 .container{
 
@@ -39,120 +27,76 @@ body{
     min-height:100vh;
 }
 
-/* ========================================== */
 /* SIDEBAR */
-/* ========================================== */
 
 .sidebar{
-
     width:260px;
-
-    background:
-    linear-gradient(
-    180deg,
-    #0f172a,
-    #1e293b
-    );
-
+    background:#0f172a;
     color:white;
-
-    padding:25px 20px;
-
-    position:fixed;
-
     height:100vh;
-
-    overflow-y:auto;
-}
-
-/* ========================================== */
-/* LOGO */
-/* ========================================== */
-
-.logo{
-
+    padding:25px 20px;
+    position:fixed;
     display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    margin-bottom:40px;
+    flex-direction:column;
 }
-
-.logo i{
-
-    font-size:32px;
-
-    color:#38bdf8;
-}
-
-.logo h2{
-
-    font-size:22px;
-
-    font-weight:700;
-}
-
-/* ========================================== */
-/* MENU */
-/* ========================================== */
 
 .menu{
-
     list-style:none;
 }
 
 .menu li{
-
-    margin-bottom:12px;
+    margin-bottom:10px;
 }
 
-.menu li a{
-
+.menu li a,
+.logout a{
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
+    padding:14px;
+    border-radius:14px;
     text-decoration:none;
-
     color:#cbd5e1;
-
-    padding:14px 16px;
-
-    border-radius:12px;
-
-    transition:.3s;
+    transition:0.3s;
 }
 
-.menu li a:hover{
-
-    background:
-    rgba(255,255,255,.08);
-
+.menu li a:hover,
+.logout a:hover{
+    background:#1e293b;
     color:white;
 }
 
 .menu li.active a{
-
-    background:
-    linear-gradient(
-    135deg,
-    #2563eb,
-    #38bdf8
-    );
-
+    background:#2563eb;
     color:white;
-
-    box-shadow:
-    0 10px 25px rgba(37,99,235,.3);
 }
 
-/* ========================================== */
+.logout{
+
+    margin-top:auto;
+}
+
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.logo i{
+    font-size:30px;
+    color:#3b82f6;
+}
+
+.logo h2{
+    font-size:20px;
+    font-weight:700;
+}
+
+
 /* MAIN */
-/* ========================================== */
 
 .main{
 
@@ -163,9 +107,7 @@ body{
     padding:35px;
 }
 
-/* ========================================== */
 /* TOPBAR */
-/* ========================================== */
 
 .topbar{
 
@@ -187,9 +129,7 @@ body{
     color:#0f172a;
 }
 
-/* ========================================== */
 /* VOLVER */
-/* ========================================== */
 
 .back-btn{
 
@@ -226,9 +166,7 @@ body{
     color:white;
 }
 
-/* ========================================== */
 /* ALERTAS */
-/* ========================================== */
 
 .alert{
 
@@ -263,9 +201,7 @@ body{
     color:#dc2626;
 }
 
-/* ========================================== */
 /* CARD */
-/* ========================================== */
 
 .form-card{
 
@@ -279,9 +215,7 @@ body{
     0 8px 30px rgba(15,23,42,.08);
 }
 
-/* ========================================== */
 /* GRID */
-/* ========================================== */
 
 .grid{
 
@@ -295,9 +229,7 @@ body{
     margin-bottom:25px;
 }
 
-/* ========================================== */
 /* INPUT GROUP */
-/* ========================================== */
 
 .input-group{
 
@@ -319,9 +251,7 @@ body{
     color:#334155;
 }
 
-/* ========================================== */
 /* INPUTS */
-/* ========================================== */
 
 .input-group input,
 .input-group select,
@@ -347,9 +277,7 @@ body{
     background:#f8fafc;
 }
 
-/* ========================================== */
 /* FOCUS */
-/* ========================================== */
 
 .input-group input:focus,
 .input-group select:focus,
@@ -363,27 +291,21 @@ body{
     0 0 0 4px rgba(37,99,235,.12);
 }
 
-/* ========================================== */
 /* TEXTAREA */
-/* ========================================== */
 
 textarea{
 
     resize:none;
 }
 
-/* ========================================== */
 /* FILE INPUT */
-/* ========================================== */
 
 input[type="file"]{
 
     background:white;
 }
 
-/* ========================================== */
 /* BUTTON */
-/* ========================================== */
 
 .btn{
 
@@ -432,9 +354,7 @@ input[type="file"]{
     0 15px 30px rgba(37,99,235,.35);
 }
 
-/* ========================================== */
 /* RESPONSIVE */
-/* ========================================== */
 
 @media(max-width:900px){
 

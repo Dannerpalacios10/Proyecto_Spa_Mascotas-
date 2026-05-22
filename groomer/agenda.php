@@ -102,7 +102,7 @@ Agenda Groomer
 
 <link
 rel="stylesheet"
-href="../groomer/css/agenda.css">
+href="../groomer/css/agenda.css?v=1">
 
 <link
 rel="stylesheet"
@@ -123,8 +123,6 @@ rel="stylesheet">
     <div class="sidebar">
 
         <div class="logo">
-
-            <i class="fa-solid fa-scissors"></i>
 
             <h2>SPA PAW PATROL</h2>
 
@@ -167,21 +165,7 @@ rel="stylesheet">
                     <i class="fa-solid fa-box-open"></i>
 
                     <span>
-                        Inventario usado
-                    </span>
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="../auth/logout.php">
-
-                    <i class="fa-solid fa-right-from-bracket"></i>
-
-                    <span>
-                        Cerrar Sesión
+                        Insumo 
                     </span>
 
                 </a>
@@ -189,6 +173,18 @@ rel="stylesheet">
             </li>
 
         </ul>
+
+        <div class="logout">
+
+            <a href="../auth/logout.php">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Cerrar Sesion
+                
+            </a>
+
+        </div>
 
     </div>
 
@@ -338,14 +334,11 @@ rel="stylesheet">
 
                         </td>
 
-                        <td class="actions">
-
                         <!-- INICIAR -->
 
-                        <?php if(
-                        $c['estado'] == 'CONFIRMADA'
-            
-                        ){ ?>
+                        <td class="actions">
+
+                        <?php if($c['estado'] == 'CONFIRMADA'){ ?>
 
                         <a
                         href="iniciar.php?id=<?php echo $c['id_cita']; ?>"
@@ -357,14 +350,13 @@ rel="stylesheet">
 
                         </a>
 
-                        <?php } ?>
+                        <?php }elseif($c['estado'] == 'EN_PROGRESO'){ ?>
 
-                        <?php if(
-                        $c['estado'] == 'CONFIRMADA'
-                        ||
-                        $c['estado'] == 'EN_PROGRESO'
-                        ){ ?>
+                        <span class="progress">
 
+                            En progreso
+
+                        </span>
 
                         <?php }else{ ?>
 

@@ -16,6 +16,8 @@ if($_SESSION['rol'] != "CLIENTE"){
     exit();
 }
 
+date_default_timezone_set('America/La_Paz');
+
 $idCliente = $_SESSION['id_usuario'];
 $nombre = $_SESSION['nombre'];
 
@@ -54,118 +56,206 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     /* VALIDAR FECHA Y HORA */
 
-    $fechaActual = date("Y-m-d");
-    $horaActual = date("H:i");
+    $fechaHoraActual =
+    date("Y-m-d H:i:s");
+
+    $fechaHoraCita =
+    $fecha . " " . $hora . ":00";
 
     if(
-        $fecha == $fechaActual
-        &&
-        $hora < $horaActual
+        strtotime($fechaHoraCita)
+        <=
+        strtotime($fechaHoraActual)
     ){
 
         $mensaje =
-        "No puedes reservar una hora pasada.";
+        "No puedes registrar una cita en una hora pasada.";
 
         $tipo =
         "error";
 
     }else{
 
-        /* SERVICIO */
+        /* VALIDAR LUNES A VIERNES */
 
-        $sqlServicio = "
-        SELECT *
-        FROM servicio
-        WHERE id_servicio='$idServicio'
-        ";
-
-        $resultadoServicio =
-        mysqli_query($conn,$sqlServicio);
-
-        $servicio =
-        mysqli_fetch_assoc($resultadoServicio);
-
-        $duracion =
-        $servicio['duracion_base'];
-
-        $fechaFin =
+        $diaSemana =
         date(
-            "Y-m-d H:i:s",
-            strtotime($fechaInicio . " +$duracion minutes")
+            "N",
+            strtotime($fecha)
         );
 
-        /* VALIDAR HORARIO */
-
-        $sqlValidar = "
-
-        SELECT *
-        FROM cita
-
-        WHERE
-
-        id_mascota = '$idMascota'
-
-        AND fecha_inicio = '$fechaInicio'
-
-        AND estado IN
-        (
-            'PENDIENTE',
-            'CONFIRMADA',
-            'EN_PROGRESO'
-        )
-
-        ";
-
-        $resultadoValidar =
-        mysqli_query($conn,$sqlValidar);
-
-        if(mysqli_num_rows($resultadoValidar) > 0){
+        if($diaSemana >= 6){
 
             $mensaje =
-            "La mascota ya tiene una cita en ese horario.";
+            "Solo atendemos de lunes a viernes.";
 
             $tipo =
             "error";
 
         }else{
 
-            /* INSERTAR CITA */
+            /* VALIDAR HORARIOS */
 
-            $sqlInsert = "
-            INSERT INTO cita
-            (
-                id_mascota,
-                id_groomer,
-                id_servicio,
-                fecha_inicio,
-                fecha_fin,
-                estado,
-                creado_por
-            )
-            VALUES
-            (
-                '$idMascota',
-                $idGroomer,
-                '$idServicio',
-                '$fechaInicio',
-                '$fechaFin',
-                'PENDIENTE',
-                '$idCliente'
-            )
-            ";
+            if(
+                (
+                    $hora >= "08:00"
+                    &&
+                    $hora <= "12:00"
+                )
+                ||
+                (
+                    $hora >= "14:00"
+                    &&
+                    $hora <= "18:00"
+                )
+            ){
 
-            if(mysqli_query($conn,$sqlInsert)){
+                /* VALIDAR BLOQUEO ALMUERZO */
 
-                $mensaje =
-                "Solicitud de cita enviada correctamente.";
+                if(
+                    $hora > "12:00"
+                    &&
+                    $hora < "14:00"
+                ){
 
-                $tipo =
-                "success";
+                    $mensaje =
+                    "Horario no disponible por descanso.";
+
+                    $tipo =
+                    "error";
+
+                }else{
+
+                    /* SERVICIO */
+
+                    $sqlServicio = "
+                    SELECT *
+                    FROM servicio
+                    WHERE id_servicio='$idServicio'
+                    ";
+
+                    $resultadoServicio =
+                    mysqli_query($conn,$sqlServicio);
+
+                    $servicio =
+                    mysqli_fetch_assoc($resultadoServicio);
+
+                    $duracion =
+                    $servicio['duracion_base'];
+
+                    $fechaFin =
+                    date(
+                        "Y-m-d H:i:s",
+                        strtotime($fechaInicio . " +$duracion minutes")
+                    );
+
+                    /* VALIDAR CITA DUPLICADA */
+
+                    $sqlValidar = "
+
+                    SELECT *
+                    FROM cita
+
+                    WHERE
+
+                    id_mascota = '$idMascota'
+
+                    AND fecha_inicio = '$fechaInicio'
+
+                    AND estado IN
+                    (
+                        'PENDIENTE',
+                        'CONFIRMADA',
+                        'EN_PROGRESO'
+                    )
+
+                    ";
+
+                    $resultadoValidar =
+                    mysqli_query($conn,$sqlValidar);
+
+                    if(mysqli_num_rows($resultadoValidar) > 0){
+
+                        $mensaje =
+                        "La mascota ya tiene una cita en ese horario.";
+
+                        $tipo =
+                        "error";
+
+                    }else{
+
+                        /* VALIDAR BLOQUEOS */
+
+                        $sqlBloqueos = "
+                        SELECT *
+                        FROM bloqueo_horario
+                        WHERE
+                        fecha_inicio < '$fechaFin'
+                        AND fecha_fin > '$fechaInicio'
+                        ";
+
+                        $resultadoBloqueos =
+                        mysqli_query($conn,$sqlBloqueos);
+
+                        if(mysqli_num_rows($resultadoBloqueos) > 0){
+
+                            $mensaje =
+                            "Horario bloqueado por mantenimiento, feriado o descanso.";
+
+                            $tipo =
+                            "error";
+
+                        }else{
+
+                            /* INSERTAR CITA */
+
+                            $sqlInsert = "
+                            INSERT INTO cita
+                            (
+                                id_mascota,
+                                id_groomer,
+                                id_servicio,
+                                fecha_inicio,
+                                fecha_fin,
+                                estado,
+                                creado_por
+                            )
+                            VALUES
+                            (
+                                '$idMascota',
+                                $idGroomer,
+                                '$idServicio',
+                                '$fechaInicio',
+                                '$fechaFin',
+                                'PENDIENTE',
+                                '$idCliente'
+                            )
+                            ";
+
+                            if(mysqli_query($conn,$sqlInsert)){
+
+                                $mensaje =
+                                "Solicitud de cita enviada correctamente.";
+
+                                $tipo =
+                                "success";
+
+                            }else{
+
+                                $mensaje =
+                                "Error al registrar cita.";
+
+                                $tipo =
+                                "error";
+                            }
+                        }
+                    }
+                }
 
             }else{
 
                 $mensaje =
-                "Error al registrar cita.";
+                "Horario fuera de atención.";
 
                 $tipo =
                 "error";
@@ -260,7 +350,7 @@ Mis Citas
 
 <link
 rel="stylesheet"
-href="../cliente/css/citas.css?v=3">
+href="../cliente/css/citas.css?v=1">
 
 <link
 rel="stylesheet"
@@ -281,8 +371,6 @@ rel="stylesheet">
     <div class="sidebar">
 
         <div class="logo">
-
-            <i class="fa-solid fa-paw"></i>
 
             <h2>SPA PAW PATROL</h2>
 
@@ -308,7 +396,7 @@ rel="stylesheet">
 
                     <i class="fa-solid fa-dog"></i>
 
-                    <span>Mascotas</span>
+                    <span>Mis Mascotas</span>
 
                 </a>
 
@@ -320,7 +408,7 @@ rel="stylesheet">
 
                     <i class="fa-solid fa-calendar-days"></i>
 
-                    <span>Citas</span>
+                    <span>Mis Citas</span>
 
                 </a>
 
@@ -338,19 +426,19 @@ rel="stylesheet">
 
             </li>
 
-            <li>
-
-                <a href="../auth/logout.php">
-
-                    <i class="fa-solid fa-right-from-bracket"></i>
-
-                    <span>Salir</span>
-
-                </a>
-
-            </li>
-
         </ul>
+
+        <div class="logout">
+
+            <a href="../auth/logout.php">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Cerrar Sesion
+                
+            </a>
+
+        </div>
 
     </div>
 
@@ -541,7 +629,7 @@ rel="stylesheet">
                     <div class="input-group">
 
                         <label>
-                            Franja Horaria
+                            Horario
                         </label>
 
                         <select
@@ -552,19 +640,29 @@ rel="stylesheet">
                                 Seleccione horario
                             </option>
 
+                            <!-- MAÑANA -->
+
                             <option value="08:00">08:00 AM</option>
+
                             <option value="09:00">09:00 AM</option>
+
                             <option value="10:00">10:00 AM</option>
+
                             <option value="11:00">11:00 AM</option>
-                            <option value="14:00">12:00 AM</option>
-                            <option value="15:00">13:00 PM</option>
-                            <option value="16:00">14:00 PM</option>
-                            <option value="08:00">15:00 PM</option>
-                            <option value="09:00">16:00 PM</option>
-                            <option value="10:00">17:00 PM</option>
-                            <option value="11:00">18:00 AM</option>
-                            <option value="14:00">19:00 PM</option>
-                            <option value="15:00">20:00 PM</option>
+
+                            <option value="12:00">12:00 PM</option>
+
+                            <!-- TARDE -->
+
+                            <option value="14:00">02:00 PM</option>
+
+                            <option value="15:00">03:00 PM</option>
+
+                            <option value="16:00">04:00 PM</option>
+
+                            <option value="17:00">05:00 PM</option>
+
+                            <option value="18:00">06:00 PM</option>
 
                         </select>
 

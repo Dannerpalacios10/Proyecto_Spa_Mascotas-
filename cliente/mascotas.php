@@ -50,7 +50,7 @@ Mis Mascotas
 
 <link
 rel="stylesheet"
-href="../cliente/css/mascotas.css">
+href="../cliente/css/mascotas.css?v=1">
 
 <link
 rel="stylesheet"
@@ -70,9 +70,7 @@ rel="stylesheet">
 
     <div class="logo">
 
-        <i class="fa-solid fa-paw"></i>
-
-        <h2>SPA PAW PATROL</h2>
+        <h3>SPA PAW PATROL</h3>
 
     </div>
 
@@ -134,21 +132,19 @@ rel="stylesheet">
 
         </li>
 
-        <li>
+    </ul>
+
+    <div class="logout">
 
             <a href="../auth/logout.php">
 
                 <i class="fa-solid fa-right-from-bracket"></i>
 
-                <span>
-                    Cerrar Sesión
-                </span>
-
+                Cerrar Sesion
+                
             </a>
 
-        </li>
-
-    </ul>
+        </div>
 
 </div>
 

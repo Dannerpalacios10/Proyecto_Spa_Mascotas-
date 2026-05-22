@@ -6,13 +6,6 @@ session_start();
 
 include("../config/database.php");
 
-if(!isset($_SESSION['id_usuario'])){
-    header("Location: ../auth/login.php");
-    exit();
-}
-
-$nombre = $_SESSION['nombre'];
-
 /* PRODUCTOS */
 
 $sqlProductos = "
@@ -46,7 +39,7 @@ Tienda Pet Spa
 
 <link
 rel="stylesheet"
-href="../tienda/css/tienda.css?v=1">
+href="../tienda/css/tienda.css?v=2">
 
 <link
 rel="stylesheet"
@@ -62,94 +55,6 @@ rel="stylesheet">
 
 <div class="container">
 
-    <!-- SIDEBAR -->
-
-    <div class="sidebar">
-
-        <div class="logo">
-
-            <i class="fa-solid fa-paw"></i>
-
-            <h2>SPA PAW PATROL</h2>
-
-        </div>
-
-        <ul class="menu">
-
-            <li>
-
-                <a href="../cliente/dashboard.php">
-
-                    <i class="fa-solid fa-house"></i>
-
-                    <span>
-                        Inicio
-                    </span>
-
-                </a>
-
-            </li>
-
-            <li class="active">
-
-                <a href="../tienda/tienda.php">
-
-                    <i class="fa-solid fa-store"></i>
-
-                    <span>
-                        Tienda
-                    </span>
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="../cliente/citas.php">
-
-                    <i class="fa-solid fa-calendar-days"></i>
-
-                    <span>
-                        Mis Citas
-                    </span>
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="../cliente/perfil.php">
-
-                    <i class="fa-solid fa-user"></i>
-
-                    <span>
-                        Mi Perfil
-                    </span>
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="../auth/logout.php">
-
-                    <i class="fa-solid fa-right-from-bracket"></i>
-
-                    <span>
-                        Cerrar Sesión
-                    </span>
-
-                </a>
-
-            </li>
-
-        </ul>
-
-    </div>
-
     <!-- MAIN -->
 
     <div class="main-content">
@@ -161,13 +66,8 @@ rel="stylesheet">
             <div>
 
                 <h1>
-                    Tienda Pet Spa
+                    TIENDA SPA PAW PATROL
                 </h1>
-
-                <p>
-                    Bienvenido,
-                    <?php echo htmlspecialchars($nombre); ?>
-                </p>
 
             </div>
 

@@ -116,7 +116,7 @@ Dashboard Cliente
 
 <link
 rel="stylesheet"
-href="../cliente/css/c.css?v=2">
+href="../cliente/css/c.css?v=1">
 
 <link
 rel="stylesheet"
@@ -135,8 +135,6 @@ rel="stylesheet">
 <div class="sidebar">
 
     <div class="logo">
-
-        <i class="fa-solid fa-paw"></i>
 
         <h2>SPA PAW PATROL</h2>
 
@@ -200,21 +198,19 @@ rel="stylesheet">
 
         </li>
 
-        <li>
+    </ul>
+
+    <div class="logout">
 
             <a href="../auth/logout.php">
 
                 <i class="fa-solid fa-right-from-bracket"></i>
 
-                <span>
-                    Cerrar Sesión
-                </span>
-
+                Cerrar Sesion
+                
             </a>
 
-        </li>
-
-    </ul>
+        </div>
 
 </div>
 
@@ -473,4 +469,3 @@ rel="stylesheet">
 
 </body>
 </html>
-```

@@ -25,11 +25,47 @@ body{
     width:260px;
     background:#0f172a;
     color:white;
+    height:100vh;
     padding:25px 20px;
     position:fixed;
-    height:100%;
-    overflow:auto;
-    box-shadow:4px 0 20px rgba(0,0,0,0.08);
+    display:flex;
+    flex-direction:column;
+}
+
+.menu{
+    list-style:none;
+}
+
+.menu li{
+    margin-bottom:10px;
+}
+
+.menu li a,
+.logout a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    border-radius:14px;
+    text-decoration:none;
+    color:#cbd5e1;
+    transition:0.3s;
+}
+
+.menu li a:hover,
+.logout a:hover{
+    background:#1e293b;
+    color:white;
+}
+
+.menu li.active a{
+    background:#2563eb;
+    color:white;
+}
+
+.logout{
+
+    margin-top:auto;
 }
 
 /* LOGO */
@@ -49,45 +85,6 @@ body{
 .logo h2{
     font-size:20px;
     font-weight:700;
-}
-
-/* MENU */
-
-.menu{
-    list-style:none;
-}
-
-.menu li{
-    margin-bottom:10px;
-}
-
-.menu li a{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:14px 16px;
-    border-radius:14px;
-    text-decoration:none;
-    color:#cbd5e1;
-    transition:0.3s;
-    font-size:15px;
-    font-weight:500;
-}
-
-.menu li a:hover{
-    background:#1e293b;
-    color:white;
-    transform:translateX(3px);
-}
-
-.menu li.active a{
-    background:linear-gradient(135deg,#3b82f6,#2563eb);
-    color:white;
-    box-shadow:0 6px 18px rgba(59,130,246,0.35);
-}
-
-.menu li a i{
-    font-size:18px;
 }
 
 /* MAIN */

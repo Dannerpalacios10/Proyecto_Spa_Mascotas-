@@ -17,14 +17,18 @@ if($_SESSION['rol'] != "RECEPCIONISTA"){
 }
 
 $idRecepcionista = $_SESSION['id_usuario'];
+
 $nombre = $_SESSION['nombre'];
 
 /* CONFIRMAR CITA */
 
 if(isset($_GET['confirmar'])){
 
-    $idCita = intval($_GET['confirmar']);
-    $idGroomer = intval($_GET['groomer']);
+    $idCita =
+    intval($_GET['confirmar']);
+
+    $idGroomer =
+    intval($_GET['groomer']);
 
     /* OBTENER DATOS DE LA CITA */
 
@@ -34,13 +38,120 @@ if(isset($_GET['confirmar'])){
     WHERE id_cita='$idCita'
     ";
 
-    $resultCita = mysqli_query($conn,$sqlCita);
-    $citaData = mysqli_fetch_assoc($resultCita);
+    $resultCita =
+    mysqli_query($conn,$sqlCita);
+
+    $citaData =
+    mysqli_fetch_assoc($resultCita);
 
     if($citaData){
 
-        $fechaInicio = $citaData['fecha_inicio'];
-        $fechaFin = $citaData['fecha_fin'];
+        $fechaInicio =
+        $citaData['fecha_inicio'];
+
+        $fechaFin =
+        $citaData['fecha_fin'];
+
+        /* VALIDAR DÍA*/
+
+        $diaSemana =
+        date(
+            'N',
+            strtotime($fechaInicio)
+        );
+
+        /* 6 = SÁBADO 7 = DOMINGO */
+
+        if(
+            $diaSemana == 6
+            ||
+            $diaSemana == 7
+        ){
+
+            $_SESSION['error'] =
+            "Solo se atiende de lunes a viernes.";
+
+            header("Location: recepcionista.php");
+            exit();
+        }
+
+        /* VALIDAR HORARIOS */
+
+        $horaInicio =
+        date(
+            'H:i',
+            strtotime($fechaInicio)
+        );
+
+        $horaFin =
+        date(
+            'H:i',
+            strtotime($fechaFin)
+        );
+
+        /* HORARIO MAÑANA */
+
+        $horarioManana = (
+
+            $horaInicio >= '08:00'
+            &&
+            $horaFin <= '12:00'
+
+        );
+
+        /* HORARIO TARDE */
+
+        $horarioTarde = (
+
+            $horaInicio >= '14:00'
+            &&
+            $horaFin <= '18:00'
+
+        );
+
+        /* VALIDAR HORARIO */
+
+        if(
+
+            !$horarioManana
+            &&
+            !$horarioTarde
+
+        ){
+
+            $_SESSION['error'] =
+            "Horario fuera de atención.";
+
+            header("Location: recepcionista.php");
+            exit();
+        }
+
+        /* VALIDAR DESCANSO */
+
+        if(
+
+            (
+                $horaInicio >= '12:00'
+                &&
+                $horaInicio < '14:00'
+            )
+
+            ||
+
+            (
+                $horaFin > '12:00'
+                &&
+                $horaFin <= '14:00'
+            )
+
+        ){
+
+            $_SESSION['error'] =
+            "Horario bloqueado por descanso de 12:00 a 14:00.";
+
+            header("Location: recepcionista.php");
+            exit();
+        }
 
         /* VALIDAR SI EL GROOMER YA TIENE CITA */
 
@@ -54,43 +165,61 @@ if(isset($_GET['confirmar'])){
             'EN_PROGRESO'
         )
         AND (
+
             fecha_inicio < '$fechaFin'
+
             AND
+
             fecha_fin > '$fechaInicio'
+
         )
         ";
 
-        $validacion = mysqli_query($conn,$sqlValidar);
+        $validacion =
+        mysqli_query($conn,$sqlValidar);
 
         /* VALIDAR BLOQUEOS */
 
+        $fechaSolo =
+        date(
+            'Y-m-d',
+            strtotime($fechaInicio)
+        );
+
         $sqlBloqueo = "
         SELECT *
-        FROM bloqueo_horario
-        WHERE
-        (
-            id_groomer='$idGroomer'
-            OR id_groomer IS NULL
-        )
-        AND (
-            fecha_inicio < '$fechaFin'
-            AND
-            fecha_fin > '$fechaInicio'
-        )
+        FROM bloqueos
+        WHERE fecha='$fechaSolo'
+        LIMIT 1
         ";
 
-        $bloqueos = mysqli_query($conn,$sqlBloqueo);
+        $bloqueos =
+        mysqli_query($conn,$sqlBloqueo);
+
+        /* RESULTADO FINAL */
 
         if(
             mysqli_num_rows($validacion) > 0
-            ||
-            mysqli_num_rows($bloqueos) > 0
         ){
 
             $_SESSION['error'] =
-            "El groomer no está disponible en ese horario.";
+            "El groomer ya tiene una cita en ese horario.";
+
+        }else if(
+            mysqli_num_rows($bloqueos) > 0
+        ){
+
+            $bloqueo =
+            mysqli_fetch_assoc($bloqueos);
+
+            $_SESSION['error'] =
+            "Fecha bloqueada por: "
+            .
+            ucfirst($bloqueo['tipo']);
 
         }else{
+
+            /* CONFIRMAR CITA */
 
             $sqlConfirmar = "
             UPDATE cita
@@ -118,7 +247,8 @@ if(isset($_GET['confirmar'])){
 
 if(isset($_GET['cancelar'])){
 
-    $idCita = intval($_GET['cancelar']);
+    $idCita =
+    intval($_GET['cancelar']);
 
     $sqlCancelar = "
     UPDATE cita
@@ -149,7 +279,7 @@ mysqli_query($conn,$sqlPendientes);
 $totalPendientes =
 mysqli_fetch_assoc($resultPendientes)['total'];
 
-/* ========================================= */
+/* CONFIRMADAS */
 
 $sqlConfirmadas = "
 SELECT COUNT(*) AS total
@@ -163,7 +293,7 @@ mysqli_query($conn,$sqlConfirmadas);
 $totalConfirmadas =
 mysqli_fetch_assoc($resultConfirmadas)['total'];
 
-/* ========================================= */
+/* CITAS HOY */
 
 $sqlHoy = "
 SELECT COUNT(*) AS total
@@ -181,8 +311,11 @@ mysqli_fetch_assoc($resultHoy)['total'];
 
 $sqlGroomers = "
 SELECT
+
 usuario.id_usuario,
+
 usuario.nombre
+
 FROM usuario
 
 INNER JOIN rol
@@ -223,7 +356,8 @@ WHERE cita.estado='PENDIENTE'
 ORDER BY cita.fecha_inicio ASC
 ";
 
-$citas = mysqli_query($conn,$sqlCitas);
+$citas =
+mysqli_query($conn,$sqlCitas);
 
 ?>
 
@@ -266,8 +400,6 @@ rel="stylesheet">
 
         <div class="logo">
 
-            <i class="fa-solid fa-desktop"></i>
-
             <h2>SPA PAW PATROL</h2>
 
         </div>
@@ -286,6 +418,7 @@ rel="stylesheet">
 
             </li>
 
+            <!--
             <li>
 
                 <a href="calendario.php">
@@ -297,14 +430,15 @@ rel="stylesheet">
                 </a>
 
             </li>
+            -->
 
             <li>
 
-                <a href="pagos.php">
+                <a href="pago.php">
 
-                    <i class="fa-solid fa-money-bill"></i>
+                    <i class="fa-solid fa-credit-card"></i>
 
-                    Pagos
+                    Cobro Servicio
 
                 </a>
 
@@ -324,9 +458,9 @@ rel="stylesheet">
 
             <li>
 
-                <a href="../tienda/tienda.php">
+                <a href="inventario.php">
 
-                    <i class="fa-solid fa-tags"></i>
+                   <i class="fa-solid fa-bag-shopping"></i>
 
                     Inventario
 
@@ -334,6 +468,7 @@ rel="stylesheet">
 
             </li>
 
+            <!--
             <li>
 
                 <a href="promociones.php">
@@ -345,20 +480,21 @@ rel="stylesheet">
                 </a>
 
             </li>
-
-            <li>
-
-                <a href="../auth/logout.php">
-
-                    <i class="fa-solid fa-right-from-bracket"></i>
-
-                    Salir
-
-                </a>
-
-            </li>
+            -->
 
         </ul>
+
+        <div class="logout">
+
+            <a href="../auth/logout.php">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Cerrar Sesion
+
+            </a>
+
+        </div>
 
     </div>
 
@@ -380,7 +516,7 @@ rel="stylesheet">
                 </h1>
 
                 <p>
-                    GESTION OPERATIVA DEL SISTEMA 
+                    Gestión Operativa del Sistema 
                 </p>
 
             </div>

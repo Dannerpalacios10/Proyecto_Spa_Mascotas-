@@ -151,8 +151,6 @@ nav a:hover::after{
     transform:translateY(-2px);
 }
 
-
-
 /* HOVER */
 
 .btn-loginadmin:hover{
@@ -456,3 +454,4 @@ nav a:hover::after{
     }
 
 }
+

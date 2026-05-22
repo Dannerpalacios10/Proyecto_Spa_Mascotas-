@@ -220,9 +220,9 @@ window.onpopstate = function () {
             <h1>SPA PAW PATROL</h1>
 
             <p>
-                Plataforma profesional para
-                administrar mascotas,
-                grooming, citas y servicios.
+                PLATAFORMA PROFESIONAL PARA 
+                ADMINISTRAR MASCOTAS, GROOMER, CITAS
+                Y SERVICIOS       
             </p>
 
         </div>

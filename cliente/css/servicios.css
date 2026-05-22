@@ -1,7 +1,3 @@
-/* ========================================== */
-/* RESET */
-/* ========================================== */
-
 *{
     margin:0;
     padding:0;
@@ -17,9 +13,7 @@ body{
     color:#0f172a;
 }
 
-/* ========================================== */
 /* CONTAINER */
-/* ========================================== */
 
 .container{
 
@@ -28,95 +22,75 @@ body{
     min-height:100vh;
 }
 
-/* ========================================== */
 /* SIDEBAR */
-/* ========================================== */
 
 .sidebar{
-
     width:260px;
-
-    background:
-    linear-gradient(
-        180deg,
-        #0f172a,
-        #1e293b
-    );
-
+    background:#0f172a;
     color:white;
-
-    padding:30px 20px;
-
-    position:fixed;
-
     height:100vh;
-}
-
-.logo{
-
+    padding:25px 20px;
+    position:fixed;
     display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    margin-bottom:40px;
-}
-
-.logo i{
-
-    font-size:30px;
-
-    color:#38bdf8;
-}
-
-.logo h2{
-
-    font-size:22px;
-
-    font-weight:700;
+    flex-direction:column;
 }
 
 .menu{
-
     list-style:none;
 }
 
 .menu li{
-
-    margin-bottom:12px;
+    margin-bottom:10px;
 }
 
-.menu li a{
-
+.menu li a,
+.logout a{
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
-    padding:14px 16px;
-
-    border-radius:12px;
-
+    padding:14px;
+    border-radius:14px;
     text-decoration:none;
-
     color:#cbd5e1;
-
-    transition:.3s;
+    transition:0.3s;
 }
 
 .menu li a:hover,
-.menu li.active a{
-
-    background:#2563eb;
-
+.logout a:hover{
+    background:#1e293b;
     color:white;
 }
 
-/* ========================================== */
+.menu li.active a{
+    background:#2563eb;
+    color:white;
+}
+
+.logout{
+
+    margin-top:auto;
+}
+
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.logo i{
+    font-size:30px;
+    color:#3b82f6;
+}
+
+.logo h2{
+    font-size:20px;
+    font-weight:700;
+}
+
 /* MAIN */
-/* ========================================== */
 
 .main{
 
@@ -127,9 +101,7 @@ body{
     padding:35px;
 }
 
-/* ========================================== */
 /* TOPBAR */
-/* ========================================== */
 
 .topbar{
 
@@ -152,9 +124,7 @@ body{
     font-size:15px;
 }
 
-/* ========================================== */
 /* GRID */
-/* ========================================== */
 
 .services-grid{
 
@@ -166,9 +136,7 @@ body{
     gap:25px;
 }
 
-/* ========================================== */
 /* CARD */
-/* ========================================== */
 
 .service-card{
 
@@ -192,9 +160,7 @@ body{
     0 10px 30px rgba(0,0,0,.10);
 }
 
-/* ========================================== */
 /* ICON */
-/* ========================================== */
 
 .service-icon{
 
@@ -221,9 +187,7 @@ body{
     color:#2563eb;
 }
 
-/* ========================================== */
 /* TITLES */
-/* ========================================== */
 
 .service-card h2{
 
@@ -234,9 +198,7 @@ body{
     color:#0f172a;
 }
 
-/* ========================================== */
 /* INFO */
-/* ========================================== */
 
 .service-info{
 
@@ -257,9 +219,7 @@ body{
     color:#0f172a;
 }
 
-/* ========================================== */
 /* BUTTON */
-/* ========================================== */
 
 .btn{
 
@@ -293,9 +253,7 @@ body{
     background:#1d4ed8;
 }
 
-/* ========================================== */
 /* RESPONSIVE */
-/* ========================================== */
 
 @media(max-width:900px){
 

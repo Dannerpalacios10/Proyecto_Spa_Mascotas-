@@ -1,7 +1,3 @@
-/* ========================================== */
-/* RESET */
-/* ========================================== */
-
 *{
     margin:0;
     padding:0;
@@ -11,117 +7,88 @@
 body{
 
     font-family:'Poppins',sans-serif;
-
     background:#f1f5f9;
-
     color:#0f172a;
 }
 
-/* ========================================== */
 /* CONTAINER */
-/* ========================================== */
 
 .container{
 
     display:flex;
-
     min-height:100vh;
 }
 
-/* ========================================== */
 /* SIDEBAR */
-/* ========================================== */
 
 .sidebar{
-
     width:260px;
-
-    background:
-    linear-gradient(
-        180deg,
-        #0f172a,
-        #1e293b
-    );
-
+    background:#0f172a;
     color:white;
-
-    padding:30px 20px;
-
-    position:fixed;
-
     height:100vh;
-}
-
-.logo{
-
+    padding:25px 20px;
+    position:fixed;
     display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    margin-bottom:40px;
-}
-
-.logo i{
-
-    font-size:32px;
-
-    color:#38bdf8;
-}
-
-.logo h2{
-
-    font-size:22px;
-
-    font-weight:700;
+    flex-direction:column;
 }
 
 .menu{
-
     list-style:none;
 }
 
 .menu li{
-
-    margin-bottom:12px;
+    margin-bottom:10px;
 }
 
-.menu li a{
-
+.menu li a,
+.logout a{
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
-    padding:14px 16px;
-
-    border-radius:12px;
-
+    padding:14px;
+    border-radius:14px;
     text-decoration:none;
-
     color:#cbd5e1;
-
-    transition:.3s;
+    transition:0.3s;
 }
 
 .menu li a:hover,
-.menu li.active a{
-
-    background:#2563eb;
-
+.logout a:hover{
+    background:#1e293b;
     color:white;
 }
 
-.menu li a i{
-
-    font-size:18px;
+.menu li.active a{
+    background:#2563eb;
+    color:white;
 }
 
-/* ========================================== */
+.logout{
+
+    margin-top:auto;
+}
+
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.logo i{
+    font-size:30px;
+    color:#3b82f6;
+}
+
+.logo h2{
+    font-size:20px;
+    font-weight:700;
+}
+
+
 /* MAIN */
-/* ========================================== */
 
 .main{
 
@@ -132,9 +99,7 @@ body{
     padding:35px;
 }
 
-/* ========================================== */
 /* TOPBAR */
-/* ========================================== */
 
 .topbar{
 
@@ -161,9 +126,7 @@ body{
     color:#64748b;
 }
 
-/* ========================================== */
 /* ALERT */
-/* ========================================== */
 
 .alert{
 
@@ -196,9 +159,7 @@ body{
     border:1px solid #fca5a5;
 }
 
-/* ========================================== */
 /* FORM CARD */
-/* ========================================== */
 
 .form-card{
 
@@ -221,9 +182,7 @@ body{
     color:#0f172a;
 }
 
-/* ========================================== */
 /* GRID */
-/* ========================================== */
 
 .grid{
 
@@ -237,9 +196,7 @@ body{
     margin-bottom:25px;
 }
 
-/* ========================================== */
 /* INPUTS */
-/* ========================================== */
 
 .input-group{
 
@@ -286,9 +243,7 @@ body{
     0 0 0 3px rgba(37,99,235,.15);
 }
 
-/* ========================================== */
 /* BUTTON */
-/* ========================================== */
 
 .btn{
 
@@ -324,9 +279,7 @@ body{
     transform:translateY(-2px);
 }
 
-/* ========================================== */
 /* TABLE CARD */
-/* ========================================== */
 
 .table-card{
 
@@ -350,9 +303,7 @@ body{
     color:#0f172a;
 }
 
-/* ========================================== */
 /* TABLE */
-/* ========================================== */
 
 table{
 
@@ -393,9 +344,7 @@ table tbody tr:hover{
     background:#f8fafc;
 }
 
-/* ========================================== */
 /* ESTADOS */
-/* ========================================== */
 
 .estado{
 
@@ -445,9 +394,7 @@ table tbody tr:hover{
     color:#b91c1c;
 }
 
-/* ========================================== */
 /* RESPONSIVE */
-/* ========================================== */
 
 @media(max-width:900px){
 

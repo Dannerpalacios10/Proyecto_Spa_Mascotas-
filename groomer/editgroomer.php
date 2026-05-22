@@ -220,7 +220,7 @@ Perfil Groomer
 
 <link
 rel="stylesheet"
-href="../groomer/css/editgroomer.css">
+href="../groomer/css/editgroomer.css?v=1">
 
 <link
 rel="stylesheet"
@@ -242,8 +242,6 @@ rel="stylesheet">
 
         <div class="logo">
 
-            <i class="fa-solid fa-scissors"></i>
-
             <h2>SPA PAW PATROL</h2>
 
         </div>
@@ -256,7 +254,7 @@ rel="stylesheet">
 
                     <i class="fa-solid fa-house"></i>
 
-                    <span>Dashboard</span>
+                    <span>Inicio</span>
 
                 </a>
 
@@ -274,19 +272,19 @@ rel="stylesheet">
 
             </li>
 
-            <li>
-
-                <a href="../auth/logout.php">
-
-                    <i class="fa-solid fa-right-from-bracket"></i>
-
-                    <span>Salir</span>
-
-                </a>
-
-            </li>
-
         </ul>
+
+        <div class="logout">
+
+            <a href="../auth/logout.php">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Cerrar Sesion
+                
+            </a>
+
+        </div>
 
     </div>
 

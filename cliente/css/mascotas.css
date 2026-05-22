@@ -14,23 +14,13 @@ body{
 
 .sidebar{
     width:260px;
-    height:100vh;
     background:#0f172a;
     color:white;
+    height:100vh;
+    padding:25px 20px;
     position:fixed;
-    padding:25px;
-}
-
-.logo{
     display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:40px;
-}
-
-.logo i{
-    font-size:30px;
-    color:#38bdf8;
+    flex-direction:column;
 }
 
 .menu{
@@ -38,23 +28,54 @@ body{
 }
 
 .menu li{
-    margin-bottom:12px;
+    margin-bottom:10px;
 }
 
-.menu li a{
+.menu li a,
+.logout a{
     display:flex;
     align-items:center;
-    gap:15px;
+    gap:12px;
     padding:14px;
-    border-radius:12px;
+    border-radius:14px;
     text-decoration:none;
-    color:white;
-    transition:.3s;
+    color:#cbd5e1;
+    transition:0.3s;
 }
 
 .menu li a:hover,
-.menu .active a{
+.logout a:hover{
     background:#1e293b;
+    color:white;
+}
+
+.menu li.active a{
+    background:#2563eb;
+    color:white;
+}
+
+.logout{
+
+    margin-top:auto;
+}
+
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.logo i{
+    font-size:30px;
+    color:#3b82f6;
+}
+
+.logo h2{
+    font-size:20px;
+    font-weight:700;
 }
 
 /* MAIN */

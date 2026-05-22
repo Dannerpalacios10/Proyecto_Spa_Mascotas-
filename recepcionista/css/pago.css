@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    color:#1e293b;
+}
+
+.container{
+    display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:260px;
+    background:#0f172a;
+    color:white;
+    height:100vh;
+    padding:25px 20px;
+    position:fixed;
+    display:flex;
+    flex-direction:column;
+}
+
+.menu{
+    list-style:none;
+}
+
+.menu li{
+    margin-bottom:10px;
+}
+
+.menu li a,
+.logout a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    border-radius:14px;
+    text-decoration:none;
+    color:#cbd5e1;
+    transition:0.3s;
+}
+
+.menu li a:hover,
+.logout a:hover{
+    background:#1e293b;
+    color:white;
+}
+
+.menu li.active a{
+    background:#2563eb;
+    color:white;
+}
+
+.logout{
+
+    margin-top:auto;
+}
+
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.logo i{
+    font-size:30px;
+    color:#3b82f6;
+}
+
+.logo h2{
+    font-size:20px;
+    font-weight:700;
+}
+
+/* MAIN */
+
+.main-content{
+    margin-left:260px;
+    width:calc(100% - 260px);
+    padding:35px;
+}
+
+.topbar{
+    margin-bottom:30px;
+}
+
+.topbar h1{
+    font-size:32px;
+}
+
+.topbar p{
+    color:#64748b;
+}
+
+/* ALERT */
+
+.alert{
+    padding:16px;
+    border-radius:14px;
+    margin-bottom:20px;
+}
+
+.success{
+    background:#dcfce7;
+    color:#166534;
+}
+
+/* TABLE */
+
+.table-card{
+    background:white;
+    border-radius:24px;
+    padding:30px;
+    margin-bottom:30px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.06);
+}
+
+.table-card h2{
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#f8fafc;
+    padding:16px;
+    text-align:left;
+}
+
+table td{
+    padding:16px;
+    border-bottom:1px solid #e2e8f0;
+}
+
+/* FORM */
+
+select,
+input{
+    width:100%;
+    padding:12px;
+    border:2px solid #e2e8f0;
+    border-radius:12px;
+    outline:none;
+    margin-bottom:10px;
+}
+
+select:focus,
+input:focus{
+    border-color:#2563eb;
+}
+
+/* BUTTON */
+
+.btn-pay{
+    width:100%;
+    border:none;
+    padding:12px;
+    border-radius:12px;
+    background:#10b981;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn-pay:hover{
+    background:#059669;
+}

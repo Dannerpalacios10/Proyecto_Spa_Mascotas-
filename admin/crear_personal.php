@@ -274,7 +274,7 @@ rel="stylesheet">
     <div class="header">
 
         <h1>
-            Crear Personal
+            Registrar Personal
         </h1>
 
         <p>

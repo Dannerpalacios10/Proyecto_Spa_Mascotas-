@@ -25,10 +25,47 @@ body{
     width:260px;
     background:#0f172a;
     color:white;
+    height:100vh;
     padding:25px 20px;
     position:fixed;
-    height:100%;
-    overflow:auto;
+    display:flex;
+    flex-direction:column;
+}
+
+.menu{
+    list-style:none;
+}
+
+.menu li{
+    margin-bottom:10px;
+}
+
+.menu li a,
+.logout a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    border-radius:14px;
+    text-decoration:none;
+    color:#cbd5e1;
+    transition:0.3s;
+}
+
+.menu li a:hover,
+.logout a:hover{
+    background:#1e293b;
+    color:white;
+}
+
+.menu li.active a{
+    background:#2563eb;
+    color:white;
+}
+
+.logout{
+
+    margin-top:auto;
 }
 
 /* LOGO */
@@ -41,7 +78,7 @@ body{
 }
 
 .logo i{
-    font-size:28px;
+    font-size:30px;
     color:#3b82f6;
 }
 
@@ -50,42 +87,14 @@ body{
     font-weight:700;
 }
 
-/* MENU */
+/* MAIN */
 
-.menu{
-    list-style:none;
+.main-content{
+    margin-left:260px;
+    width:calc(100% - 260px);
+    padding:35px;
 }
 
-.menu li{
-    margin-bottom:12px;
-}
-
-.menu li a{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:14px 16px;
-    border-radius:14px;
-    text-decoration:none;
-    color:#cbd5e1;
-    transition:0.3s;
-    font-size:15px;
-    font-weight:500;
-}
-
-.menu li a:hover{
-    background:#1e293b;
-    color:white;
-}
-
-.menu li.active a{
-    background:#3b82f6;
-    color:white;
-}
-
-.menu li a i{
-    font-size:18px;
-}
 
 /* MAIN */
 
