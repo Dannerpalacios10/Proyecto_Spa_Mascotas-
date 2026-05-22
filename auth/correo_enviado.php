@@ -13,9 +13,7 @@ function enviarVerificacion($correo, $token){
 
     try{
 
-        /* ====================================== */
         /* CONFIGURACIÓN SMTP */
-        /* ====================================== */
 
         $mail->isSMTP();
 
@@ -40,24 +38,18 @@ function enviarVerificacion($correo, $token){
         $mail->CharSet =
         'UTF-8';
 
-        /* ====================================== */
         /* REMITENTE */
-        /* ====================================== */
 
         $mail->setFrom(
             'obitopalacios10@gmail.com',
             'SPA PET SYSTEM'
         );
 
-        /* ====================================== */
         /* DESTINATARIO */
-        /* ====================================== */
 
         $mail->addAddress($correo);
 
-        /* ====================================== */
         /* CONTENIDO */
-        /* ====================================== */
 
         $mail->isHTML(true);
 
@@ -68,9 +60,7 @@ function enviarVerificacion($correo, $token){
         "http://localhost/SPA/auth/verificar_email.php?token=" .
         urlencode($token);
 
-        /* ====================================== */
         /* BODY HTML */
-        /* ====================================== */
 
         $mail->Body = "
 
@@ -227,9 +217,7 @@ function enviarVerificacion($correo, $token){
 
         ";
 
-        /* ====================================== */
         /* VERSIÓN TEXTO */
-        /* ====================================== */
 
         $mail->AltBody = "
 
@@ -241,9 +229,7 @@ function enviarVerificacion($correo, $token){
 
         ";
 
-        /* ====================================== */
         /* ENVIAR */
-        /* ====================================== */
 
         $mail->send();
 

@@ -9,8 +9,6 @@ include("../config/database.php");
 
 /** @var mysqli $conn */
 
-
-
 $mensaje = "";
 $tipo = "";
 
@@ -53,7 +51,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $_POST['verificar_password'];
 
     /* VALIDAR PASSWORD */
-
 
     if($password !== $verificar){
 
@@ -264,7 +261,7 @@ href="../assets/css/registro.css">
         </h1>
 
         <p>
-            Crea tu cuenta para SPA PET SYSTEM
+            Crea tu cuenta para SPA PAW PATROL
         </p>
 
     </div>

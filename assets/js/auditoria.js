@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded",()=>{
 
-    /* ============================================== */
     /* ANIMACIÓN TABLA */
-    /* ============================================== */
 
     const rows =
     document.querySelectorAll("tbody tr");
@@ -28,9 +26,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     });
 
-    /* ============================================== */
     /* HOVER FILAS */
-    /* ============================================== */
 
     rows.forEach(row=>{
 
@@ -54,9 +50,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     });
 
-    /* ============================================== */
     /* NAVBAR SCROLL */
-    /* ============================================== */
 
     const navbar =
     document.querySelector(".navbar");

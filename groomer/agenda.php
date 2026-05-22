@@ -139,7 +139,7 @@ rel="stylesheet">
                     <i class="fa-solid fa-house"></i>
 
                     <span>
-                        Dashboard
+                        Inicio
                     </span>
 
                 </a>
@@ -167,7 +167,7 @@ rel="stylesheet">
                     <i class="fa-solid fa-box-open"></i>
 
                     <span>
-                        Insumos
+                        Inventario usado
                     </span>
 
                 </a>
@@ -222,7 +222,7 @@ rel="stylesheet">
             href="?filtro=HOY"
             class="<?php echo ($filtro=='HOY') ? 'active-filter' : ''; ?>">
 
-                Hoy
+                HOY
 
             </a>
 
@@ -230,7 +230,7 @@ rel="stylesheet">
             href="?filtro=SEMANA"
             class="<?php echo ($filtro=='SEMANA') ? 'active-filter' : ''; ?>">
 
-                Semana
+                TODA LA SEMANA
 
             </a>
 
@@ -348,7 +348,7 @@ rel="stylesheet">
                         ){ ?>
 
                         <a
-                        href="iniciar_servicio.php?id=<?php echo $c['id_cita']; ?>"
+                        href="iniciar.php?id=<?php echo $c['id_cita']; ?>"
                         class="btn start">
 
                             <i class="fa-solid fa-play"></i>
@@ -359,23 +359,12 @@ rel="stylesheet">
 
                         <?php } ?>
 
-                        <!-- FICHA -->
-
                         <?php if(
                         $c['estado'] == 'CONFIRMADA'
                         ||
                         $c['estado'] == 'EN_PROGRESO'
                         ){ ?>
 
-                        <a
-                        href="ficha.php?id=<?php echo $c['id_cita']; ?>"
-                        class="btn-action">
-
-                            <i class="fa-solid fa-clipboard"></i>
-
-                            Ficha
-
-                        </a>
 
                         <?php }else{ ?>
 
@@ -387,7 +376,7 @@ rel="stylesheet">
 
                         <?php } ?>
 
-                    </td>
+                        </td>
 
                     </tr>
 

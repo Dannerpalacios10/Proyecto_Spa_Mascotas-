@@ -19,9 +19,7 @@ if($_SESSION['rol'] != "GROOMER"){
 $idGroomer = $_SESSION['id_usuario'];
 $nombre = $_SESSION['nombre'];
 
-/* ========================= */
 /* CITAS DEL DIA */
-/* ========================= */
 
 $sqlHoy = "
 SELECT COUNT(*) AS total
@@ -33,9 +31,7 @@ AND DATE(fecha_inicio)=CURDATE()
 $resultHoy = mysqli_query($conn,$sqlHoy);
 $totalHoy = mysqli_fetch_assoc($resultHoy)['total'];
 
-/* ========================= */
 /* SERVICIOS FINALIZADOS */
-/* ========================= */
 
 $sqlFinalizados = "
 SELECT COUNT(*) AS total
@@ -47,9 +43,7 @@ AND estado='FINALIZADA'
 $resultFinalizados = mysqli_query($conn,$sqlFinalizados);
 $totalFinalizados = mysqli_fetch_assoc($resultFinalizados)['total'];
 
-/* ========================= */
 /* EN PROCESO */
-/* ========================= */
 
 $sqlProceso = "
 SELECT COUNT(*) AS total
@@ -61,9 +55,7 @@ AND estado='EN_PROGRESO'
 $resultProceso = mysqli_query($conn,$sqlProceso);
 $totalProceso = mysqli_fetch_assoc($resultProceso)['total'];
 
-/* ========================= */
 /* PROXIMAS CITAS */
-/* ========================= */
 
 $sqlCitas = "
 SELECT
@@ -106,7 +98,7 @@ Dashboard Groomer
 
 <link
 rel="stylesheet"
-href="../groomer/css/g.css?v=2">
+href="../groomer/css/g.css?v=5">
 
 <link
 rel="stylesheet"
@@ -171,7 +163,7 @@ rel="stylesheet">
                     <i class="fa-solid fa-box-open"></i>
 
                     <span>
-                        Insumos
+                        Inventario usado
                     </span>
 
                 </a>
@@ -208,20 +200,26 @@ rel="stylesheet">
 
                 <h1>
 
-                    Bienvenido,
+                    Bienvenido Groomer,
                     <?php echo $nombre; ?>
 
                 </h1>
 
                 <p>
-                    Gestiona tus servicios y mascotas asignadas.
+                    GESTIONA A TUS MASCOTAS Y A TUS SERVICIOS.
                 </p>
 
             </div>
 
             <div class="profile">
 
-                <i class="fa-solid fa-user"></i>
+            <a href="../groomer/editgroomer.php" class="profile-link">
+
+                <i class="fa-solid fa-user-pen"></i>
+
+                <span>Editar Perfil</span>
+
+            </a>
 
             </div>
 
@@ -382,15 +380,33 @@ rel="stylesheet">
 
                         <td>
 
-                            <a
-                            href="ficha.php?id=<?php echo $c['id_cita']; ?>"
-                            class="btn-action">
+                            <?php if(
+                            $c['estado'] == "FINALIZADA"
+                            ||
+                            $c['estado'] == "COMPLETADA"
+                            ){ ?>
 
-                                <i class="fa-solid fa-eye"></i>
+                                <span class="btn-action disabled">
 
-                                Ver Ficha
+                                    <i class="fa-solid fa-lock"></i>
 
-                            </a>
+                                    Ficha finalizada
+
+                                </span>
+
+                            <?php }else{ ?>
+
+                                <a
+                                href="ficha.php?id=<?php echo $c['id_cita']; ?>"
+                                class="btn-action">
+
+                                    <i class="fa-solid fa-eye"></i>
+
+                                    Ver Ficha
+
+                                </a>
+
+                            <?php } ?>
 
                         </td>
 

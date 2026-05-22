@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded",()=>{
 
-    /* ================================================= */
     /* CARDS */
-    /* ================================================= */
+
     const cards =
     document.querySelectorAll(".card");
 
@@ -56,9 +55,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     });
 
-    /* ================================================= */
     /* NAVBAR */
-    /* ================================================= */
 
     const navbar =
     document.querySelector(".navbar");
@@ -81,9 +78,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     });
 
-    /* ================================================= */
     /* BOTONES */
-    /* ================================================= */
 
     const buttons =
     document.querySelectorAll("a, button");

@@ -20,9 +20,7 @@ if(!isset($_GET['id'])){
 
 $id_cita = intval($_GET['id']);
 
-/* ========================================== */
 /* OBTENER CITA */
-/* ========================================== */
 
 $sql = "
 
@@ -45,9 +43,7 @@ if(mysqli_num_rows($resultado) <= 0){
 
 $cita = mysqli_fetch_assoc($resultado);
 
-/* ========================================== */
 /* VALIDAR TIEMPO */
-/* ========================================== */
 
 $fechaCita =
 strtotime($cita['fecha_inicio']);
@@ -69,9 +65,7 @@ if($diferencia < 3600){
     exit();
 }
 
-/* ========================================== */
 /* CANCELAR */
-/* ========================================== */
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 

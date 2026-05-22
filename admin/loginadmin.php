@@ -8,8 +8,6 @@ include("../config/log.php");
 /** @var mysqli $conn */
 
 
-
-
 if(!isset($_SESSION['captcha'])){
 
     $_SESSION['captcha'] =
@@ -80,9 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 } else {
 
-                    /* ===================================================== */
                     /* SESSION */
-                    /* ===================================================== */
 
                     $_SESSION['id_usuario'] =
                     $usuario['id_usuario'];
@@ -93,9 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['rol'] =
                     $usuario['rol_nombre'];
 
-                    /* ===================================================== */
                     /* AUDITORIA */
-                    /* ===================================================== */
 
                     $idUsuario =
                     $usuario['id_usuario'];
@@ -140,16 +134,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $sqlAuditoria
                     );
 
-                    /* ===================================================== */
                     /* NUEVO CAPTCHA */
-                    /* ===================================================== */
 
                     $_SESSION['captcha'] =
                     rand(1000,9999);
 
-                    /* ===================================================== */
                     /* REDIRECT */
-                    /* ===================================================== */
 
                     header("Location: dashboard.php");
                     exit();
@@ -308,7 +298,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="footer">
 
-        SPA PET SYSTEM • ADMIN SECURITY
+        SPA PAW PATROL • ADMIN SECURITY
 
     </div>
 

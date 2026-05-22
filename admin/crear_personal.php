@@ -11,7 +11,6 @@ include("../config/database.php");
 /** @var mysqli $conn */
 
 
-
 $mensaje = "";
 $tipo = "";
 
@@ -65,9 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $_POST['turno']
     );
 
-    /* ====================================== */
     /* VALIDAR PASSWORDS */
-    /* ====================================== */
 
     if($password !== $verificar){
 
@@ -78,9 +75,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     }else{
 
-        /* ====================================== */
         /* VALIDAR PASSWORD SEGURA */
-        /* ====================================== */
 
         if(
 
@@ -103,9 +98,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         }else{
 
-            /* ====================================== */
             /* VERIFICAR EMAIL */
-            /* ====================================== */
 
             $check =
             mysqli_query(
@@ -124,9 +117,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             }else{
 
-                /* ====================================== */
                 /* HASH PASSWORD */
-                /* ====================================== */
 
                 $passwordHash =
                 password_hash(
@@ -134,9 +125,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 PASSWORD_DEFAULT
                 );
 
-                /* ====================================== */
                 /* OBTENER ROL */
-                /* ====================================== */
 
                 $rolQuery =
                 mysqli_query(
@@ -161,9 +150,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $idRol =
                     $rolData['id_rol'];
 
-                    /* ====================================== */
                     /* TOKEN ACTIVACION */
-                    /* ====================================== */
 
                     $token =
                     bin2hex(random_bytes(32));
@@ -174,9 +161,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         strtotime("+1 day")
                     );
 
-                    /* ====================================== */
                     /* INSERTAR USUARIO */
-                    /* ====================================== */
 
                     $sql = "
 

@@ -28,9 +28,7 @@
 
 <body>
 
-<!-- ===================================================== -->
 <!-- HEADER -->
-<!-- ===================================================== -->
 
 <header class="header">
 
@@ -42,7 +40,7 @@
 
             <i class="fa-solid fa-paw"></i>
 
-            Pet Spa
+            SPA PAW PATROL
 
         </h2>
 
@@ -53,19 +51,23 @@
     <nav>
 
         <a href="#">
-            Inicio
+            INICIO
         </a>
 
         <a href="#servicios">
-            Servicios
-        </a>
-
-        <a href="#nosotros">
-            Nosotros
+            SERVICIOS
         </a>
 
         <a href="#contacto">
-            Contacto
+            TIENDA
+        </a>
+
+        <a href="#nosotros">
+            NOSOTROS
+        </a>
+
+        <a href="#contacto">
+            CONTACTO
         </a>
 
     </nav>
@@ -81,7 +83,7 @@
 
             <i class="fa-solid fa-user"></i>
 
-            Iniciar Sesión
+            INICIAR SESION
 
         </a>
 
@@ -92,7 +94,7 @@
 
             <i class="fa-solid fa-user-plus"></i>
 
-            Registrarse
+            REGISTRARSE
 
         </a>
 
@@ -103,7 +105,7 @@
 
             <i class="fa-solid fa-shield-dog"></i>
 
-            Administrador
+            ADMIN
 
         </a>
 
@@ -111,9 +113,7 @@
 
 </header>
 
-<!-- ===================================================== -->
 <!-- HERO -->
-<!-- ===================================================== -->
 
 <section class="hero">
 
@@ -123,16 +123,15 @@
 
             <h1>
 
-                El mejor cuidado
-                para tu mascota
+                EL MEJOR CUIDADO PARA TU MASCOTA
 
             </h1>
 
             <p>
 
-                Agenda baños, cortes,
-                tratamientos y servicios
-                especializados para tus mascotas.
+                AGENDA BAÑOS, CORTES,
+                TRATAMIENTOS Y TAMBIEN COMPRA 
+                ESPECIALIZADOS PARA TU MASCOTA.
 
             </p>
 
@@ -143,7 +142,7 @@
                 <a href="auth/registro.php"
                 class="btn-main">
 
-                    Crear Cuenta
+                    CREAR CUENTA
 
                 </a>
 
@@ -152,7 +151,7 @@
                 <a href="auth/login.php"
                 class="btn-secondary">
 
-                    Ingresar
+                    INICIAR SESION
 
                 </a>
 
@@ -164,16 +163,14 @@
 
 </section>
 
-<!-- ===================================================== -->
 <!-- SERVICIOS -->
-<!-- ===================================================== -->
 
 <section class="services"
 id="servicios">
 
     <h2>
 
-        Nuestros Servicios
+        NUESTROS SERVICIOS
 
     </h2>
 
@@ -191,7 +188,7 @@ id="servicios">
 
                 <h3>
 
-                    Baño y Limpieza
+                    BAÑO Y LIMPIEZA
 
                 </h3>
 
@@ -218,7 +215,7 @@ id="servicios">
 
                 <h3>
 
-                    Corte de Pelo
+                    CORTE DE PELO
 
                 </h3>
 
@@ -245,7 +242,7 @@ id="servicios">
 
                 <h3>
 
-                    Cuidado Especial
+                    CUIDADO ESPECIAL
 
                 </h3>
 
@@ -264,9 +261,7 @@ id="servicios">
 
 </section>
 
-<!-- ===================================================== -->
 <!-- NOSOTROS -->
-<!-- ===================================================== -->
 
 <section class="about"
 id="nosotros">
@@ -287,7 +282,7 @@ id="nosotros">
 
         <h2>
 
-            Sobre Nosotros
+            SOBRE NOSOTROS
 
         </h2>
 
@@ -313,9 +308,7 @@ id="nosotros">
 
 </section>
 
-<!-- ===================================================== -->
 <!-- FOOTER -->
-<!-- ===================================================== -->
 
 <footer class="footer"
 id="contacto">
@@ -328,13 +321,13 @@ id="contacto">
 
             <h3>
 
-                Pet Spa
+                SPA PAW PATROL
 
             </h3>
 
             <p>
 
-                Sistema profesional
+                Sistema Web Profesional
                 para spa de mascotas.
 
             </p>
@@ -412,16 +405,13 @@ id="contacto">
 
     <div class="footer-bottom">
 
-        © 2026 Pet Spa System
+        © 2026 SPA PAW PATROL
         - Todos los derechos reservados
 
     </div>
 
 </footer>
 
-<!-- ===================================================== -->
-<!-- JS -->
-<!-- ===================================================== -->
 
 <script src="assets/js/index.js"></script>
 

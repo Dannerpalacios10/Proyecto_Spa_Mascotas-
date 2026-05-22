@@ -11,6 +11,11 @@ if(!isset($_SESSION['id_usuario'])){
     exit();
 }
 
+if($_SESSION['rol'] != "RECEPCIONISTA"){
+    header("Location: ../auth/login.php");
+    exit();
+}
+
 $idUsuario = $_SESSION['id_usuario'];
 $nombre = $_SESSION['nombre'];
 $rol = $_SESSION['rol'];
@@ -105,6 +110,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         $mensaje =
         "La contraseña debe tener mínimo 8 caracteres, una mayúscula, una minúscula, un número y un símbolo.";
+
+        $tipo =
+        "error";
+    }
+    elseif(
+        !empty($nuevaPassword)
+        &&
+        $nuevaPassword != $verificarPassword
+    ){
+
+        $mensaje =
+        "Las contraseñas no coinciden.";
 
         $tipo =
         "error";
@@ -235,7 +252,7 @@ Editar Perfil
 
 <link
 rel="stylesheet"
-href="../cliente/css/perfil.css?v=3">
+href="../recepcionista/css/editar.css">
 
 <link
 rel="stylesheet"
@@ -257,47 +274,13 @@ rel="stylesheet">
 
         <div class="logo">
 
-            <i class="fa-solid fa-paw"></i>
+            <i class="fa-solid fa-desktop"></i>
 
             <h2>SPA PAW PATROL</h2>
 
         </div>
 
         <ul class="menu">
-
-            <?php if($rol == "CLIENTE"){ ?>
-
-            <li>
-
-                <a href="../cliente/cliente.php">
-
-                    <i class="fa-solid fa-house"></i>
-
-                    <span>Inicio</span>
-
-                </a>
-
-            </li>
-
-            <?php } ?>
-
-            <?php if($rol == "GROOMER"){ ?>
-
-            <li>
-
-                <a href="../groomer/groomer.php">
-
-                    <i class="fa-solid fa-house"></i>
-
-                    <span>Dashboard</span>
-
-                </a>
-
-            </li>
-
-            <?php } ?>
-
-            <?php if($rol == "RECEPCIONISTA"){ ?>
 
             <li>
 
@@ -311,11 +294,9 @@ rel="stylesheet">
 
             </li>
 
-            <?php } ?>
-
             <li class="active">
 
-                <a href="perfil.php">
+                <a href="../recepcionista/perfil.php">
 
                     <i class="fa-solid fa-user"></i>
 
@@ -350,7 +331,7 @@ rel="stylesheet">
             <div>
 
                 <h1>
-                    Editar Perfil Cliente
+                    Editar Perfil Recepcionista
                 </h1>
 
                 <p>
@@ -474,82 +455,82 @@ rel="stylesheet">
                     required>
 
                 </div>
-            <div class="form-grid">
 
-                                <div class="input-group">
+                <div class="form-grid">
 
-                                    <label>
-                                        Nueva Contraseña
-                                    </label>
+                    <div class="input-group">
 
-                                    <div class="password-box">
+                        <label>
+                            Nueva Contraseña
+                        </label>
 
-                                        <input
-                                        type="password"
-                                        name="password"
-                                        id="password"
-                                        placeholder="Dejar vacío para no cambiar">
+                        <div class="password-box">
 
-                                        <button
-                                        type="button"
-                                        class="show-btn"
-                                        onclick="togglePassword('password')">
-
-                                            👁
-
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="input-group">
-
-                                    <label>
-                                        Confirmar Contraseña
-                                    </label>
-
-                                    <div class="password-box">
-
-                                        <input
-                                        type="password"
-                                        name="verificar_password"
-                                        id="confirmPassword"
-                                        placeholder="Confirmar contraseña">
-
-                                        <button
-                                        type="button"
-                                        class="show-btn"
-                                        onclick="togglePassword('confirmPassword')">
-
-                                            👁
-
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
+                            <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Dejar vacío para no cambiar">
 
                             <button
-                            type="submit"
-                            class="btn-save">
+                            type="button"
+                            class="show-btn"
+                            onclick="togglePassword('password')">
 
-                                <i class="fa-solid fa-floppy-disk"></i>
-
-                                Guardar Cambios
+                                👁
 
                             </button>
 
-                        </form>
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+                            Confirmar Contraseña
+                        </label>
+
+                        <div class="password-box">
+
+                            <input
+                            type="password"
+                            name="verificar_password"
+                            id="confirmPassword"
+                            placeholder="Confirmar contraseña">
+
+                            <button
+                            type="button"
+                            class="show-btn"
+                            onclick="togglePassword('confirmPassword')">
+
+                                👁
+
+                            </button>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
+                <button
+                type="submit"
+                class="btn-save">
 
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Guardar Cambios
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script>
 
@@ -569,7 +550,6 @@ function togglePassword(id){
 }
 
 </script>
-
 
 </body>
 </html>

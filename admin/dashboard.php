@@ -32,7 +32,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != "ADMIN") {
 
     <div class="logo">
 
-        SPA PET SYSTEM
+        SPA PAW PATROL
 
     </div>
 
@@ -104,7 +104,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != "ADMIN") {
             </h1>
 
             <p>
-                Panel de administración del sistema SPA PET SYSTEM
+                Panel de administración del sistema SPA PAW PATROL
             </p>
 
         </div>

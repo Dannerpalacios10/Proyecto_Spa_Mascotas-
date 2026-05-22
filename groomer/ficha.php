@@ -269,7 +269,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             $conn,
             "
             UPDATE cita
-            SET estado='COMPLETADA'
+            SET estado='FINALIZADA'
             WHERE id_cita='$idCita'
             "
         );

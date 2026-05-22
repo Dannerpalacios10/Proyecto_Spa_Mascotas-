@@ -230,14 +230,14 @@ rel="stylesheet">
 
             <h1>
 
-                Bienvenido,
+                Bienvenido Cliente,
                 <?php echo $nombre; ?>
 
             </h1>
 
             <p>
 
-                Gestiona tus mascotas y citas fácilmente.
+                GESTIONA TUS MASCOTASA Y CLIENTES.
 
             </p>
 

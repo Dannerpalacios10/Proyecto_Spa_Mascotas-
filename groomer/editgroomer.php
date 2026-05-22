@@ -11,6 +11,11 @@ if(!isset($_SESSION['id_usuario'])){
     exit();
 }
 
+if($_SESSION['rol'] != "GROOMER"){
+    header("Location: ../auth/login.php");
+    exit();
+}
+
 $idUsuario = $_SESSION['id_usuario'];
 $nombre = $_SESSION['nombre'];
 $rol = $_SESSION['rol'];
@@ -109,6 +114,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $tipo =
         "error";
     }
+    elseif(
+        !empty($nuevaPassword)
+        &&
+        $nuevaPassword != $verificarPassword
+    ){
+
+        $mensaje =
+        "Las contraseñas no coinciden.";
+
+        $tipo =
+        "error";
+    }
     else{
 
         /* SIN CAMBIAR PASSWORD */
@@ -151,38 +168,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
             $_SESSION['nombre'] =
             $nuevoNombre;
-
-            /* SI CAMBIÓ EL EMAIL */
-
-            if($nuevoEmail != $usuario['email']){
-
-                $token =
-                bin2hex(random_bytes(32));
-
-                $expira =
-                date(
-                    "Y-m-d H:i:s",
-                    strtotime("+1 day")
-                );
-
-                $sqlToken = "
-                UPDATE usuario
-                SET
-                token_activacion='$token',
-                token_expira='$expira',
-                email_verificado='0'
-                WHERE id_usuario='$idUsuario'
-                ";
-
-                mysqli_query($conn,$sqlToken);
-
-                include("../auth/correo_enviado.php");
-
-                enviarVerificacion(
-                    $nuevoEmail,
-                    $token
-                );
-            }
 
             $mensaje =
             "Perfil actualizado correctamente.";
@@ -230,12 +215,12 @@ name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>
-Editar Perfil
+Perfil Groomer
 </title>
 
 <link
 rel="stylesheet"
-href="../cliente/css/perfil.css?v=3">
+href="../groomer/css/editgroomer.css">
 
 <link
 rel="stylesheet"
@@ -257,31 +242,13 @@ rel="stylesheet">
 
         <div class="logo">
 
-            <i class="fa-solid fa-paw"></i>
+            <i class="fa-solid fa-scissors"></i>
 
             <h2>SPA PAW PATROL</h2>
 
         </div>
 
         <ul class="menu">
-
-            <?php if($rol == "CLIENTE"){ ?>
-
-            <li>
-
-                <a href="../cliente/cliente.php">
-
-                    <i class="fa-solid fa-house"></i>
-
-                    <span>Inicio</span>
-
-                </a>
-
-            </li>
-
-            <?php } ?>
-
-            <?php if($rol == "GROOMER"){ ?>
 
             <li>
 
@@ -295,27 +262,9 @@ rel="stylesheet">
 
             </li>
 
-            <?php } ?>
-
-            <?php if($rol == "RECEPCIONISTA"){ ?>
-
-            <li>
-
-                <a href="../recepcionista/recepcionista.php">
-
-                    <i class="fa-solid fa-house"></i>
-
-                    <span>Dashboard</span>
-
-                </a>
-
-            </li>
-
-            <?php } ?>
-
             <li class="active">
 
-                <a href="perfil.php">
+                <a href="../groomer/perfil.php">
 
                     <i class="fa-solid fa-user"></i>
 
@@ -350,7 +299,7 @@ rel="stylesheet">
             <div>
 
                 <h1>
-                    Editar Perfil Cliente
+                    Editar Perfil Groomer
                 </h1>
 
                 <p>
@@ -474,82 +423,88 @@ rel="stylesheet">
                     required>
 
                 </div>
-            <div class="form-grid">
 
-                                <div class="input-group">
+                <div class="form-grid">
 
-                                    <label>
-                                        Nueva Contraseña
-                                    </label>
+                    <div class="input-group">
 
-                                    <div class="password-box">
+                        <label>
+                            Nueva Contraseña
+                        </label>
 
-                                        <input
-                                        type="password"
-                                        name="password"
-                                        id="password"
-                                        placeholder="Dejar vacío para no cambiar">
+                        <div class="password-box">
 
-                                        <button
-                                        type="button"
-                                        class="show-btn"
-                                        onclick="togglePassword('password')">
-
-                                            👁
-
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="input-group">
-
-                                    <label>
-                                        Confirmar Contraseña
-                                    </label>
-
-                                    <div class="password-box">
-
-                                        <input
-                                        type="password"
-                                        name="verificar_password"
-                                        id="confirmPassword"
-                                        placeholder="Confirmar contraseña">
-
-                                        <button
-                                        type="button"
-                                        class="show-btn"
-                                        onclick="togglePassword('confirmPassword')">
-
-                                            👁
-
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
+                            <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Dejar vacío para no cambiar">
 
                             <button
-                            type="submit"
-                            class="btn-save">
+                            type="button"
+                            class="show-btn"
+                            onclick="togglePassword('password')">
 
-                                <i class="fa-solid fa-floppy-disk"></i>
-
-                                Guardar Cambios
+                                👁
 
                             </button>
 
-                        </form>
+                        </div>
+
+                        <div class="strength-container">
+
+                            <div id="bar"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+                            Confirmar Contraseña
+                        </label>
+
+                        <div class="password-box">
+
+                            <input
+                            type="password"
+                            name="verificar_password"
+                            id="confirmPassword"
+                            placeholder="Confirmar contraseña">
+
+                            <button
+                            type="button"
+                            class="show-btn"
+                            onclick="togglePassword('confirmPassword')">
+
+                                👁
+
+                            </button>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
+                <button
+                type="submit"
+                class="btn-save">
 
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Guardar Cambios
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script>
 
@@ -568,8 +523,104 @@ function togglePassword(id){
     }
 }
 
-</script>
+/* FUERZA PASSWORD */
 
+const password =
+document.getElementById("password");
+
+const bar =
+document.getElementById("bar");
+
+password.addEventListener("keyup",()=>{
+
+    let value = password.value;
+
+    let strength = 0;
+
+    if(value.length >= 8){
+
+        strength++;
+
+        document.getElementById("rule1")
+        .classList.add("valid");
+
+    }else{
+
+        document.getElementById("rule1")
+        .classList.remove("valid");
+    }
+
+    if(/[A-Z]/.test(value)){
+
+        strength++;
+
+        document.getElementById("rule2")
+        .classList.add("valid");
+
+    }else{
+
+        document.getElementById("rule2")
+        .classList.remove("valid");
+    }
+
+    if(/[a-z]/.test(value)){
+
+        strength++;
+
+        document.getElementById("rule3")
+        .classList.add("valid");
+
+    }else{
+
+        document.getElementById("rule3")
+        .classList.remove("valid");
+    }
+
+    if(/[0-9]/.test(value)){
+
+        strength++;
+
+        document.getElementById("rule4")
+        .classList.add("valid");
+
+    }else{
+
+        document.getElementById("rule4")
+        .classList.remove("valid");
+    }
+
+    if(/[\W]/.test(value)){
+
+        strength++;
+
+        document.getElementById("rule5")
+        .classList.add("valid");
+
+    }else{
+
+        document.getElementById("rule5")
+        .classList.remove("valid");
+    }
+
+    let width = strength * 20;
+
+    bar.style.width = width + "%";
+
+    if(strength <= 2){
+
+        bar.style.background = "#ef4444";
+
+    }else if(strength <= 4){
+
+        bar.style.background = "#f59e0b";
+
+    }else{
+
+        bar.style.background = "#22c55e";
+    }
+});
+
+</script>
 
 </body>
 </html>

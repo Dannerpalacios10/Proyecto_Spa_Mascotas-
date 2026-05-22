@@ -1,6 +1,4 @@
-/* ========================================= */
 /* MOSTRAR / OCULTAR PASSWORD */
-/* ========================================= */
 
 function togglePassword(id, element){
 
@@ -26,9 +24,7 @@ function togglePassword(id, element){
     }
 }
 
-/* ========================================= */
 /* TEMPORIZADOR */
-/* ========================================= */
 
 const timer =
 document.getElementById("timer");

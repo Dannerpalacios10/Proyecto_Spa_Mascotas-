@@ -244,7 +244,7 @@ Recepción
 
 <link
 rel="stylesheet"
-href="../recepcionista/css/r.css?v=5">
+href="../recepcionista/css/r.css?v=2">
 
 <link
 rel="stylesheet"
@@ -280,7 +280,7 @@ rel="stylesheet">
 
                     <i class="fa-solid fa-house"></i>
 
-                    Dashboard
+                    Inicio
 
                 </a>
 
@@ -317,6 +317,18 @@ rel="stylesheet">
                     <i class="fa-solid fa-ban"></i>
 
                     Bloqueos
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="../tienda/tienda.php">
+
+                    <i class="fa-solid fa-tags"></i>
+
+                    Inventario
 
                 </a>
 
@@ -362,16 +374,28 @@ rel="stylesheet">
 
                 <h1>
 
-                    Bienvenida,
+                    Bienvenida Recepcionista,
                     <?php echo $nombre; ?>
 
                 </h1>
 
                 <p>
-                    Gestión operativa del SPA
+                    GESTION OPERATIVA DEL SISTEMA 
                 </p>
 
             </div>
+
+            <div class="profile">
+
+            <a href="../recepcionista/editar.php" class="profile-link">
+
+                <i class="fa-solid fa-user-pen"></i>
+
+                <span>Editar Perfil</span>
+
+            </a>
+
+        </div>
 
         </div>
 

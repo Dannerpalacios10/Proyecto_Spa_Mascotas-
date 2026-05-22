@@ -6,7 +6,6 @@ include("../config/database.php");
 /** @var mysqli $conn */
 
 
-
 $nombre = $_POST['nombre'];
 $email = $_POST['email'];
 $telefono = $_POST['telefono'];

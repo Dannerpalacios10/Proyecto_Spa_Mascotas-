@@ -13,11 +13,7 @@ function togglePassword(id){
     }
 }
 
-/*
-|----------------------------------------------------------
-| FUERZA PASSWORD
-|----------------------------------------------------------
-*/
+/* FUERZA PASSWORD */
 
 const password =
 document.getElementById("password");
@@ -83,11 +79,7 @@ password.addEventListener("input",function(){
     }
 });
 
-/*
-|----------------------------------------------------------
-| VERIFICAR PASSWORD
-|----------------------------------------------------------
-*/
+/* VERIFICAR PASSWORD */
 
 const confirmarPassword =
 document.getElementById("confirmarPassword");
@@ -115,11 +107,7 @@ confirmarPassword.addEventListener("keyup",function(){
     }
 });
 
-/*
-|----------------------------------------------------------
-| CAMPOS DINÁMICOS
-|----------------------------------------------------------
-*/
+/* CAMPOS DINÁMICOS */
 
 const rol =
 document.getElementById("rol");
@@ -324,11 +312,7 @@ function mostrarCamposRol(){
     campos.innerHTML = html;
 }
 
-/*
-|----------------------------------------------------------
-| BOTÓN
-|----------------------------------------------------------
-*/
+/* BOTÓN */
 
 const form =
 document.getElementById("formulario");

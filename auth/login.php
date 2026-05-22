@@ -10,7 +10,6 @@ include("../config/log.php");
 
 /** @var mysqli $conn */
 
-
 /* ================= CAPTCHA ================= */
 
 if(!isset($_SESSION['captcha'])){

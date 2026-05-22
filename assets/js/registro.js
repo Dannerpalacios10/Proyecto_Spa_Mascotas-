@@ -123,9 +123,8 @@ password.addEventListener("keyup",()=>{
     }
 });
 
-/* ========================================== */
+
 /* VERIFICAR PASSWORD */
-/* ========================================== */
 
 confirmPassword.addEventListener("keyup",()=>{
 

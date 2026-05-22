@@ -13,9 +13,7 @@ function enviarRecuperacion($correo,$token){
 
     try{
 
-        /* ====================================== */
         /* CONFIGURACIÓN SMTP */
-        /* ====================================== */
 
         $mail->isSMTP();
 
@@ -35,47 +33,35 @@ function enviarRecuperacion($correo,$token){
 
         $mail->Port = 587;
 
-        /* ====================================== */
         /* REMITENTE */
-        /* ====================================== */
 
         $mail->setFrom(
             'obitopalacios10@gmail.com',
             'SPA PAW PATROL'
         );
 
-        /* ====================================== */
         /* DESTINATARIO */
-        /* ====================================== */
 
         $mail->addAddress($correo);
 
-        /* ====================================== */
         /* FORMATO */
-        /* ====================================== */
 
         $mail->isHTML(true);
 
         $mail->CharSet =
         'UTF-8';
 
-        /* ====================================== */
         /* ASUNTO */
-        /* ====================================== */
 
         $mail->Subject =
         'SPA PAW PATROL | Recuperación de Contraseña';
 
-        /* ====================================== */
         /* LINK */
-        /* ====================================== */
 
         $link =
         "http://localhost/SPA/auth/nueva_password.php?token=$token";
 
-        /* ====================================== */
         /* CUERPO HTML */
-        /* ====================================== */
 
         $mail->Body = "
 
@@ -213,9 +199,7 @@ function enviarRecuperacion($correo,$token){
 
         ";
 
-        /* ====================================== */
         /* ENVIAR */
-        /* ====================================== */
 
         $mail->send();
 

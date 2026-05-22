@@ -16,9 +16,7 @@ if($_SESSION['rol'] != "CLIENTE"){
     exit();
 }
 
-/* ========================================== */
 /* OBTENER SERVICIOS */
-/* ========================================== */
 
 $sql = "
 SELECT *
@@ -71,7 +69,7 @@ rel="stylesheet">
 
             <i class="fa-solid fa-paw"></i>
 
-            <h2>SPA PET</h2>
+            <h2>SPA PAW PATROL</h2>
 
         </div>
 

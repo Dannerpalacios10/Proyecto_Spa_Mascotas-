@@ -556,9 +556,15 @@ rel="stylesheet">
                             <option value="09:00">09:00 AM</option>
                             <option value="10:00">10:00 AM</option>
                             <option value="11:00">11:00 AM</option>
-                            <option value="14:00">02:00 PM</option>
-                            <option value="15:00">03:00 PM</option>
-                            <option value="16:00">04:00 PM</option>
+                            <option value="14:00">12:00 AM</option>
+                            <option value="15:00">13:00 PM</option>
+                            <option value="16:00">14:00 PM</option>
+                            <option value="08:00">15:00 PM</option>
+                            <option value="09:00">16:00 PM</option>
+                            <option value="10:00">17:00 PM</option>
+                            <option value="11:00">18:00 AM</option>
+                            <option value="14:00">19:00 PM</option>
+                            <option value="15:00">20:00 PM</option>
 
                         </select>
 
