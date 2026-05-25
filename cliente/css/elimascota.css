@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    color:#1e293b;
+}
+
+.container{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:260px;
+    background:#0f172a;
+    color:white;
+    height:100vh;
+    padding:25px 20px;
+    position:fixed;
+    display:flex;
+    flex-direction:column;
+}
+
+.logo{
+    margin-bottom:40px;
+}
+
+.logo h3{
+    font-size:22px;
+    font-weight:700;
+}
+
+.menu{
+    list-style:none;
+}
+
+.menu li{
+    margin-bottom:10px;
+}
+
+.menu li a,
+.logout a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    border-radius:14px;
+    text-decoration:none;
+    color:#cbd5e1;
+    transition:.3s;
+}
+
+.menu li a:hover,
+.logout a:hover{
+    background:#1e293b;
+    color:white;
+}
+
+.menu li.active a{
+    background:#ef4444;
+    color:white;
+}
+
+.logout{
+    margin-top:auto;
+}
+
+/* MAIN */
+
+.main-content{
+    margin-left:260px;
+    width:calc(100% - 260px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.delete-wrapper{
+    width:100%;
+    max-width:700px;
+}
+
+.delete-card{
+    background:white;
+    border-radius:30px;
+    padding:50px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+}
+
+.delete-icon{
+    width:110px;
+    height:110px;
+    background:#fee2e2;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto auto 25px;
+}
+
+.delete-icon i{
+    font-size:48px;
+    color:#ef4444;
+}
+
+.delete-card h1{
+    font-size:34px;
+    margin-bottom:18px;
+    color:#0f172a;
+}
+
+.delete-card p{
+    color:#64748b;
+    line-height:1.8;
+    font-size:15px;
+    margin-bottom:35px;
+}
+
+.actions{
+    display:flex;
+    gap:15px;
+}
+
+.btn{
+    flex:1;
+    padding:16px;
+    border:none;
+    border-radius:16px;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+.cancel{
+    background:#e2e8f0;
+    color:#334155;
+}
+
+.cancel:hover{
+    background:#cbd5e1;
+}
+
+.delete{
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+    color:white;
+    box-shadow:0 6px 18px rgba(239,68,68,.25);
+}
+
+.delete:hover{
+    transform:translateY(-2px);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:90px;
+        padding:20px 10px;
+    }
+
+    .sidebar .logo h3,
+    .sidebar .menu li a span,
+    .logout a span{
+        display:none;
+    }
+
+    .sidebar .menu li a,
+    .logout a{
+        justify-content:center;
+    }
+
+    .main-content{
+        margin-left:90px;
+        width:calc(100% - 90px);
+    }
+}
+
+@media(max-width:700px){
+
+    .main-content{
+        padding:20px;
+    }
+
+    .delete-card{
+        padding:35px 25px;
+    }
+
+    .delete-card h1{
+        font-size:26px;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+}

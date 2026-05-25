@@ -50,7 +50,7 @@ Mis Mascotas
 
 <link
 rel="stylesheet"
-href="../cliente/css/mascotas.css?v=1">
+href="../cliente/css/mascotas.css?v=2">
 
 <link
 rel="stylesheet"
@@ -287,7 +287,7 @@ rel="stylesheet">
             <div class="pet-actions">
 
                 <a
-                href="editar_mascota.php?id=<?php echo $mascota['id_mascota']; ?>"
+                href="editmascota.php?id=<?php echo $mascota['id_mascota']; ?>"
                 class="edit-btn">
 
                     <i class="fa-solid fa-pen"></i>
@@ -297,7 +297,7 @@ rel="stylesheet">
                 </a>
 
                 <a
-                href="eliminar_mascota.php?id=<?php echo $mascota['id_mascota']; ?>"
+                href="elimascota.php?id=<?php echo $mascota['id_mascota']; ?>"
                 class="delete-btn"
                 onclick="return confirm('¿Eliminar mascota?')">
 

@@ -202,7 +202,7 @@ Inventario
 
 <link
 rel="stylesheet"
-href="../recepcionista/css/inventario.css">
+href="../recepcionista/css/inventario.css?v=3">
 
 <link
 rel="stylesheet"
@@ -430,110 +430,94 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
         <div class="table-card">
 
-            <table>
+            <div class="table-responsive">
 
-                <thead>
+                <table>
 
-                    <tr>
+                    <thead>
 
-                        <th>Imagen</th>
+                        <tr>
 
-                        <th>Producto</th>
+                            <th>Imagen</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
 
-                        <th>Precio</th>
+                        </tr>
 
-                        <th>Stock</th>
+                    </thead>
 
-                        <th>Estado</th>
+                    <tbody>
 
-                        <th>Acciones</th>
+                        <?php
+                        while($p = mysqli_fetch_assoc($productos)){
+                        ?>
 
-                    </tr>
+                        <tr>
 
-                </thead>
+                            <td>
 
-                <tbody>
+                                <img
+                                class="table-img"
+                                src="../uploads/productos/<?php echo $p['imagen']; ?>">
 
-                    <?php
-                    while($p = mysqli_fetch_assoc($productos)){
-                    ?>
+                            </td>
 
-                    <tr>
+                            <td>
+                                <?php echo $p['nombre']; ?>
+                            </td>
 
-                        <td>
+                            <td>
+                                Bs.
+                                <?php echo number_format($p['precio'],2); ?>
+                            </td>
 
-                            <img
-                            class="table-img"
-                            src="../uploads/productos/<?php echo $p['imagen']; ?>">
+                            <td>
+                                <?php echo $p['stock']; ?>
+                            </td>
 
-                        </td>
+                            <td>
+                                <?php echo $p['estado']; ?>
+                            </td>
 
-                        <td>
+                            <td>
 
-                            <?php
-                            echo $p['nombre'];
-                            ?>
+                                <div class="actions">
 
-                        </td>
+                                    <a
+                                    class="btn edit"
+                                    href="editar_producto.php?id=<?php echo $p['id_producto']; ?>">
 
-                        <td>
+                                        <i class="fa-solid fa-pen"></i>
 
-                            Bs.
-                            <?php
-                            echo number_format($p['precio'],2);
-                            ?>
+                                    </a>
 
-                        </td>
+                                    <a
+                                    class="btn delete"
+                                    href="?eliminar=<?php echo $p['id_producto']; ?>">
 
-                        <td>
+                                        <i class="fa-solid fa-trash"></i>
 
-                            <?php
-                            echo $p['stock'];
-                            ?>
+                                    </a>
 
-                        </td>
+                                </div>
 
-                        <td>
+                            </td>
 
-                            <?php
-                            echo $p['estado'];
-                            ?>
+                        </tr>
 
-                        </td>
+                        <?php } ?>
 
-                        <td>
+                    </tbody>
 
-                            <div class="actions">
+                </table>
 
-                                <a
-                                class="btn edit"
-                                href="editar_producto.php?id=<?php echo $p['id_producto']; ?>">
-
-                                    <i class="fa-solid fa-pen"></i>
-
-                                </a>
-
-                                <a
-                                class="btn delete"
-                                href="?eliminar=<?php echo $p['id_producto']; ?>">
-
-                                    <i class="fa-solid fa-trash"></i>
-
-                                </a>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-                    <?php } ?>
-
-                </tbody>
-
-            </table>
+            </div>
 
         </div>
+
 
     </div>
 

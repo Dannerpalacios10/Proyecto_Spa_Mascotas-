@@ -54,16 +54,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $fechaInicio =
     $fecha . " " . $hora . ":00";
 
-    /* VALIDAR FECHA Y HORA */
+    /* VALIDAR FECHA PASADA */
 
     $fechaHoraActual =
     date("Y-m-d H:i:s");
 
-    $fechaHoraCita =
-    $fecha . " " . $hora . ":00";
-
     if(
-        strtotime($fechaHoraCita)
+        strtotime($fechaInicio)
         <=
         strtotime($fechaHoraActual)
     ){
@@ -73,10 +70,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         $tipo =
         "error";
+    }
 
-    }else{
+    /* VALIDAR LUNES A VIERNES */
 
-        /* VALIDAR LUNES A VIERNES */
+    else{
 
         $diaSemana =
         date(
@@ -91,10 +89,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
             $tipo =
             "error";
+        }
 
-        }else{
+        else{
 
-            /* VALIDAR HORARIOS */
+            /* VALIDAR HORARIO GENERAL */
 
             if(
                 (
@@ -110,7 +109,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 )
             ){
 
-                /* VALIDAR BLOQUEO ALMUERZO */
+                /* VALIDAR ALMUERZO */
 
                 if(
                     $hora > "12:00"
@@ -123,8 +122,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
                     $tipo =
                     "error";
+                }
 
-                }else{
+                else{
 
                     /* SERVICIO */
 
@@ -143,116 +143,268 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     $duracion =
                     $servicio['duracion_base'];
 
+                    /* CALCULAR FIN */
+
                     $fechaFin =
                     date(
                         "Y-m-d H:i:s",
                         strtotime($fechaInicio . " +$duracion minutes")
                     );
 
-                    /* VALIDAR CITA DUPLICADA */
+                    $horaFin =
+                    date(
+                        "H:i",
+                        strtotime($fechaFin)
+                    );
 
-                    $sqlValidar = "
+                    /* VALIDAR CRUCE ALMUERZO */
 
-                    SELECT *
-                    FROM cita
-
-                    WHERE
-
-                    id_mascota = '$idMascota'
-
-                    AND fecha_inicio = '$fechaInicio'
-
-                    AND estado IN
-                    (
-                        'PENDIENTE',
-                        'CONFIRMADA',
-                        'EN_PROGRESO'
-                    )
-
-                    ";
-
-                    $resultadoValidar =
-                    mysqli_query($conn,$sqlValidar);
-
-                    if(mysqli_num_rows($resultadoValidar) > 0){
+                    if(
+                        $hora < "12:00"
+                        &&
+                        $horaFin > "12:00"
+                    ){
 
                         $mensaje =
-                        "La mascota ya tiene una cita en ese horario.";
+                        "El servicio invade el horario de descanso.";
 
                         $tipo =
                         "error";
+                    }
 
-                    }else{
+                    /* VALIDAR CIERRE */
 
-                        /* VALIDAR BLOQUEOS */
+                    elseif($horaFin > "18:00"){
 
-                        $sqlBloqueos = "
-                        SELECT *
-                        FROM bloqueo_horario
-                        WHERE
-                        fecha_inicio < '$fechaFin'
-                        AND fecha_fin > '$fechaInicio'
-                        ";
+                        $mensaje =
+                        "El servicio termina fuera del horario de atención.";
 
-                        $resultadoBloqueos =
-                        mysqli_query($conn,$sqlBloqueos);
+                        $tipo =
+                        "error";
+                    }
 
-                        if(mysqli_num_rows($resultadoBloqueos) > 0){
+                    /* VALIDAR SERVICIO COMPLETO */
+
+                    elseif($duracion == 120){
+
+                        if(
+                            $hora != "10:00"
+                            &&
+                            $hora != "14:00"
+                        ){
 
                             $mensaje =
-                            "Horario bloqueado por mantenimiento, feriado o descanso.";
+                            "El servicio completo solo puede reservarse a las 10:00 AM o 02:00 PM.";
 
                             $tipo =
                             "error";
+                        }
+                    }
 
-                        }else{
+                    else{
 
-                            /* INSERTAR CITA */
+                        /* VALIDAR GROOMER */
 
-                            $sqlInsert = "
-                            INSERT INTO cita
-                            (
-                                id_mascota,
-                                id_groomer,
-                                id_servicio,
-                                fecha_inicio,
-                                fecha_fin,
-                                estado,
-                                creado_por
-                            )
-                            VALUES
-                            (
-                                '$idMascota',
-                                $idGroomer,
-                                '$idServicio',
-                                '$fechaInicio',
-                                '$fechaFin',
-                                'PENDIENTE',
-                                '$idCliente'
-                            )
+                        if($idGroomer != "NULL"){
+
+                            $sqlGroomer = "
+                            SELECT *
+                            FROM usuario
+                            WHERE id_usuario='$idGroomer'
                             ";
 
-                            if(mysqli_query($conn,$sqlInsert)){
+                            $resultadoGroomer =
+                            mysqli_query($conn,$sqlGroomer);
+
+                            $groomer =
+                            mysqli_fetch_assoc($resultadoGroomer);
+
+                            $turno =
+                            $groomer['turno'];
+
+                            /* TURNO MAÑANA */
+
+                            if(
+                                $turno == "MANANA"
+                                &&
+                                (
+                                    $hora < "08:00"
+                                    ||
+                                    $hora >= "12:00"
+                                )
+                            ){
 
                                 $mensaje =
-                                "Solicitud de cita enviada correctamente.";
-
-                                $tipo =
-                                "success";
-
-                            }else{
-
-                                $mensaje =
-                                "Error al registrar cita.";
+                                "El groomer solo trabaja en turno mañana.";
 
                                 $tipo =
                                 "error";
                             }
+
+                            /* TURNO TARDE */
+
+                            elseif(
+                                $turno == "TARDE"
+                                &&
+                                (
+                                    $hora < "14:00"
+                                    ||
+                                    $hora >= "18:00"
+                                )
+                            ){
+
+                                $mensaje =
+                                "El groomer solo trabaja en turno tarde.";
+
+                                $tipo =
+                                "error";
+                            }
+
+                            else{
+
+                                /* VALIDAR CRUCE DE HORARIOS */
+
+                                $sqlCruce = "
+                                SELECT *
+                                FROM cita
+                                WHERE
+                                id_groomer='$idGroomer'
+                                AND estado IN
+                                (
+                                    'PENDIENTE',
+                                    'AGENDADA',
+                                )
+                                AND fecha_inicio < '$fechaFin'
+                                AND fecha_fin > '$fechaInicio'
+                                ";
+
+                                $resultadoCruce =
+                                mysqli_query($conn,$sqlCruce);
+
+                                if(mysqli_num_rows($resultadoCruce) > 0){
+
+                                    $mensaje =
+                                    "El groomer ya tiene una cita en ese horario.";
+
+                                    $tipo =
+                                    "error";
+                                }
+                            }
+                        }
+
+                        /* CONTINUAR SI NO HAY ERROR */
+
+                        if($tipo != "error"){
+
+                            /* VALIDAR CITA DUPLICADA */
+
+                            $sqlValidar = "
+
+                            SELECT *
+                            FROM cita
+
+                            WHERE
+
+                            id_mascota = '$idMascota'
+
+                            AND fecha_inicio = '$fechaInicio'
+
+                            AND estado IN
+                            (
+                                'PENDIENTE',
+                                'AGENDADA',
+                            )
+
+                            ";
+
+                            $resultadoValidar =
+                            mysqli_query($conn,$sqlValidar);
+
+                            if(mysqli_num_rows($resultadoValidar) > 0){
+
+                                $mensaje =
+                                "La mascota ya tiene una cita en ese horario.";
+
+                                $tipo =
+                                "error";
+                            }
+
+                            else{
+
+                                /* VALIDAR BLOQUEOS */
+
+                                $sqlBloqueos = "
+                                SELECT *
+                                FROM bloqueo_horario
+                                WHERE
+                                fecha_inicio < '$fechaFin'
+                                AND fecha_fin > '$fechaInicio'
+                                ";
+
+                                $resultadoBloqueos =
+                                mysqli_query($conn,$sqlBloqueos);
+
+                                if(mysqli_num_rows($resultadoBloqueos) > 0){
+
+                                    $mensaje =
+                                    "Horario bloqueado por mantenimiento, feriado o descanso.";
+
+                                    $tipo =
+                                    "error";
+                                }
+
+                                else{
+
+                                    /* INSERTAR */
+
+                                    $sqlInsert = "
+                                    INSERT INTO cita
+                                    (
+                                        id_mascota,
+                                        id_groomer,
+                                        id_servicio,
+                                        fecha_inicio,
+                                        fecha_fin,
+                                        estado,
+                                        creado_por
+                                    )
+                                    VALUES
+                                    (
+                                        '$idMascota',
+                                        $idGroomer,
+                                        '$idServicio',
+                                        '$fechaInicio',
+                                        '$fechaFin',
+                                        'PENDIENTE',
+                                        '$idCliente'
+                                    )
+                                    ";
+
+                                    if(mysqli_query($conn,$sqlInsert)){
+
+                                        $mensaje =
+                                        "Solicitud de cita enviada correctamente.";
+
+                                        $tipo =
+                                        "success";
+                                    }
+
+                                    else{
+
+                                        $mensaje =
+                                        "Error al registrar cita.";
+
+                                        $tipo =
+                                        "error";
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+            }
 
-            }else{
+            else{
 
                 $mensaje =
                 "Horario fuera de atención.";
@@ -281,6 +433,7 @@ mysqli_query($conn,$sqlMascotas);
 $sqlServicios = "
 SELECT *
 FROM servicio
+WHERE estado_activo='ACTIVO'
 ORDER BY nombre ASC
 ";
 

@@ -161,7 +161,7 @@ Pagos
 
 <link
 rel="stylesheet"
-href="../recepcionista/css/pago.css">
+href="../recepcionista/css/pago.css?v=1">
 
 <link
 rel="stylesheet"

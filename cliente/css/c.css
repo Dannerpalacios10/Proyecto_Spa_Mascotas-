@@ -358,7 +358,8 @@ td{
 @media(max-width:900px){
 
     .sidebar{
-        width:80px;
+        width:90px;
+        padding:25px 10px;
     }
 
     .logo h2,
@@ -367,7 +368,7 @@ td{
     }
 
     .main-content{
-        margin-left:80px;
+        margin-left:90px;
     }
 
     .topbar{

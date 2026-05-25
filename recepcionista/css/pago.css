@@ -7,13 +7,18 @@
     font-family:'Poppins',sans-serif;
 }
 
+/* BODY */
+
 body{
     background:#f1f5f9;
     color:#1e293b;
 }
 
+/* CONTAINER */
+
 .container{
     display:flex;
+    min-height:100vh;
 }
 
 /* SIDEBAR */
@@ -25,9 +30,14 @@ body{
     height:100vh;
     padding:25px 20px;
     position:fixed;
+    top:0;
+    left:0;
     display:flex;
     flex-direction:column;
+    z-index:1000;
 }
+
+/* MENU */
 
 .menu{
     list-style:none;
@@ -47,6 +57,7 @@ body{
     text-decoration:none;
     color:#cbd5e1;
     transition:0.3s;
+    font-weight:500;
 }
 
 .menu li a:hover,
@@ -60,8 +71,9 @@ body{
     color:white;
 }
 
-.logout{
+/* LOGOUT */
 
+.logout{
     margin-top:auto;
 }
 
@@ -72,11 +84,6 @@ body{
     align-items:center;
     gap:12px;
     margin-bottom:40px;
-}
-
-.logo i{
-    font-size:30px;
-    color:#3b82f6;
 }
 
 .logo h2{
@@ -92,32 +99,44 @@ body{
     padding:35px;
 }
 
+/* TOPBAR */
+
 .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
     margin-bottom:30px;
 }
 
 .topbar h1{
     font-size:32px;
+    font-weight:700;
+    color:#0f172a;
 }
 
 .topbar p{
     color:#64748b;
+    margin-top:5px;
+    font-size:14px;
 }
 
 /* ALERT */
 
 .alert{
-    padding:16px;
-    border-radius:14px;
+    padding:16px 18px;
+    border-radius:16px;
     margin-bottom:20px;
+    font-size:14px;
+    font-weight:500;
 }
 
 .success{
     background:#dcfce7;
     color:#166534;
+    border-left:5px solid #22c55e;
 }
 
-/* TABLE */
+/* TABLE CARD */
 
 .table-card{
     background:white;
@@ -127,57 +146,197 @@ body{
     box-shadow:0 8px 24px rgba(0,0,0,0.06);
 }
 
+/* TITULOS */
+
 .table-card h2{
     margin-bottom:20px;
+    font-size:24px;
+    color:#0f172a;
+    font-weight:700;
 }
+
+/* TABLA RESPONSIVE */
+
+.table-responsive{
+    width:100%;
+    overflow-x:auto;
+}
+
+.table-responsive table{
+    min-width:950px;
+}
+
+/* TABLE */
 
 table{
     width:100%;
     border-collapse:collapse;
 }
 
-table th{
+table thead{
     background:#f8fafc;
+}
+
+table th{
     padding:16px;
     text-align:left;
+    font-size:14px;
+    font-weight:700;
+    color:#334155;
+    white-space:nowrap;
 }
 
 table td{
     padding:16px;
     border-bottom:1px solid #e2e8f0;
+    font-size:14px;
+    color:#475569;
+    vertical-align:middle;
 }
 
-/* FORM */
+table tbody tr{
+    transition:0.3s;
+}
+
+table tbody tr:hover{
+    background:#f8fafc;
+}
+
+/* FORMULARIOS */
+
+form{
+    width:100%;
+}
 
 select,
 input{
     width:100%;
-    padding:12px;
+    padding:12px 14px;
     border:2px solid #e2e8f0;
     border-radius:12px;
     outline:none;
     margin-bottom:10px;
+    background:white;
+    font-size:14px;
+    transition:0.3s;
 }
 
 select:focus,
 input:focus{
     border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,0.15);
 }
 
-/* BUTTON */
+/* BOTON */
 
 .btn-pay{
     width:100%;
     border:none;
     padding:12px;
     border-radius:12px;
-    background:#10b981;
+    background:linear-gradient(135deg,#10b981,#059669);
     color:white;
     font-weight:600;
     cursor:pointer;
     transition:0.3s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-size:14px;
 }
 
 .btn-pay:hover{
-    background:#059669;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(16,185,129,0.30);
+}
+
+/* RESPONSIVE TABLAS */
+
+@media(max-width:1100px){
+
+    table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+    .table-card{
+        overflow-x:auto;
+    }
+}
+
+/* TABLET */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:90px;
+        padding:20px 10px;
+    }
+
+    .sidebar .logo h2,
+    .sidebar .menu li a span,
+    .logout a span{
+        display:none;
+    }
+
+    .sidebar .menu li a,
+    .logout a{
+        justify-content:center;
+        font-size:0;
+    }
+
+    .sidebar .menu li a i,
+    .logout a i{
+        font-size:20px;
+    }
+
+    .main-content{
+        margin-left:90px;
+        width:calc(100% - 90px);
+        padding:20px;
+    }
+
+    .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .main-content{
+        padding:15px;
+    }
+
+    .topbar h1{
+        font-size:24px;
+    }
+
+    .topbar p{
+        font-size:13px;
+    }
+
+    .table-card{
+        padding:20px;
+    }
+
+    .btn-pay{
+        width:100%;
+    }
+
+    select,
+    input{
+        font-size:14px;
+    }
+
+    table th,
+    table td{
+        padding:14px;
+        font-size:13px;
+    }
 }

@@ -160,12 +160,12 @@ rel="stylesheet">
 
             <li>
 
-                <a href="insumos.php">
+                <a href="inv_usado.php">
 
                     <i class="fa-solid fa-box-open"></i>
 
                     <span>
-                        Insumo 
+                        Inventario
                     </span>
 
                 </a>

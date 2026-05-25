@@ -44,9 +44,8 @@ ON cita.id_mascota = mascota.id_mascota
 
 WHERE mascota.id_cliente='$idCliente'
 AND cita.estado IN(
-'EN_REVISION',
-'AGENDADA',
-'CONFIRMADA'
+'PENDIENTE',
+'AGENDADA'
 )
 
 ";
@@ -384,7 +383,11 @@ rel="stylesheet">
 
                     $clase = "pending";
 
-                    if($estado == "COMPLETADA"){
+                    if($estado == "PENDIENTE"){
+                        $clase = "pending";
+                    }
+
+                    if($estado == "AGENDADA"){
                         $clase = "success";
                     }
 
