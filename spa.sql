@@ -323,7 +323,7 @@ CREATE TABLE `cita` (
   `motivo_cancelacion` text DEFAULT NULL,
   `politica_aceptada` tinyint(1) DEFAULT 0,
   `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
-  `estado` enum('PENDIENTE','AGENDADA','CANCELADA') DEFAULT 'PENDIENTE',
+  `estado` enum('PENDIENTE','AGENDADA','CANCELADA','CONFIRMADA','EN_PROGRESO','COMPLETADA') DEFAULT 'PENDIENTE',
   `creado_por` int(11) DEFAULT NULL,
   `reprogramado_por` int(11) DEFAULT NULL,
   `fecha_reprogramacion` datetime DEFAULT NULL,
@@ -342,11 +342,11 @@ CREATE TABLE `cita` (
 --
 
 INSERT INTO `cita` (`id_cita`, `id_mascota`, `id_groomer`, `id_servicio`, `fecha_inicio`, `fecha_fin`, `observaciones`, `motivo_cancelacion`, `politica_aceptada`, `fecha_creacion`, `estado`, `creado_por`, `reprogramado_por`, `fecha_reprogramacion`, `duracion_real`, `fecha_cancelacion`, `cancelado_por`, `mensaje_recepcion`, `leido_cliente`, `notificado`, `fecha_confirmacion`, `confirmado_por`) VALUES
-(12, 7, 11, 1, '2026-05-21 14:00:00', '2026-05-21 15:00:00', NULL, NULL, 0, '2026-05-21 22:54:49', '', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-21 18:55:56', 12),
-(13, 8, 11, 4, '2026-05-21 14:00:00', '2026-05-21 16:30:00', NULL, NULL, 0, '2026-05-21 23:55:20', '', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-21 19:57:37', 12),
+(12, 7, 11, 1, '2026-05-21 14:00:00', '2026-05-21 15:00:00', NULL, NULL, 0, '2026-05-21 22:54:49', 'CONFIRMADA', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-21 18:55:56', 12),
+(13, 8, 11, 4, '2026-05-21 14:00:00', '2026-05-21 16:30:00', NULL, NULL, 0, '2026-05-21 23:55:20', 'CONFIRMADA', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-21 19:57:37', 12),
 (14, 7, NULL, 3, '2026-05-21 14:00:00', '2026-05-21 14:45:00', NULL, NULL, 0, '2026-05-21 23:55:54', 'CANCELADA', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL),
-(15, 7, 11, 4, '2026-05-21 15:00:00', '2026-05-21 17:30:00', NULL, NULL, 0, '2026-05-22 00:05:04', '', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-21 20:07:55', 12),
-(16, 7, 11, 2, '2026-05-22 18:00:00', '2026-05-22 19:30:00', NULL, NULL, 0, '2026-05-22 21:07:14', '', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-22 17:08:08', 12);
+(15, 7, 11, 4, '2026-05-21 15:00:00', '2026-05-21 17:30:00', NULL, NULL, 0, '2026-05-22 00:05:04', 'CONFIRMADA', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-21 20:07:55', 12),
+(16, 7, 11, 2, '2026-05-22 18:00:00', '2026-05-22 19:30:00', NULL, NULL, 0, '2026-05-22 21:07:14', 'CONFIRMADA', 14, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2026-05-22 17:08:08', 12);
 
 -- --------------------------------------------------------
 

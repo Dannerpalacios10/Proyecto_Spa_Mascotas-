@@ -9,12 +9,10 @@ include("../config/database.php");
 /* PRODUCTOS */
 
 $sqlProductos = "
-SELECT *
+SELECT producto.*, categoria.nombre AS categoria_nombre
 FROM producto
-
-LEFT JOIN categoria_producto
-ON producto.id_categoria = categoria_producto.id_categoria
-
+LEFT JOIN categoria
+ON producto.id_categoria = categoria.id_categoria
 ORDER BY producto.id_producto DESC
 ";
 

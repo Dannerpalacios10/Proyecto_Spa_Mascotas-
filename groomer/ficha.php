@@ -297,7 +297,7 @@ Ficha Grooming
 
 <link
 rel="stylesheet"
-href="../groomer/css/ficha.css">
+href="../groomer/css/ficha.css?v=2">
 
 <link
 rel="stylesheet"
@@ -309,178 +309,208 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <div class="container">
 
-<div class="card">
+    <!-- SIDEBAR -->
 
-<h1>
-Ficha Técnica Grooming
-</h1>
+    <div class="sidebar">
 
-<div class="info">
+        <div class="logo">
+            <h2>SPA PAW PATROL</h2>
+        </div>
 
-<p>
-<strong>Mascota:</strong>
-<?php echo htmlspecialchars($cita['mascota_nombre']); ?>
-</p>
+        <ul class="menu">
 
-<p>
-<strong>Cliente:</strong>
-<?php echo htmlspecialchars($cita['cliente_nombre']); ?>
-</p>
+            <li>
+                <a href="groomer.php">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
 
-<p>
-<strong>Servicio:</strong>
-<?php echo htmlspecialchars($cita['servicio_nombre']); ?>
-</p>
+            <li>
+                <a href="agenda.php">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
 
-<p>
-<strong>Raza:</strong>
-<?php echo htmlspecialchars($cita['raza']); ?>
-</p>
+            <li>
+                <a href="inv_usado.php">
+                    <i class="fa-solid fa-box-open"></i>
+                    <span>Inventario</span>
+                </a>
+            </li>
 
-<p>
-<strong>Tamaño:</strong>
-<?php echo htmlspecialchars($cita['tamano']); ?>
-</p>
+        </ul>
 
-</div>
+        <div class="logout">
+            <a href="../auth/logout.php">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Cerrar Sesión
+            </a>
+        </div>
 
-<form
-method="POST"
-enctype="multipart/form-data">
+    </div>
 
-<div class="input-group">
+    <!-- CONTENIDO DERECHO -->
 
-<label>
-Estado de ingreso
-</label>
+    <div class="main-content">
 
-<textarea
-name="estado_ingreso"
-required></textarea>
+        <div class="topbar">
 
-</div>
+            <div>
+                <h1>Ficha Técnica Grooming</h1>
+                <p>Registro de atención y seguimiento del servicio</p>
+            </div>
 
-<div class="input-group">
+        </div>
 
-<label>
-Observaciones
-</label>
+        <div class="profile-card">
 
-<textarea
-name="observaciones"></textarea>
+            <div class="profile-header">
 
-</div>
+                <div class="avatar">
+                    <i class="fa-solid fa-dog"></i>
+                </div>
 
-<h2>
-Checklist
-</h2>
+                <h2>
+                    <?php echo htmlspecialchars($cita['mascota_nombre']); ?>
+                </h2>
 
-<div class="checklist">
+                <p>
+                    Cliente:
+                    <?php echo htmlspecialchars($cita['cliente_nombre']); ?>
+                </p>
 
-<label><input type="checkbox" name="check_bano"> Baño</label>
+            </div>
 
-<label><input type="checkbox" name="check_corte"> Corte</label>
+            <form method="POST" enctype="multipart/form-data">
 
-<label><input type="checkbox" name="check_unas"> Uñas</label>
+                <div class="form-grid">
 
-<label><input type="checkbox" name="check_oidos"> Oídos</label>
+                    <div class="input-group">
+                        <label>Servicio</label>
+                        <input type="text"
+                               value="<?php echo htmlspecialchars($cita['servicio_nombre']); ?>"
+                               readonly>
+                    </div>
 
-<label><input type="checkbox" name="check_glandulas"> Glándulas</label>
+                    <div class="input-group">
+                        <label>Raza</label>
+                        <input type="text"
+                               value="<?php echo htmlspecialchars($cita['raza']); ?>"
+                               readonly>
+                    </div>
 
-<label><input type="checkbox" name="check_perfume"> Perfume</label>
+                </div>
 
-</div>
+                <div class="form-grid">
 
-<h2>
-Fotos
-</h2>
+                    <div class="input-group">
+                        <label>Tamaño</label>
+                        <input type="text"
+                               value="<?php echo htmlspecialchars($cita['tamano']); ?>"
+                               readonly>
+                    </div>
 
-<div class="grid">
+                    <div class="input-group">
+                        <label>Estado de Ingreso</label>
+                        <textarea name="estado_ingreso" required></textarea>
+                    </div>
 
-<div class="input-group">
+                </div>
 
-<label>
-Foto Antes
-</label>
+                <div class="input-group">
+                    <label>Observaciones</label>
+                    <textarea name="observaciones"></textarea>
+                </div>
 
-<input
-type="file"
-name="foto_antes"
-accept="image/*">
+                <h3>Checklist del Servicio</h3>
 
-</div>
+                <div class="checklist">
 
-<div class="input-group">
+                    <label><input type="checkbox" name="check_bano"> Baño</label>
 
-<label>
-Foto Después
-</label>
+                    <label><input type="checkbox" name="check_corte"> Corte</label>
 
-<input
-type="file"
-name="foto_despues"
-accept="image/*">
+                    <label><input type="checkbox" name="check_unas"> Uñas</label>
 
-</div>
+                    <label><input type="checkbox" name="check_oidos"> Oídos</label>
 
-</div>
+                    <label><input type="checkbox" name="check_glandulas"> Glándulas</label>
 
-<h2>
-Inventario Utilizado
-</h2>
+                    <label><input type="checkbox" name="check_perfume"> Perfume</label>
 
-<div class="inventario">
+                </div>
 
-<?php
-while($i = mysqli_fetch_assoc($inventario)){
-?>
+                <h3>Fotografías</h3>
 
-<div class="inventario-item">
+                <div class="form-grid">
 
-<label>
+                    <div class="input-group">
+                        <label>Foto Antes</label>
+                        <input type="file"
+                               name="foto_antes"
+                               accept="image/*">
+                    </div>
 
-<?php echo $i['nombre']; ?>
+                    <div class="input-group">
+                        <label>Foto Después</label>
+                        <input type="file"
+                               name="foto_despues"
+                               accept="image/*">
+                    </div>
 
-(Stock:
-<?php echo $i['stock']; ?>)
+                </div>
 
-</label>
+                <h3>Inventario Utilizado</h3>
 
-<input
-type="number"
-step="1"
-min="0"
-name="inventario[<?php echo $i['id_insumo']; ?>]"
-value="0">
+                <div class="inventario">
 
-</div>
+                    <?php while($i = mysqli_fetch_assoc($inventario)){ ?>
 
-<?php } ?>
+                    <div class="inventario-item">
 
-</div>
+                        <label>
+                            <?php echo $i['nombre']; ?>
+                            (Stock: <?php echo $i['stock']; ?>)
+                        </label>
 
-<div class="input-group">
+                        <input
+                        type="number"
+                        min="0"
+                        value="0"
+                        name="inventario[<?php echo $i['id_insumo']; ?>]">
 
-<label>
-Recomendaciones
-</label>
+                    </div>
 
-<textarea
-name="recomendaciones"></textarea>
+                    <?php } ?>
 
-</div>
+                </div>
 
-<button
-type="submit"
-class="btn">
+                <div class="input-group">
 
-Finalizar Servicio
+                    <label>Recomendaciones</label>
 
-</button>
+                    <textarea
+                    name="recomendaciones"></textarea>
 
-</form>
+                </div>
 
-</div>
+                <button
+                type="submit"
+                class="btn-save">
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Finalizar Servicio
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </div>
 

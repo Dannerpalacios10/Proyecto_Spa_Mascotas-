@@ -272,7 +272,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                                 AND estado IN
                                 (
                                     'PENDIENTE',
-                                    'AGENDADA',
+                                    'AGENDADA'
                                 )
                                 AND fecha_inicio < '$fechaFin'
                                 AND fecha_fin > '$fechaInicio'
@@ -312,7 +312,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                             AND estado IN
                             (
                                 'PENDIENTE',
-                                'AGENDADA',
+                                'AGENDADA'
                             )
 
                             ";

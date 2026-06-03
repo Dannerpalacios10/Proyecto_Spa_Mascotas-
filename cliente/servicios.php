@@ -21,6 +21,7 @@ if($_SESSION['rol'] != "CLIENTE"){
 $sql = "
 SELECT *
 FROM servicio
+WHERE id_servicio != 8 AND nombre NOT IN ('Baño', 'Corte', 'Peinado')
 ORDER BY nombre ASC
 ";
 

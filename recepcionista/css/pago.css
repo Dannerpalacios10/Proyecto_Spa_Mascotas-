@@ -20,6 +20,20 @@ body{
     display:flex;
     min-height:100vh;
 }
+.qr-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:10px;
+}
+
+.qr-container img{
+    width:120px;
+    height:120px;
+    border-radius:6px;
+    display:block;
+    margin:10px auto;
+}
 
 /* SIDEBAR */
 
