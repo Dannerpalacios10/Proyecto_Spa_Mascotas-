@@ -129,21 +129,17 @@ if(isset($_GET['confirmar'])){
         /* VALIDAR DESCANSO */
 
         if(
-
             (
                 $horaInicio >= '12:00'
                 &&
                 $horaInicio < '14:00'
             )
-
             ||
-
             (
                 $horaFin > '12:00'
                 &&
                 $horaFin <= '14:00'
             )
-
         ){
 
             $_SESSION['error'] =
@@ -167,11 +163,8 @@ if(isset($_GET['confirmar'])){
         AND (
 
             fecha_inicio < '$fechaFin'
-
             AND
-
             fecha_fin > '$fechaInicio'
-
         )
         ";
 
@@ -311,16 +304,11 @@ mysqli_fetch_assoc($resultHoy)['total'];
 
 $sqlGroomers = "
 SELECT
-
 usuario.id_usuario,
-
 usuario.nombre
-
 FROM usuario
-
 INNER JOIN rol
 ON usuario.id_rol = rol.id_rol
-
 WHERE rol.nombre='GROOMER'
 ";
 
@@ -331,28 +319,18 @@ mysqli_query($conn,$sqlGroomers);
 
 $sqlCitas = "
 SELECT
-
 cita.*,
-
 mascota.nombre AS mascota_nombre,
-
 servicio.nombre AS servicio_nombre,
-
 usuario.nombre AS cliente_nombre
-
 FROM cita
-
 INNER JOIN mascota
 ON cita.id_mascota = mascota.id_mascota
-
 INNER JOIN servicio
 ON cita.id_servicio = servicio.id_servicio
-
 INNER JOIN usuario
 ON mascota.id_cliente = usuario.id_usuario
-
 WHERE cita.estado='PENDIENTE'
-
 ORDER BY cita.fecha_inicio ASC
 ";
 
@@ -378,7 +356,7 @@ Recepción
 
 <link
 rel="stylesheet"
-href="../recepcionista/css/r.css?v=2">
+href="../recepcionista/css/r.css">
 
 <link
 rel="stylesheet"
@@ -407,93 +385,47 @@ rel="stylesheet">
         <ul class="menu">
 
             <li class="active">
-
                 <a href="recepcionista.php">
-
                     <i class="fa-solid fa-house"></i>
-
                     Inicio
-
                 </a>
-
             </li>
 
-            <!--
             <li>
-
-                <a href="calendario.php">
-
-                    <i class="fa-solid fa-calendar-days"></i>
-
-                    Calendario
-
-                </a>
-
-            </li>
-            -->
-
-            <li>
-
                 <a href="pago.php">
-
                     <i class="fa-solid fa-credit-card"></i>
-
                     Cobro Servicio
-
                 </a>
-
             </li>
 
             <li>
-
                 <a href="bloqueos.php">
-
                     <i class="fa-solid fa-ban"></i>
-
                     Bloqueos
-
                 </a>
-
             </li>
 
             <li>
-
                 <a href="inventario.php">
-
                    <i class="fa-solid fa-bag-shopping"></i>
-
                     Inventario
-
                 </a>
-
             </li>
 
-            <!--
             <li>
-
-                <a href="promociones.php">
-
-                    <i class="fa-solid fa-tags"></i>
-
-                    Promociones
-
+                <a href="reportes.php">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    Reportes
                 </a>
-
             </li>
-            -->
 
         </ul>
 
         <div class="logout">
-
             <a href="../auth/logout.php">
-
                 <i class="fa-solid fa-right-from-bracket"></i>
-
                 Cerrar Sesion
-
             </a>
-
         </div>
 
     </div>
@@ -507,18 +439,13 @@ rel="stylesheet">
         <div class="topbar">
 
             <div>
-
                 <h1>
-
                     Bienvenida Recepcionista,
                     <?php echo $nombre; ?>
-
                 </h1>
-
                 <p>
                     Gestión Operativa del Sistema 
                 </p>
-
             </div>
 
             <div class="profile">
@@ -570,23 +497,16 @@ rel="stylesheet">
             <div class="card">
 
                 <div class="icon blue">
-
                     <i class="fa-solid fa-clock"></i>
-
                 </div>
 
                 <div>
-
                     <h2>
-
                         <?php echo $totalPendientes; ?>
-
                     </h2>
-
                     <p>
                         Pendientes
                     </p>
-
                 </div>
 
             </div>
@@ -600,17 +520,12 @@ rel="stylesheet">
                 </div>
 
                 <div>
-
                     <h2>
-
                         <?php echo $totalConfirmadas; ?>
-
                     </h2>
-
                     <p>
                         Confirmadas
                     </p>
-
                 </div>
 
             </div>
@@ -618,23 +533,16 @@ rel="stylesheet">
             <div class="card">
 
                 <div class="icon orange">
-
                     <i class="fa-solid fa-calendar-day"></i>
-
                 </div>
 
                 <div>
-
                     <h2>
-
                         <?php echo $totalHoy; ?>
-
                     </h2>
-
                     <p>
                         Citas Hoy
                     </p>
-
                 </div>
 
             </div>
@@ -646,28 +554,22 @@ rel="stylesheet">
         <div class="table-card">
 
             <div class="table-header">
-
                 <h2>
                     Solicitudes Pendientes
                 </h2>
-
             </div>
 
             <table>
 
                 <thead>
-
                     <tr>
-
                         <th>Mascota</th>
                         <th>Cliente</th>
                         <th>Servicio</th>
                         <th>Fecha</th>
                         <th>Asignar Groomer</th>
                         <th>Acciones</th>
-
                     </tr>
-
                 </thead>
 
                 <tbody>
@@ -679,38 +581,30 @@ rel="stylesheet">
                 <tr>
 
                     <td>
-
                         <?php
                         echo $c['mascota_nombre'];
                         ?>
-
                     </td>
 
                     <td>
-
                         <?php
                         echo $c['cliente_nombre'];
                         ?>
-
                     </td>
 
                     <td>
-
                         <?php
                         echo $c['servicio_nombre'];
                         ?>
-
                     </td>
 
                     <td>
-
                         <?php
                         echo date(
                             "d/m/Y H:i",
                             strtotime($c['fecha_inicio'])
                         );
                         ?>
-
                     </td>
 
                     <!-- GROOMER -->
@@ -758,11 +652,8 @@ rel="stylesheet">
                             <button
                             type="submit"
                             class="btn confirm">
-
                                 <i class="fa-solid fa-check"></i>
-
                                 Confirmar
-
                             </button>
 
                         </form>
@@ -770,11 +661,8 @@ rel="stylesheet">
                         <a
                         href="cancita.php?id=<?php echo $c['id_cita']; ?>"
                         class="btn cancel">
-
                             <i class="fa-solid fa-xmark"></i>
-
                             Cancelar
-
                         </a>
 
                     </td>

@@ -333,6 +333,15 @@ table tbody tr:hover{
     box-shadow:0 8px 18px rgba(59,130,246,0.35);
 }
 
+.btn-action.start{
+    background:linear-gradient(135deg,#10b981,#059669);
+    box-shadow:0 5px 14px rgba(16,185,129,0.25);
+}
+
+.btn-action.start:hover{
+    box-shadow:0 8px 18px rgba(16,185,129,0.35);
+}
+
 /* RESPONSIVE */
 
 @media(max-width:900px){

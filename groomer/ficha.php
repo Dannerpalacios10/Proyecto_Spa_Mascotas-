@@ -70,15 +70,20 @@ if(!$cita){
     die("No se encontró la cita.");
 }
 
-/* INVENTARIO */
+/* PRODUCTO */
 
 $sqlInventario = "
 SELECT *
-FROM inventario
+FROM producto
+WHERE estado='DISPONIBLE'
 ORDER BY nombre ASC
 ";
 
 $inventario = mysqli_query($conn,$sqlInventario);
+
+if(!$inventario){
+    die(mysqli_error($conn));
+}
 
 /* GUARDAR */
 
@@ -119,6 +124,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     $checkPerfume =
     isset($_POST['check_perfume']) ? 1 : 0;
+
+    if ($checkBano == 0 && $checkCorte == 0 && $checkUnas == 0 && $checkOidos == 0 && $checkGlandulas == 0 && $checkPerfume == 0) {
+        die("Error: Debe seleccionar al menos un elemento del checklist para poder finalizar el servicio.");
+    }
 
     /* FOTO ANTES */
 
@@ -228,7 +237,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         if(isset($_POST['inventario'])){
 
-            foreach($_POST['inventario'] as $idInsumo => $cantidad){
+            foreach($_POST['inventario'] as $idProducto => $cantidad){
 
                 if($cantidad > 0){
 
@@ -236,13 +245,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     INSERT INTO uso_inventario
                     (
                         id_ficha,
-                        id_insumo,
+                        id_producto,
                         cantidad_usada
                     )
                     VALUES
                     (
                         '$idFicha',
-                        '$idInsumo',
+                        '$idProducto',
                         '$cantidad'
                     )
                     ";
@@ -256,7 +265,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                         "
                         UPDATE inventario
                         SET stock = stock - $cantidad
-                        WHERE id_insumo='$idInsumo'
+                        WHERE id_insumo='$idProducto'
                         "
                     );
                 }
@@ -269,7 +278,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             $conn,
             "
             UPDATE cita
-            SET estado='FINALIZADA'
+            SET estado='COMPLETADA'
             WHERE id_cita='$idCita'
             "
         );
@@ -383,7 +392,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
             </div>
 
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data" onsubmit="return validarChecklist()">
 
                 <div class="form-grid">
 
@@ -428,17 +437,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
                 <div class="checklist">
 
-                    <label><input type="checkbox" name="check_bano"> Baño</label>
+                    <label><input type="checkbox" name="check_bano"> BAÑO Y LIMPIEZA</label>
 
-                    <label><input type="checkbox" name="check_corte"> Corte</label>
+                    <label><input type="checkbox" name="check_corte"> CORTE DE PELO</label>
 
-                    <label><input type="checkbox" name="check_unas"> Uñas</label>
+                    <label><input type="checkbox" name="check_unas"> TRATAMIENTOS</label>
 
-                    <label><input type="checkbox" name="check_oidos"> Oídos</label>
-
-                    <label><input type="checkbox" name="check_glandulas"> Glándulas</label>
-
-                    <label><input type="checkbox" name="check_perfume"> Perfume</label>
+                    <label><input type="checkbox" name="check_oidos"> SERVICIO COMPLETO</label>
 
                 </div>
 
@@ -464,6 +469,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
                 <h3>Inventario Utilizado</h3>
 
+                <?php
+                echo "Productos encontrados: " . mysqli_num_rows($inventario);
+                ?>
+
                 <div class="inventario">
 
                     <?php while($i = mysqli_fetch_assoc($inventario)){ ?>
@@ -479,7 +488,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
                         type="number"
                         min="0"
                         value="0"
-                        name="inventario[<?php echo $i['id_insumo']; ?>]">
+                        name="inventario[<?php echo $i['id_producto']; ?>]">
 
                     </div>
 
@@ -513,6 +522,23 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     </div>
 
 </div>
+
+<script>
+function validarChecklist() {
+    const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+    let checked = false;
+    checkboxes.forEach(function(cb) {
+        if (cb.checked) {
+            checked = true;
+        }
+    });
+    if (!checked) {
+        alert("Debe seleccionar al menos un elemento del checklist para finalizar el servicio.");
+        return false;
+    }
+    return true;
+}
+</script>
 
 </body>
 </html>

@@ -19,68 +19,6 @@ if($_SESSION['rol'] != "GROOMER"){
 $idGroomer = $_SESSION['id_usuario'];
 $nombre = $_SESSION['nombre'];
 
-/* REGISTRAR INSUMO */
-
-if(isset($_POST['registrar'])){
-
-    $id_ficha = $_POST['id_ficha'];
-    $id_insumo = $_POST['id_insumo'];
-
-    $cantidad_usada = $_POST['cantidad_usada'];
-    $cantidad_devuelta = $_POST['cantidad_devuelta'];
-    $cantidad_desperdiciada = $_POST['cantidad_desperdiciada'];
-
-    $sqlInsert = "
-    INSERT INTO uso_inventario
-    (
-        id_ficha,
-        id_insumo,
-        cantidad_usada,
-        cantidad_devuelta,
-        cantidad_desperdiciada
-    )
-    VALUES
-    (
-        '$id_ficha',
-        '$id_insumo',
-        '$cantidad_usada',
-        '$cantidad_devuelta',
-        '$cantidad_desperdiciada'
-    )
-    ";
-
-    if(mysqli_query($conn,$sqlInsert)){
-
-        $stockDescontar =
-        $cantidad_usada - $cantidad_devuelta;
-
-        $sqlStock = "
-        UPDATE inventario
-        SET stock = stock - '$stockDescontar'
-        WHERE id_insumo='$id_insumo'
-        ";
-
-        mysqli_query($conn,$sqlStock);
-
-        $sqlFicha = "
-        UPDATE ficha_grooming
-        SET consumido_inventario='1'
-        WHERE id_ficha='$id_ficha'
-        ";
-
-        mysqli_query($conn,$sqlFicha);
-
-        $success =
-        "Insumo registrado correctamente";
-
-    }else{
-
-        $error =
-        "Error al registrar insumo";
-
-    }
-
-}
 
 /* FICHAS FINALIZADAS */
 
@@ -109,32 +47,50 @@ ORDER BY fg.id_ficha DESC
 
 $fichas = mysqli_query($conn,$sqlFichas);
 
-/* INVENTARIO */
-
-$sqlInventario = "
-SELECT *
-FROM inventario
-ORDER BY nombre ASC
-";
-
-$inventario = mysqli_query($conn,$sqlInventario);
-
 /* HISTORIAL */
 
 $sqlHistorial = "
 SELECT
-ui.*,
-i.nombre AS insumo_nombre
+
+ui.id_uso,
+ui.cantidad_usada,
+ui.fecha_registro,
+
+p.nombre AS producto_nombre,
+
+fg.id_ficha,
+
+m.nombre AS mascota_nombre,
+
+s.nombre AS servicio_nombre
 
 FROM uso_inventario ui
 
-INNER JOIN inventario i
-ON ui.id_insumo = i.id_insumo
+INNER JOIN producto p
+ON ui.id_producto = p.id_producto
+
+INNER JOIN ficha_grooming fg
+ON ui.id_ficha = fg.id_ficha
+
+INNER JOIN cita c
+ON fg.id_cita = c.id_cita
+
+INNER JOIN mascota m
+ON c.id_mascota = m.id_mascota
+
+INNER JOIN servicio s
+ON c.id_servicio = s.id_servicio
+
+WHERE c.id_groomer='$idGroomer'
 
 ORDER BY ui.fecha_registro DESC
 ";
 
 $historial = mysqli_query($conn,$sqlHistorial);
+
+if(!$historial){
+    die(mysqli_error($conn));
+}
 
 ?>
 
@@ -246,15 +202,11 @@ rel="stylesheet">
             <div>
 
                 <h1>
-
-                    Inventario Usado
-
+                    Historial de Insumos
                 </h1>
 
                 <p>
-
-                    REGISTRA LOS INSUMOS UTILIZADOS EN EL SERVICIO.
-
+                    CONSULTA LOS INSUMOS UTILIZADOS EN LOS SERVICIOS REALIZADOS.
                 </p>
 
             </div>
@@ -297,161 +249,6 @@ rel="stylesheet">
 
         <?php } ?>
 
-        <!-- FORMULARIO -->
-
-        <div class="panel">
-
-            <div class="panel-header">
-
-                <h2>
-
-                    Registrar Insumo
-
-                </h2>
-
-            </div>
-
-            <form method="POST" class="form-grid">
-
-                <div class="form-group">
-
-                    <label>
-                        Ficha Grooming
-                    </label>
-
-                    <select
-                    name="id_ficha"
-                    required>
-
-                        <option value="">
-                            Seleccione
-                        </option>
-
-                        <?php
-                        while($f = mysqli_fetch_assoc($fichas)){
-                        ?>
-
-                        <option
-                        value="<?php echo $f['id_ficha']; ?>">
-
-                            #<?php echo $f['id_ficha']; ?>
-
-                            -
-
-                            <?php echo $f['mascota_nombre']; ?>
-
-                            -
-
-                            <?php echo $f['servicio_nombre']; ?>
-
-                        </option>
-
-                        <?php } ?>
-
-                    </select>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Insumo
-                    </label>
-
-                    <select
-                    name="id_insumo"
-                    required>
-
-                        <option value="">
-                            Seleccione
-                        </option>
-
-                        <?php
-                        while($i = mysqli_fetch_assoc($inventario)){
-                        ?>
-
-                        <option
-                        value="<?php echo $i['id_insumo']; ?>">
-
-                            <?php echo $i['nombre']; ?>
-
-                            -
-
-                            Stock:
-
-                            <?php echo $i['stock']; ?>
-
-                            <?php echo $i['unidad']; ?>
-
-                        </option>
-
-                        <?php } ?>
-
-                    </select>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Cantidad Usada
-                    </label>
-
-                    <input
-                    type="number"
-                    step="0.01"
-                    name="cantidad_usada"
-                    required>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Cantidad Devuelta
-                    </label>
-
-                    <input
-                    type="number"
-                    step="0.01"
-                    name="cantidad_devuelta"
-                    value="0">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Desperdicio
-                    </label>
-
-                    <input
-                    type="number"
-                    step="0.01"
-                    name="cantidad_desperdiciada"
-                    value="0">
-
-                </div>
-
-                <div class="form-group full">
-
-                    <button
-                    type="submit"
-                    name="registrar"
-                    class="btn-save">
-
-                        <i class="fa-solid fa-floppy-disk"></i>
-
-                        Registrar Insumo
-
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
         <!-- HISTORIAL -->
          <div class="table-responsive">
 
@@ -462,10 +259,10 @@ rel="stylesheet">
                     <tr>
 
                         <th>Ficha</th>
+                        <th>Mascota</th>
+                        <th>Servicio</th>
                         <th>Insumo</th>
-                        <th>Usado</th>
-                        <th>Devuelto</th>
-                        <th>Desperdicio</th>
+                        <th>Cantidad</th>
                         <th>Fecha</th>
 
                     </tr>
@@ -485,19 +282,19 @@ rel="stylesheet">
                         </td>
 
                         <td>
-                            <?php echo $h['insumo_nombre']; ?>
+                            <?php echo $h['mascota_nombre']; ?>
+                        </td>
+
+                        <td>
+                            <?php echo $h['servicio_nombre']; ?>
+                        </td>
+
+                        <td>
+                            <?php echo $h['producto_nombre']; ?>
                         </td>
 
                         <td>
                             <?php echo $h['cantidad_usada']; ?>
-                        </td>
-
-                        <td>
-                            <?php echo $h['cantidad_devuelta']; ?>
-                        </td>
-
-                        <td>
-                            <?php echo $h['cantidad_desperdiciada']; ?>
                         </td>
 
                         <td>

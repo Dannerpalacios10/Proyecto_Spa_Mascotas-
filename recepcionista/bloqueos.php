@@ -430,65 +430,47 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         <ul class="menu">
 
             <li>
-
                 <a href="recepcionista.php">
-
                     <i class="fa-solid fa-house"></i>
-
                     Inicio
-
                 </a>
-
             </li>
 
             <li>
-
                 <a href="pago.php">
-
                     <i class="fa-solid fa-credit-card"></i>
-
                     Cobro Servicio
-
                 </a>
-
             </li>
 
             <li class="active">
-
                 <a href="bloqueos.php">
-
                     <i class="fa-solid fa-ban"></i>
-
                     Bloqueos
-
                 </a>
-
             </li>
 
             <li>
-
                 <a href="inventario.php">
-
                     <i class="fa-solid fa-bag-shopping"></i>
-
                     Inventario
-
                 </a>
+            </li>
 
+            <li>
+                <a href="reportes.php">
+                   <i class="fa-solid fa-file-pdf"></i>
+                    Reportes
+                </a>
             </li>
 
         </ul>
 
         <div class="logout">
-
             <a href="../auth/logout.php">
-
                 <i class="fa-solid fa-right-from-bracket"></i>
-
                 Cerrar Sesión
-
             </a>
-
         </div>
 
     </div>

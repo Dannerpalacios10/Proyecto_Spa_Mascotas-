@@ -55,7 +55,11 @@ if(isset($_GET['id'])){
     }
 }
 
-header("Location: agenda.php");
+if(isset($_GET['from']) && $_GET['from'] === 'groomer'){
+    header("Location: groomer.php");
+} else {
+    header("Location: agenda.php");
+}
 exit();
 
 ?>

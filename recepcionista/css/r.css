@@ -8,10 +8,10 @@
 /* BODY */
 
 body{
-    background:#f1f5f9;
+    background:#eef2f7;
     color:#1e293b;
+    line-height:1.5;
 }
-
 /* CONTAINER */
 
 .container{
@@ -23,13 +23,14 @@ body{
 
 .sidebar{
     width:260px;
-    background:#0f172a;
+    background:linear-gradient(180deg,#111827,#1f2937);
     color:white;
     height:100vh;
     padding:25px 20px;
     position:fixed;
     display:flex;
     flex-direction:column;
+    box-shadow:5px 0 25px rgba(0,0,0,.15);
 }
 
 .menu{
@@ -45,17 +46,19 @@ body{
     display:flex;
     align-items:center;
     gap:12px;
-    padding:14px;
+    padding:15px;
     border-radius:14px;
     text-decoration:none;
-    color:#cbd5e1;
-    transition:0.3s;
+    color:#d1d5db;
+    transition:.3s;
+    font-weight:500;
 }
 
 .menu li a:hover,
 .logout a:hover{
-    background:#1e293b;
+    background:rgba(255,255,255,.08);
     color:white;
+    transform:translateX(5px);
 }
 
 .menu li.active a{
@@ -73,8 +76,10 @@ body{
 .logo{
     display:flex;
     align-items:center;
-    gap:12px;
-    margin-bottom:40px;
+    gap:15px;
+    margin-bottom:35px;
+    padding-bottom:20px;
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .logo i{
@@ -190,17 +195,19 @@ body{
 
 .card{
     background:white;
-    border-radius:24px;
-    padding:25px;
+    border-radius:22px;
+    padding:28px;
     display:flex;
     align-items:center;
     gap:20px;
-    box-shadow:0 8px 24px rgba(0,0,0,0.06);
-    transition:0.3s;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.3s;
+    border:1px solid #e5e7eb;
 }
 
 .card:hover{
-    transform:translateY(-5px);
+    transform:translateY(-6px);
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
 }
 
 .icon{
@@ -270,7 +277,12 @@ table{
 }
 
 table thead{
-    background:#f8fafc;
+    background:#1f4e79;
+    color:white;
+}
+
+table thead th{
+    color:white;
 }
 
 table th{
@@ -294,7 +306,7 @@ table tbody tr{
 }
 
 table tbody tr:hover{
-    background:#f8fafc;
+    background:#eff6ff;
 }
 
 /* FORM */
@@ -306,18 +318,24 @@ table tbody tr:hover{
 }
 
 select{
-    padding:10px 14px;
-    border:2px solid #e2e8f0;
+    padding:12px 14px;
+    border:1px solid #d1d5db;
     border-radius:12px;
-    outline:none;
     background:white;
     font-size:14px;
-    transition:0.3s;
+    transition:.3s;
 }
 
 select:focus{
     border-color:#3b82f6;
     box-shadow:0 0 0 4px rgba(59,130,246,0.15);
+}
+
+.topbar{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
 /* BOTONES */
@@ -421,4 +439,21 @@ select:focus{
         flex-direction:column;
         align-items:flex-start;
     }
+}
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f1f5f9;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#94a3b8;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#64748b;
 }

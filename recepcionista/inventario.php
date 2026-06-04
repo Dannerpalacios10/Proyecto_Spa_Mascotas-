@@ -175,10 +175,41 @@ $productos = mysqli_query($conn, $sqlProductos);
         </div>
 
         <ul class="menu">
-            <li><a href="recepcionista.php"><i class="fa-solid fa-house"></i> Inicio</a></li>
-            <li><a href="pago.php"><i class="fa-solid fa-credit-card"></i> Cobro servicio</a></li>
-            <li><a href="bloqueos.php"><i class="fa-solid fa-ban"></i> Bloqueos</a></li>
-            <li class="active"><a href="inventario.php"><i class="fa-solid fa-bag-shopping"></i> Inventario</a></li>
+            <li>
+                <a href="recepcionista.php">
+                    <i class="fa-solid fa-house"></i>
+                     Inicio
+                </a>
+            </li>
+
+            <li>
+                <a href="pago.php">
+                    <i class="fa-solid fa-credit-card"></i>
+                     Cobro servicio
+                </a>
+            </li>
+
+            <li>
+                <a href="bloqueos.php">
+                    <i class="fa-solid fa-ban"></i>
+                     Bloqueos
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="inventario.php">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                     Inventario
+                </a>
+            </li>
+
+            <li>
+                <a href="reportes.php">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    Reportes
+                </a>
+            </li>
+
         </ul>
 
         <div class="logout">

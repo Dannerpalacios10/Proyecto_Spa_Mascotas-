@@ -338,33 +338,28 @@ rel="stylesheet">
 
                         <td class="actions">
 
-                        <?php if($c['estado'] == 'CONFIRMADA'){ ?>
+                        <?php if($c['estado'] == 'EN_PROGRESO'){ ?>
 
-                        <a
-                        href="iniciar.php?id=<?php echo $c['id_cita']; ?>"
-                        class="btn start">
+                            <a
+                            href="ficha.php?id=<?php echo $c['id_cita']; ?>"
+                            class="btn view">
 
-                            <i class="fa-solid fa-play"></i>
+                                <i class="fa-solid fa-eye"></i>
+                                Ver Ficha
 
-                            Iniciar
+                            </a>
 
-                        </a>
+                        <?php }elseif($c['estado'] == 'COMPLETADA'){ ?>
 
-                        <?php }elseif($c['estado'] == 'EN_PROGRESO'){ ?>
-
-                        <span class="progress">
-
-                            En progreso
-
-                        </span>
+                            <span class="finalizado">
+                                Servicio Finalizado
+                            </span>
 
                         <?php }else{ ?>
 
-                        <span class="finalizado">
-
-                            Servicio Finalizado
-
-                        </span>
+                            <span class="pendiente">
+                                Pendiente de inicio
+                            </span>
 
                         <?php } ?>
 

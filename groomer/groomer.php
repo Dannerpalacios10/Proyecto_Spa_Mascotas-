@@ -376,33 +376,36 @@ rel="stylesheet">
 
                         <td>
 
-                            <?php if(
-                            $c['estado'] == "FINALIZADA"
-                            ||
-                            $c['estado'] == "COMPLETADA"
-                            ){ ?>
+                        <?php if($c['estado'] == 'CONFIRMADA'){ ?>
 
-                                <span class="btn-action disabled">
+                            <a
+                            href="iniciar.php?id=<?php echo $c['id_cita']; ?>&from=groomer"
+                            class="btn-action start">
 
-                                    <i class="fa-solid fa-lock"></i>
+                                <i class="fa-solid fa-play"></i>
+                                Iniciar
 
-                                    Ficha finalizada
+                            </a>
 
-                                </span>
+                        <?php }elseif($c['estado'] == 'COMPLETADA'){ ?>
 
-                            <?php }else{ ?>
+                            <span class="btn-action disabled">
 
-                                <a
-                                href="ficha.php?id=<?php echo $c['id_cita']; ?>"
-                                class="btn-action">
+                                <i class="fa-solid fa-lock"></i>
+                                Ficha finalizada
 
-                                    <i class="fa-solid fa-eye"></i>
+                            </span>
 
-                                    Ver Ficha
+                        <?php }else{ ?>
 
-                                </a>
+                            <span class="btn-action disabled">
 
-                            <?php } ?>
+                                <i class="fa-solid fa-hourglass-half"></i>
+                                En proceso
+
+                            </span>
+
+                        <?php } ?>
 
                         </td>
 
