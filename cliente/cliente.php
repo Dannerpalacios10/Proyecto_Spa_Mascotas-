@@ -115,7 +115,7 @@ Dashboard Cliente
 
 <link
 rel="stylesheet"
-href="../cliente/css/c.css?v=1">
+href="../cliente/css/c.css?v=2">
 
 <link
 rel="stylesheet"

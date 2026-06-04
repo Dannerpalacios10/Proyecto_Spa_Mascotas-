@@ -132,7 +132,7 @@ $pagos = mysqli_query($conn, $sqlPagos);
 
 <title>Pagos</title>
 
-<link rel="stylesheet" href="../recepcionista/css/pago.css?v=3">
+<link rel="stylesheet" href="../recepcionista/css/pago.css?v=4">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>

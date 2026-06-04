@@ -252,7 +252,7 @@ Editar Perfil
 
 <link
 rel="stylesheet"
-href="../recepcionista/css/editar.css?v=2">
+href="../recepcionista/css/editar.css?v=4">
 
 <link
 rel="stylesheet"

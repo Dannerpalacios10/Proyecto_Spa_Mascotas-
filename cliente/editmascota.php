@@ -128,7 +128,7 @@ Editar Mascota
 
 <link
 rel="stylesheet"
-href="../cliente/css/editmascota.css?v=2">
+href="../cliente/css/editmascota.css?v=4">
 
 <link
 rel="stylesheet"

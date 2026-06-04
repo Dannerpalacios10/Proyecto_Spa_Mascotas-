@@ -306,7 +306,7 @@ Ficha Grooming
 
 <link
 rel="stylesheet"
-href="../groomer/css/ficha.css?v=2">
+href="../groomer/css/ficha.css?v=3">
 
 <link
 rel="stylesheet"

@@ -111,7 +111,7 @@ Inventario Usado
 
 <link
 rel="stylesheet"
-href="../groomer/css/inv_usado.css?v=2">
+href="../groomer/css/inv_usado.css?v=3">
 
 <link
 rel="stylesheet"

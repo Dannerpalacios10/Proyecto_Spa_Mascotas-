@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 *{
     margin:0;
     padding:0;
@@ -8,8 +6,7 @@
 }
 
 body{
-    background:#f1f5f9;
-    color:#1e293b;
+    background:#f4f7fb;
 }
 
 .container{
@@ -21,193 +18,192 @@ body{
 
 .sidebar{
     width:260px;
-    background:#0f172a;
+    background:#1f2937;
     color:white;
-    height:100vh;
-    padding:25px 20px;
-    position:fixed;
     display:flex;
     flex-direction:column;
+    justify-content:space-between;
 }
 
 .logo{
-    margin-bottom:40px;
+    text-align:center;
+    padding:25px;
+    border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .logo h3{
     font-size:22px;
-    font-weight:700;
+    font-weight:600;
 }
 
 .menu{
     list-style:none;
+    padding:20px 0;
 }
 
 .menu li{
-    margin-bottom:10px;
+    margin:5px 0;
 }
 
-.menu li a,
-.logout a{
+.menu li a{
     display:flex;
     align-items:center;
     gap:12px;
-    padding:14px;
-    border-radius:14px;
+    padding:14px 25px;
     text-decoration:none;
-    color:#cbd5e1;
+    color:#d1d5db;
     transition:.3s;
 }
 
-.menu li a:hover,
-.logout a:hover{
-    background:#1e293b;
+.menu li a:hover{
+    background:#374151;
     color:white;
 }
 
-.menu li.active a{
-    background:#ef4444;
+.menu .active a{
+    background:#2563eb;
     color:white;
+    border-left:5px solid #60a5fa;
 }
 
 .logout{
-    margin-top:auto;
+    padding:20px;
+}
+
+.logout a{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    background:#dc2626;
+    color:white;
+    padding:12px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.logout a:hover{
+    background:#b91c1c;
 }
 
 /* MAIN */
 
 .main-content{
-    margin-left:260px;
-    width:calc(100% - 260px);
+    flex:1;
+    padding:30px;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:40px;
 }
+
+/*  TARJETA ELIMINAR */
 
 .delete-wrapper{
     width:100%;
-    max-width:700px;
+    max-width:650px;
 }
 
 .delete-card{
     background:white;
-    border-radius:30px;
-    padding:50px;
+    border-radius:20px;
+    padding:40px;
     text-align:center;
-    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
 }
 
 .delete-icon{
-    width:110px;
-    height:110px;
-    background:#fee2e2;
+    width:90px;
+    height:90px;
+    margin:auto;
     border-radius:50%;
+    background:#fee2e2;
+    color:#dc2626;
     display:flex;
-    align-items:center;
     justify-content:center;
-    margin:auto auto 25px;
-}
-
-.delete-icon i{
-    font-size:48px;
-    color:#ef4444;
+    align-items:center;
+    font-size:36px;
+    margin-bottom:20px;
 }
 
 .delete-card h1{
-    font-size:34px;
-    margin-bottom:18px;
-    color:#0f172a;
+    color:#1f2937;
+    margin-bottom:15px;
 }
 
 .delete-card p{
-    color:#64748b;
+    color:#6b7280;
     line-height:1.8;
-    font-size:15px;
-    margin-bottom:35px;
+    margin-bottom:30px;
 }
+
+.delete-card strong{
+    color:#dc2626;
+}
+
+/* BOTONES */
 
 .actions{
     display:flex;
+    justify-content:center;
     gap:15px;
 }
 
 .btn{
-    flex:1;
-    padding:16px;
+    padding:12px 25px;
     border:none;
-    border-radius:16px;
+    border-radius:8px;
     text-decoration:none;
-    font-size:15px;
-    font-weight:600;
+    font-weight:500;
     cursor:pointer;
     transition:.3s;
     display:flex;
-    justify-content:center;
     align-items:center;
-    gap:10px;
+    gap:8px;
 }
 
 .cancel{
-    background:#e2e8f0;
-    color:#334155;
+    background:#6b7280;
+    color:white;
 }
 
 .cancel:hover{
-    background:#cbd5e1;
+    background:#4b5563;
 }
 
 .delete{
-    background:linear-gradient(135deg,#ef4444,#dc2626);
+    background:#dc2626;
     color:white;
-    box-shadow:0 6px 18px rgba(239,68,68,.25);
 }
 
 .delete:hover{
-    transform:translateY(-2px);
+    background:#b91c1c;
 }
 
 /* RESPONSIVE */
 
 @media(max-width:900px){
 
+    .container{
+        flex-direction:column;
+    }
+
     .sidebar{
-        width:90px;
-        padding:20px 10px;
+        width:100%;
     }
-
-    .sidebar .logo h3,
-    .sidebar .menu li a span,
-    .logout a span{
-        display:none;
-    }
-
-    .sidebar .menu li a,
-    .logout a{
-        justify-content:center;
-    }
-
-    .main-content{
-        margin-left:90px;
-        width:calc(100% - 90px);
-    }
-}
-
-@media(max-width:700px){
 
     .main-content{
         padding:20px;
     }
 
     .delete-card{
-        padding:35px 25px;
-    }
-
-    .delete-card h1{
-        font-size:26px;
+        padding:30px 20px;
     }
 
     .actions{
         flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+        justify-content:center;
     }
 }

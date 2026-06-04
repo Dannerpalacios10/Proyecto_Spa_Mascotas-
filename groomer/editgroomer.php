@@ -220,7 +220,7 @@ Perfil Groomer
 
 <link
 rel="stylesheet"
-href="../groomer/css/editgroomer.css?v=1">
+href="../groomer/css/editgroomer.css?v=2">
 
 <link
 rel="stylesheet"
@@ -448,13 +448,7 @@ rel="stylesheet">
                             </button>
 
                         </div>
-
-                        <div class="strength-container">
-
-                            <div id="bar"></div>
-
-                        </div>
-
+                        
                     </div>
 
                     <div class="input-group">

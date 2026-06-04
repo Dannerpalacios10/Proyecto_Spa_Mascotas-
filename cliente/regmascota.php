@@ -187,7 +187,7 @@ Registrar Mascota
 
 <link
 rel="stylesheet"
-href="../cliente/css/regmascota.css?v=1">
+href="../cliente/css/regmascota.css?v=2">
 
 <link
 rel="stylesheet"
@@ -246,6 +246,18 @@ rel="stylesheet">
                     <i class="fa-solid fa-calendar-days"></i>
 
                     Mis Citas
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="servicios.php">
+
+                    <i class="fa-solid fa-scissors"></i>
+
+                    Servicios
 
                 </a>
 

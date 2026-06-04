@@ -50,7 +50,7 @@ Mis Mascotas
 
 <link
 rel="stylesheet"
-href="../cliente/css/mascotas.css?v=2">
+href="../cliente/css/mascotas.css?v=3">
 
 <link
 rel="stylesheet"

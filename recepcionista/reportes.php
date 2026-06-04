@@ -98,7 +98,7 @@ $ventas = mysqli_query($conn, $sqlVentas);
             </li>
 
             <li>
-                <a href="inventario.php">
+                <a href="bloqueos.php">
                     <i class="fa-solid fa-ban"></i>
                     Bloqueos
                 </a>

@@ -235,7 +235,7 @@ Editar Perfil
 
 <link
 rel="stylesheet"
-href="../cliente/css/perfil.css?v=1">
+href="../cliente/css/perfil.css?v=2">
 
 <link
 rel="stylesheet"

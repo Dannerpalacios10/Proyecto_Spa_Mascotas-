@@ -406,7 +406,7 @@ function seleccionarTipo(tipo,btn){
 
 <title>Bloqueos</title>
 
-<link rel="stylesheet" href="../recepcionista/css/bloqueo.css?v=1">
+<link rel="stylesheet" href="../recepcionista/css/bloqueo.css?v=2">
 
 <link
 rel="stylesheet"

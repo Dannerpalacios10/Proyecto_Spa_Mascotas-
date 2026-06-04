@@ -356,7 +356,7 @@ Recepción
 
 <link
 rel="stylesheet"
-href="../recepcionista/css/r.css">
+href="../recepcionista/css/r.css?v=3">
 
 <link
 rel="stylesheet"

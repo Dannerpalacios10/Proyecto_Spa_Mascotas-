@@ -503,7 +503,7 @@ Mis Citas
 
 <link
 rel="stylesheet"
-href="../cliente/css/citas.css?v=1">
+href="../cliente/css/citas.css?v=2">
 
 <link
 rel="stylesheet"

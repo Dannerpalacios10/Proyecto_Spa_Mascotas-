@@ -14,154 +14,194 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != "ADMIN") {
 
 <meta charset="UTF-8">
 
-<title>Dashboard Administrador</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+Dashboard Administrador
+</title>
 
-<link rel="stylesheet" href="../assets/css/dashboard.css">
+<link
+rel="stylesheet"
+href="../assets/css/dashboard.css?v=3">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="background-animation"></div>
+<div class="container">
 
-<header class="navbar">
+    <!-- SIDEBAR -->
 
-    <div class="logo">
+    <div class="sidebar">
 
-        SPA PAW PATROL
+        <div class="logo">
 
-    </div>
+            <h2>SPA PAW PATROL</h2>
 
-    <nav class="menu">
+        </div>
 
-        <a
-        class="menu-item active"
-        href="dashboard.php">
-        
-        Inicio
+        <ul class="menu">
 
-        </a>
+            <li class="active">
+                <a href="dashboard.php">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
 
-        <a
-        class="menu-item"
-        href="crear_personal.php">
+            <li>
+                <a href="crear_personal.php">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>Registrar Personal</span>
+                </a>
+            </li>
 
-        Registrar Personal
+            <li>
+                <a href="ver_personal.php">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Ver Personal</span>
+                </a>
+            </li>
 
-        </a>
+            <li>
+                <a href="auditoria.php">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <span>Auditoría</span>
+                </a>
+            </li>
 
-        <a
-        class="menu-item"
-        href="ver_personal.php">
+        </ul>
 
-        Ver Personal
-
-        </a>
-
-        <a
-        class="menu-item"
-        href="auditoria.php">
-
-        Auditoría
-
-        </a>
-
-    </nav>
-
-    <div class="user-section">
-
-        <span>
-
-            <?php echo $_SESSION['nombre']; ?>
-
-            (Admin)
-
-        </span>
-
-        <button
-        onclick="window.location.href='../auth/logout.php'">
-
-        Cerrar Sesión
-
-        </button>
+        <div class="logout">
+            <a href="../auth/logout.php">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Cerrar Sesión
+            </a>
+        </div>
 
     </div>
 
-</header>
+    <!-- MAIN -->
 
-<main class="main">
+    <div class="main-content">
 
-    <div class="dashboard-container fadeIn">
+        <div class="topbar">
 
-        <div class="welcome">
+            <div>
 
-            <h1>
-                Bienvenido Administrador
-            </h1>
+                <h1>
+                    Bienvenido Administrador
+                </h1>
 
-            <p>
-                Panel de administración del sistema SPA PAW PATROL
-            </p>
+                <p>
+                    Panel de administración del sistema SPA PAW PATROL
+                </p>
+
+            </div>
+
+            <div class="admin-user">
+
+                <i class="fa-solid fa-user-shield"></i>
+
+                <?php echo $_SESSION['nombre']; ?>
+
+            </div>
 
         </div>
 
         <div class="cards">
 
-            <div class="card blue">
+            <div class="card">
 
-                <h2>
-                    Crear Personal
-                </h2>
+                <div class="card-icon blue">
 
-                <p>
-                    Registrar nuevos empleados
-                </p>
+                    <i class="fa-solid fa-user-plus"></i>
 
-                <a href="crear_personal.php">
+                </div>
 
-                    Ir →
+                <div>
 
-                </a>
+                    <h2>
+                        Crear Personal
+                    </h2>
 
-            </div>
+                    <p>
+                        Registrar nuevos empleados
+                    </p>
 
-            <div class="card purple">
+                    <a href="crear_personal.php">
 
-                <h2>
-                    Ver Personal
-                </h2>
+                        Ir →
 
-                <p>
-                    Gestionar usuarios registrados
-                </p>
+                    </a>
 
-                <a href="ver_personal.php">
-
-                    Ir →
-
-                </a>
+                </div>
 
             </div>
 
-            <div class="card green">
+            <div class="card">
 
-                <h2>
-                    Auditoría
-                </h2>
+                <div class="card-icon purple">
 
-                <p>
-                    Ver historial de acciones
-                </p>
+                    <i class="fa-solid fa-users"></i>
 
-                <a href="auditoria.php">
+                </div>
 
-                    Ir →
+                <div>
 
-                </a>
+                    <h2>
+                        Ver Personal
+                    </h2>
+
+                    <p>
+                        Gestionar usuarios registrados
+                    </p>
+
+                    <a href="ver_personal.php">
+
+                        Ir →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-icon green">
+
+                    <i class="fa-solid fa-clipboard-list"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+                        Auditoría
+                    </h2>
+
+                    <p>
+                        Ver historial de acciones
+                    </p>
+
+                    <a href="auditoria.php">
+
+                        Ir →
+
+                    </a>
+
+                </div>
 
             </div>
 
@@ -169,9 +209,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != "ADMIN") {
 
     </div>
 
-</main>
-
-<script src="../assets/js/dashboard.js"></script>
+</div>
 
 </body>
 </html>

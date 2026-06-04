@@ -27,124 +27,213 @@ ON u.id_rol = r.id_rol
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ver Personal</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="../assets/css/ver_personal.css">
+<title>
+Ver Personal
+</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link
+rel="stylesheet"
+href="../assets/css/ver_personal.css?v=3">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="background-animation"></div>
+<div class="container">
 
-<div class="container fadeIn">
+    <!-- SIDEBAR -->
 
-    <div class="header">
+    <div class="sidebar">
 
-        <h1>Personal Registrado</h1>
+        <div class="logo">
 
-        <p>
-            Lista dinámica del personal del sistema
-        </p>
+            <h2>SPA PAW PATROL</h2>
+
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="dashboard.php">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="crear_personal.php">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>Registrar Personal</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="ver_personal.php">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Ver Personal</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="auditoria.php">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <span>Auditoría</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="logout">
+            <a href="../auth/logout.php">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Cerrar Sesión
+            </a>
+        </div>
 
     </div>
 
-    <div class="table-container">
+    <!-- MAIN -->
 
-        <table>
+    <div class="main-content">
 
-            <thead>
+        <div class="topbar">
 
-                <tr>
+            <div>
 
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Teléfono</th>
-                    <th>Rol</th>
-                    <th>Estado</th>
-                    <th>Acción</th>
+                <h1>
+                    Personal Registrado
+                </h1>
 
-                </tr>
+                <p>
+                    Lista dinámica del personal del sistema
+                </p>
 
-            </thead>
+            </div>
 
-            <tbody>
+        </div>
 
-            <?php while($row = mysqli_fetch_assoc($sql)): ?>
+        <div class="panel">
 
-                <tr>
+            <div class="panel-header">
 
-                    <td>
-                        <?php echo $row['id_usuario']; ?>
-                    </td>
+                <h2>
+                    Lista de Usuarios
+                </h2>
 
-                    <td>
-                        <?php
-                        echo $row['nombre']." ".
-                        $row['apellido'];
-                        ?>
-                    </td>
+            </div>
 
-                    <td>
-                        <?php echo $row['email']; ?>
-                    </td>
+            <table>
 
-                    <td>
-                        <?php echo $row['telefono']; ?>
-                    </td>
+                <thead>
 
-                    <td>
+                    <tr>
 
-                        <span class="badge role">
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
 
-                            <?php echo $row['rol']; ?>
+                    </tr>
 
-                        </span>
+                </thead>
 
-                    </td>
+                <tbody>
 
-                    <td>
+                <?php while($row = mysqli_fetch_assoc($sql)): ?>
 
-                        <?php if($row['estado_activo']==1): ?>
+                    <tr>
 
-                            <span class="badge active">
-                                Activo
+                        <td>
+
+                            <?php echo $row['id_usuario']; ?>
+
+                        </td>
+
+                        <td>
+
+                            <?php
+                            echo $row['nombre']." ".$row['apellido'];
+                            ?>
+
+                        </td>
+
+                        <td>
+
+                            <?php echo $row['email']; ?>
+
+                        </td>
+
+                        <td>
+
+                            <?php echo $row['telefono']; ?>
+
+                        </td>
+
+                        <td>
+
+                            <span class="badge role">
+
+                                <?php echo $row['rol']; ?>
+
                             </span>
 
-                        <?php else: ?>
+                        </td>
 
-                            <span class="badge inactive">
-                                Inactivo
-                            </span>
+                        <td>
 
-                        <?php endif; ?>
+                            <?php if($row['estado_activo']==1): ?>
 
-                    </td>
+                                <span class="badge active">
 
-                    <td>
+                                    Activo
 
-                        <a
-                        class="btn-toggle"
-                        href="toogle.php?id=<?php echo $row['id_usuario']; ?>">
+                                </span>
 
-                        Cambiar Estado
+                            <?php else: ?>
 
-                        </a>
+                                <span class="badge inactive">
 
-                    </td>
+                                    Inactivo
 
-                </tr>
+                                </span>
 
-            <?php endwhile; ?>
+                            <?php endif; ?>
 
-            </tbody>
+                        </td>
 
-        </table>
+                        <td>
+
+                            <a
+                            class="btn-toggle"
+                            href="toogle.php?id=<?php echo $row['id_usuario']; ?>">
+
+                                Cambiar Estado
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                <?php endwhile; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 

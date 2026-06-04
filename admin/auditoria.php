@@ -57,7 +57,7 @@ Auditoría
 
 <link
 rel="stylesheet"
-href="../assets/css/auditoria.css">
+href="../assets/css/auditoria.css?v=2">
 
 <link
 href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -67,101 +67,88 @@ rel="stylesheet">
 
 <body>
 
-<div class="background-animation"></div>
+<div class="container">
 
-<!-- NAVBAR -->
+    <!-- SIDEBAR -->
 
-<header class="navbar">
+  <div class="sidebar">
 
-    <div class="logo">
+        <div class="logo">
 
-        SPA PAW PATROL
-
-    </div>
-
-    <nav class="menu">
-
-        <a
-        class="menu-item"
-        href="dashboard.php">
-
-            Inicio
-
-        </a>
-
-        <a
-        class="menu-item"
-        href="crear_personal.php">
-
-            Registrar Personal
-
-        </a>
-
-        <a
-        class="menu-item"
-        href="ver_personal.php">
-
-            Ver Personal
-
-        </a>
-
-        <a
-        class="menu-item active"
-        href="auditoria.php">
-
-            Auditoría
-
-        </a>
-
-    </nav>
-
-    <div class="user-section">
-
-        <span>
-
-            <?php
-            echo $_SESSION['nombre'];
-            ?>
-
-            (Admin)
-
-        </span>
-
-        <button
-        onclick="window.location.href='../auth/logout.php'">
-
-            Cerrar Sesión
-
-        </button>
-
-    </div>
-
-</header>
-
-<!-- MAIN -->
-
-<main class="main">
-
-    <div class="container fadeIn">
-
-        <div class="header-page">
-
-            <h1>
-                Auditoría del Sistema
-            </h1>
-
-            <p>
-
-                Historial completo
-                de actividades del sistema
-
-            </p>
+            <h2>SPA PAW PATROL</h2>
 
         </div>
 
-        <!-- TABLA -->
+        <ul class="menu">
 
-        <div class="table-container">
+            <li>
+                <a href="dashboard.php">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="crear_personal.php">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>Registrar Personal</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="ver_personal.php">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Ver Personal</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="auditoria.php">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <span>Auditoría</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="logout">
+            <a href="../auth/logout.php">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Cerrar Sesión
+            </a>
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="main-content">
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+                    Auditoría del Sistema
+                </h1>
+
+                <p>
+                    Historial completo de actividades del sistema
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h2>
+                    Registro de Actividades
+                </h2>
+
+            </div>
 
             <table>
 
@@ -169,29 +156,12 @@ rel="stylesheet">
 
                     <tr>
 
-                        <th>
-                            Usuario
-                        </th>
-
-                        <th>
-                            Rol
-                        </th>
-
-                        <th>
-                            Acción
-                        </th>
-
-                        <th>
-                            Fecha
-                        </th>
-
-                        <th>
-                            Dirección IP
-                        </th>
-
-                        <th>
-                            Navegador
-                        </th>
+                        <th>Usuario</th>
+                        <th>Rol</th>
+                        <th>Acción</th>
+                        <th>Fecha</th>
+                        <th>IP</th>
+                        <th>Navegador</th>
 
                     </tr>
 
@@ -205,75 +175,49 @@ rel="stylesheet">
 
                         <tr>
 
-                            <!-- USUARIO -->
-
                             <td>
 
                                 <?php
-
-                                echo
-                                $row['nombre']." ".
-                                $row['apellido'];
-
+                                echo $row['nombre']." ".$row['apellido'];
                                 ?>
 
                             </td>
-
-                            <!-- ROL -->
 
                             <td>
 
                                 <span class="role-badge">
 
-                                    <?php
-                                    echo $row['rol'];
-                                    ?>
+                                    <?php echo $row['rol']; ?>
 
                                 </span>
 
                             </td>
-
-                            <!-- ACCION -->
 
                             <td>
 
                                 <span class="action-badge">
 
-                                    <?php
-                                    echo $row['accion'];
-                                    ?>
+                                    <?php echo $row['accion']; ?>
 
                                 </span>
 
                             </td>
 
-                            <!-- FECHA -->
-
                             <td>
 
-                                <?php
-                                echo $row['fecha'];
-                                ?>
+                                <?php echo $row['fecha']; ?>
 
                             </td>
 
-                            <!-- IP -->
-
                             <td>
 
-                                <?php
-                                echo $row['ip_usuario'];
-                                ?>
+                                <?php echo $row['ip_usuario']; ?>
 
                             </td>
-
-                            <!-- NAVEGADOR -->
 
                             <td class="browser">
 
-                                <?php
-                                echo $row['navegador'];
-                                ?>
+                                <?php echo $row['navegador']; ?>
 
                             </td>
 
@@ -303,7 +247,7 @@ rel="stylesheet">
 
     </div>
 
-</main>
+</div>
 
 <script src="../assets/js/auditoria.js"></script>
 

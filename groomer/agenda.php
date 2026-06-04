@@ -102,7 +102,7 @@ Agenda Groomer
 
 <link
 rel="stylesheet"
-href="../groomer/css/agenda.css?v=1">
+href="../groomer/css/agenda.css?v=2">
 
 <link
 rel="stylesheet"

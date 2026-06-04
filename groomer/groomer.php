@@ -98,7 +98,7 @@ Dashboard Groomer
 
 <link
 rel="stylesheet"
-href="../groomer/css/g.css?v=1">
+href="../groomer/css/g.css?v=2">
 
 <link
 rel="stylesheet"

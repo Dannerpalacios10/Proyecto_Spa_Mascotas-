@@ -114,7 +114,7 @@ Eliminar Mascota
 
 <link
 rel="stylesheet"
-href="../cliente/css/elimascota.css?v=2">
+href="../cliente/css/elimascota.css?v=3">
 
 <link
 rel="stylesheet"

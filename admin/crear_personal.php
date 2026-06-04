@@ -252,12 +252,12 @@ name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>
-Crear Personal
+Registrar Personal
 </title>
 
 <link
 rel="stylesheet"
-href="../assets/css/crear_personal.css">
+href="../assets/css/crear_personal.css?v=2">
 
 <link
 href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -267,301 +267,371 @@ rel="stylesheet">
 
 <body>
 
-<div class="background-animation"></div>
+<div class="container">
 
-<div class="container fadeIn">
+    <!-- SIDEBAR -->
 
-    <div class="header">
+    <div class="sidebar">
 
-        <h1>
-            Registrar Personal
-        </h1>
+        <div class="logo">
 
-        <p>
-            Registra nuevos usuarios del sistema
-        </p>
+            <h2>SPA PAW PATROL</h2>
+
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="dashboard.php">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="crear_personal.php">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>Registrar Personal</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="ver_personal.php">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Ver Personal</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="auditoria.php">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <span>Auditoría</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="logout">
+            <a href="../auth/logout.php">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Cerrar Sesión
+            </a>
+        </div>
 
     </div>
 
-    <?php if($mensaje != ""): ?>
+    <!-- MAIN -->
 
-        <div class="alert <?php echo $tipo; ?>">
+    <div class="main-content">
 
-            <?php echo $mensaje; ?>
+        <!-- TOPBAR -->
 
-        </div>
+        <div class="topbar">
 
-    <?php endif; ?>
+            <div>
 
-    <form method="POST" id="formulario">
+                <h1>
+                    Registrar Personal
+                </h1>
 
-        <!-- ROL -->
-
-        <div class="input-group">
-
-            <label>
-                Rol
-            </label>
-
-            <select
-            name="rol"
-            id="rol"
-            required>
-
-                <option value="">
-                    Seleccione un rol
-                </option>
-
-                <option value="ADMIN">
-                    ADMIN
-                </option>
-
-                <option value="GROOMER">
-                    GROOMER
-                </option>
-
-                <option value="RECEPCIONISTA">
-                    RECEPCIONISTA
-                </option>
-
-                <option value="CLIENTE">
-                    CLIENTE
-                </option>
-
-            </select>
-
-        </div>
-
-        <!-- TURNO -->
-
-        <div class="input-group">
-
-            <label>
-                Turno
-            </label>
-
-            <select
-            name="turno"
-            required
-            >
-                <option value="Turno">
-                    Seleccione un turno
-                </option>
-
-                <option value="MAÑANA">
-                    MAÑANA
-                </option>
-
-                <option value="TARDE">
-                    TARDE
-                </option>
-
-                <option value="NOCHE">
-                    NOCHE
-                </option>
-
-            </select>
-
-        </div>
-
-        <!-- CAMPOS DINÁMICOS -->
-
-        <div id="camposRol"></div>
-
-        <!-- NOMBRE Y APELLIDO -->
-
-        <div class="grid-2">
-
-            <div class="input-group">
-
-                <label>
-                    Nombre
-                </label>
-
-                <input
-                type="text"
-                name="nombre"
-                placeholder="Ingrese nombre"
-                required>
-
-            </div>
-
-            <div class="input-group">
-
-                <label>
-                    Apellido
-                </label>
-
-                <input
-                type="text"
-                name="apellido"
-                placeholder="Ingrese apellido"
-                required>
+                <p>
+                    Registra nuevos usuarios del sistema
+                </p>
 
             </div>
 
         </div>
 
-        <!-- DIRECCION -->
+        <?php if($mensaje != ""): ?>
 
-        <div class="input-group">
+            <div class="alert <?php echo $tipo; ?>">
 
-            <label>
-                Dirección
-            </label>
-
-            <input
-            type="text"
-            name="direccion"
-            placeholder="Ingrese dirección"
-            required>
-
-        </div>
-
-        <!-- EMAIL Y TELEFONO -->
-
-        <div class="grid-2">
-
-            <div class="input-group">
-
-                <label>
-                    Correo Electrónico
-                </label>
-
-                <input
-                type="email"
-                name="email"
-                placeholder="@gmail.com"
-                required>
+                <?php echo $mensaje; ?>
 
             </div>
 
-            <div class="input-group">
+        <?php endif; ?>
 
-                <label>
-                    Teléfono
-                </label>
+        <!-- FORM CARD -->
 
-                <input
-                type="tel"
-                name="telefono"
-                placeholder="77777777"
-                required>
+        <div class="form-card">
 
-            </div>
+            <form
+            method="POST"
+            id="formulario">
 
-        </div>
+                <!-- ROL -->
 
-        <!-- PASSWORD -->
+                <div class="input-group">
 
-        <div class="input-group">
+                    <label>
+                        Rol
+                    </label>
 
-            <label>
-                Contraseña
-            </label>
+                    <select
+                    name="rol"
+                    id="rol"
+                    required>
 
-            <div class="password-box">
+                        <option value="">
+                            Seleccione un rol
+                        </option>
 
-                <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Ingresar contraseña"
-                required>
+                        <option value="ADMIN">
+                            ADMIN
+                        </option>
+
+                        <option value="GROOMER">
+                            GROOMER
+                        </option>
+
+                        <option value="RECEPCIONISTA">
+                            RECEPCIONISTA
+                        </option>
+
+                        <option value="CLIENTE">
+                            CLIENTE
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- TURNO -->
+
+                <div class="input-group">
+
+                    <label>
+                        Turno
+                    </label>
+
+                    <select
+                    name="turno"
+                    required>
+
+                        <option value="">
+                            Seleccione un turno
+                        </option>
+
+                        <option value="MAÑANA">
+                            MAÑANA
+                        </option>
+
+                        <option value="TARDE">
+                            TARDE
+                        </option>
+
+                        <option value="NOCHE">
+                            NOCHE
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- CAMPOS DINÁMICOS -->
+
+                <div id="camposRol"></div>
+
+                <!-- NOMBRE Y APELLIDO -->
+
+                <div class="grid-2">
+
+                    <div class="input-group">
+
+                        <label>
+                            Nombre
+                        </label>
+
+                        <input
+                        type="text"
+                        name="nombre"
+                        placeholder="Ingrese nombre"
+                        required>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+                            Apellido
+                        </label>
+
+                        <input
+                        type="text"
+                        name="apellido"
+                        placeholder="Ingrese apellido"
+                        required>
+
+                    </div>
+
+                </div>
+
+                <!-- DIRECCIÓN -->
+
+                <div class="input-group">
+
+                    <label>
+                        Dirección
+                    </label>
+
+                    <input
+                    type="text"
+                    name="direccion"
+                    placeholder="Ingrese dirección"
+                    required>
+
+                </div>
+
+                <!-- EMAIL Y TELEFONO -->
+
+                <div class="grid-2">
+
+                    <div class="input-group">
+
+                        <label>
+                            Correo Electrónico
+                        </label>
+
+                        <input
+                        type="email"
+                        name="email"
+                        placeholder="@gmail.com"
+                        required>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+                            Teléfono
+                        </label>
+
+                        <input
+                        type="tel"
+                        name="telefono"
+                        placeholder="77777777"
+                        required>
+
+                    </div>
+
+                </div>
+
+                <!-- CONTRASEÑA -->
+
+                <div class="input-group">
+
+                    <label>
+                        Contraseña
+                    </label>
+
+                    <div class="password-box">
+
+                        <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Ingresar contraseña"
+                        required>
+
+                        <button
+                        type="button"
+                        class="show-btn"
+                        onclick="togglePassword('password')">
+
+                            👁
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- BARRA DE SEGURIDAD -->
+
+                <div class="strength-container">
+
+                    <div id="bar"></div>
+
+                </div>
+
+                <!-- REGLAS -->
+
+                <div class="password-rules">
+
+                    <span id="rule1">
+                        • 8 caracteres
+                    </span>
+
+                    <span id="rule2">
+                        • Mayúscula
+                    </span>
+
+                    <span id="rule3">
+                        • Minúscula
+                    </span>
+
+                    <span id="rule4">
+                        • Número
+                    </span>
+
+                    <span id="rule5">
+                        • Símbolo
+                    </span>
+
+                </div>
+
+                <!-- CONFIRMAR PASSWORD -->
+
+                <div class="input-group">
+
+                    <label>
+                        Verificar Contraseña
+                    </label>
+
+                    <div class="password-box">
+
+                        <input
+                        type="password"
+                        name="verificar_password"
+                        id="confirmarPassword"
+                        placeholder="Verificar contraseña"
+                        required>
+
+                        <button
+                        type="button"
+                        class="show-btn"
+                        onclick="togglePassword('confirmarPassword')">
+
+                            👁
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div id="passwordMatch"></div>
+
+                <!-- BOTÓN -->
 
                 <button
-                type="button"
-                class="show-btn"
-                onclick="togglePassword('password')">
+                type="submit"
+                class="btn-submit">
 
-                    👁
+                    Crear Usuario
 
                 </button>
 
-            </div>
+            </form>
 
         </div>
 
-        <!-- BARRA -->
-
-        <div class="strength-container">
-
-            <div id="bar"></div>
-
-        </div>
-
-        <!-- REGLAS -->
-
-        <div class="password-rules">
-
-            <span id="rule1">
-                • 8 caracteres
-            </span>
-
-            <span id="rule2">
-                • Mayúscula
-            </span>
-
-            <span id="rule3">
-                • Minúscula
-            </span>
-
-            <span id="rule4">
-                • Número
-            </span>
-
-            <span id="rule5">
-                • Símbolo
-            </span>
-
-        </div>
-
-        <!-- VERIFICAR PASSWORD -->
-
-        <div class="input-group">
-
-            <label>
-                Verificar Contraseña
-            </label>
-
-            <div class="password-box">
-        
-                <input
-                type="password"
-                name="verificar_password"
-                id="confirmarPassword"
-                placeholder="Verificar contraseña"
-                required>
-
-                <button
-                type="button"
-                class="show-btn"
-                onclick="togglePassword('confirmarPassword')">
-
-                    👁
-
-                </button>
-
-            </div>
-
-        </div>
-
-        <div id="passwordMatch"></div>
-
-        <!-- BOTON -->
-
-        <button
-        type="submit"
-        class="btn-submit">
-
-            Crear Usuario
-
-        </button>
-
-    </form>
+    </div>
 
 </div>
 
 <script src="../assets/js/crear_personal.js?v=2"></script>
+
 </body>
 </html>

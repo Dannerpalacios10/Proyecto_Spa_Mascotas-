@@ -46,7 +46,7 @@ Servicios
 
 <link
 rel="stylesheet"
-href="../cliente/css/servicios.css?v=1">
+href="../cliente/css/servicios.css?v=2">
 
 <link
 rel="stylesheet"
@@ -175,8 +175,28 @@ rel="stylesheet">
                 <div class="service-card">
 
                     <div class="service-icon">
+                        
+                        <?php
 
-                        <i class="fa-solid fa-bath"></i>
+                            $icono = "fa-bath";
+
+                            if(stripos($servicio['nombre'], "corte") !== false){
+                                $icono = "fa-scissors";
+                            }
+                            elseif(stripos($servicio['nombre'], "baño") !== false){
+                                $icono = "fa-bath";
+                            }
+                            elseif(stripos($servicio['nombre'], "vacuna") !== false){
+                                $icono = "fa-syringe";
+                            }
+                            elseif(stripos($servicio['nombre'], "consulta") !== false){
+                                $icono = "fa-stethoscope";
+                            }
+
+                        ?>
+
+
+                        <i class="fa-solid <?php echo $icono; ?>"></i>
 
                     </div>
 
