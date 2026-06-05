@@ -14,7 +14,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet"
-    href="assets/css/index.css">
+    href="assets/css/index.css?v=3">
 
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -35,21 +35,16 @@
     <!-- LOGO -->
 
     <div class="logo">
-
         <h2>
-
             <i class="fa-solid fa-paw"></i>
-
             SPA PAW PATROL
-
         </h2>
-
     </div>
 
     <!-- NAV -->
 
     <nav>
-
+        
         <a href="#">
             INICIO
         </a>
@@ -256,54 +251,6 @@ id="servicios">
 
         </div>
 
-        <div class="service-card">
-
-            <img
-            src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop"
-            alt="Corte de pelo">
-
-            <div class="service-info">
-
-                <h5>
-
-                    LIMPIEZA DE DIENTES
-
-                </h5>
-
-                <p>
-
-                    Grooming profesional
-                    para todas las razas.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="service-card">
-
-            <img
-            src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop"
-            alt="Corte de pelo">
-
-            <div class="service-info">
-
-                <h4>
-                    VACUNAS
-                </h4>
-
-                <p>
-
-                    Grooming profesional
-                    para todas las razas.
-
-                </p>
-
-            </div>
-
-        </div>
-
         <!-- SERVICIO 3 -->
 
         <div class="service-card">
@@ -315,7 +262,7 @@ id="servicios">
             <div class="service-info">
 
                 <h4>
-                    CUIDADO ESPECIAL
+                    SERVICIO COMPLETO
                 </h4>
 
                 <p>

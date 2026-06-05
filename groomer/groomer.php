@@ -37,7 +37,7 @@ $sqlFinalizados = "
 SELECT COUNT(*) AS total
 FROM cita
 WHERE id_groomer='$idGroomer'
-AND estado='FINALIZADA'
+AND estado='COMPLETADA'
 ";
 
 $resultFinalizados = mysqli_query($conn,$sqlFinalizados);
@@ -336,42 +336,30 @@ rel="stylesheet">
                     <tr>
 
                         <td>
-
                             <?php
                             echo date(
                                 "H:i",
                                 strtotime($c['fecha_inicio'])
                             );
                             ?>
-
                         </td>
 
                         <td>
-
                             <?php
                             echo $c['mascota_nombre'];
                             ?>
-
                         </td>
 
                         <td>
-
                             <?php
                             echo $c['servicio_nombre'];
                             ?>
-
                         </td>
 
                         <td>
-
                             <span class="status <?php echo strtolower($c['estado']); ?>">
-
-                                <?php
-                                echo $c['estado'];
-                                ?>
-
+                                <?php echo htmlspecialchars($c['estado']); ?>
                             </span>
-
                         </td>
 
                         <td>

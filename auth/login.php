@@ -10,13 +10,13 @@ include("../config/log.php");
 
 /** @var mysqli $conn */
 
-/* ================= CAPTCHA ================= */
+/* CAPTCHA  */
 
 if(!isset($_SESSION['captcha'])){
     $_SESSION['captcha'] = rand(1000,9999);
 }
 
-/* ================= CONTROL DE INTENTOS ================= */
+/* CONTROL DE INTENTOS  */
 
 if (!isset($_SESSION['intentos'])) {
     $_SESSION['intentos'] = 0;
@@ -26,7 +26,7 @@ if (!isset($_SESSION['bloqueado_hasta'])) {
     $_SESSION['bloqueado_hasta'] = 0;
 }
 
-/* ================= DESBLOQUEAR ================= */
+/* DESBLOQUEAR */
 
 if ($_SESSION['bloqueado_hasta'] > 0 && time() >= $_SESSION['bloqueado_hasta']){
     $_SESSION['bloqueado_hasta'] = 0;
@@ -41,7 +41,7 @@ if ($_SESSION['bloqueado_hasta'] > time()) {
     $segundos_restantes = $_SESSION['bloqueado_hasta'] - time();
 }
 
-/* ================= LOGIN ================= */
+/* LOGIN */
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST['password']);
         $captcha = trim($_POST['captcha']);
 
-        /* ===== VALIDAR CAPTCHA ===== */
+        /* VALIDAR CAPTCHA */
 
         if($captcha != $_SESSION['captcha']){
             $error = "Captcha incorrecto.";
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $usuario = mysqli_fetch_assoc($resultado);
 
-                /* ===== VALIDACIONES ===== */
+                /* VALIDACIONES */
 
                 if($usuario['rol_nombre'] == "ADMIN"){
                     $error = "El administrador debe ingresar desde el panel ADMIN.";
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                     else{
 
-                        /* ===== LOGIN CORRECTO ===== */
+                        /* LOGIN CORRECTO  */
 
                         $_SESSION['intentos'] = 0;
                         $_SESSION['bloqueado_hasta'] = 0;
@@ -104,14 +104,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['nombre'] = $usuario['nombre'];
                         $_SESSION['rol'] = $usuario['rol_nombre'];
 
-                        /* ===== PRIMER CAMBIO PASSWORD ===== */
+                        /* PRIMER CAMBIO PASSWORD */
 
                         if($usuario['cambio_password'] == 0){
                             header("Location: ../auth/cambiar_password.php");
                             exit();
                         }
 
-                        /* ===== AUDITORIA ===== */
+                        /* AUDITORIA */
 
                         $idUsuario = $usuario['id_usuario'];
                         $ipUsuario = $_SERVER['REMOTE_ADDR'];
@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         $_SESSION['captcha'] = rand(1000,9999);
 
-                        /* ===== REDIRECCIÓN ===== */
+                        /* REDIRECCIÓN */
 
                         if ($usuario['rol_nombre'] == "GROOMER"){
                             header("Location: ../groomer/groomer.php", true, 303);
@@ -151,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $error = "Correo o contraseña incorrectos.";
             }
 
-            /* ===== CONTROL DE INTENTOS ===== */
+            /* CONTROL DE INTENTOS  */
 
             if(isset($error)){
                 $_SESSION['intentos']++;
@@ -378,7 +378,7 @@ window.onpopstate = function () {
 
                 <!-- GOOGLE -->
 
-                <a href="#" class="google-btn">
+                <a href="" class="google-btn">
 
                     <img
                     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"

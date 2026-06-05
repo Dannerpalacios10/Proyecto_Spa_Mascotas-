@@ -45,28 +45,20 @@ elseif($filtro == "SEMANA"){
 
 $sql = "
 SELECT
-
 cita.*,
-
 mascota.nombre AS mascota_nombre,
 mascota.raza,
 mascota.tamano,
-
 servicio.nombre AS servicio_nombre,
-
 usuario.nombre AS cliente_nombre
 
 FROM cita
-
 INNER JOIN mascota
 ON cita.id_mascota = mascota.id_mascota
-
 INNER JOIN servicio
 ON cita.id_servicio = servicio.id_servicio
-
 INNER JOIN usuario
 ON mascota.id_cliente = usuario.id_usuario
-
 WHERE cita.id_groomer='$idGroomer'
 
 AND cita.estado IN

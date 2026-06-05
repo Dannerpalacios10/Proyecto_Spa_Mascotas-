@@ -31,17 +31,12 @@ $idCita = intval($_GET['id']);
 
 $sql = "
 SELECT
-
 cita.*,
-
 mascota.nombre AS mascota_nombre,
 mascota.raza,
 mascota.tamano,
-
 servicio.nombre AS servicio_nombre,
-
 usuario.nombre AS cliente_nombre
-
 FROM cita
 
 INNER JOIN mascota
@@ -237,42 +232,42 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         if(isset($_POST['inventario'])){
 
-            foreach($_POST['inventario'] as $idProducto => $cantidad){
+        foreach($_POST['inventario'] as $idProducto => $cantidad){
 
-                if($cantidad > 0){
+            if($cantidad > 0){
 
-                    $sqlUso = "
-                    INSERT INTO uso_inventario
-                    (
-                        id_ficha,
-                        id_producto,
-                        cantidad_usada
-                    )
-                    VALUES
-                    (
-                        '$idFicha',
-                        '$idProducto',
-                        '$cantidad'
-                    )
-                    ";
+                $sqlUso = "
+                INSERT INTO uso_inventario
+                (
+                    id_ficha,
+                    id_producto,
+                    cantidad_usada
+                )
+                VALUES
+                (
+                    '$idFicha',
+                    '$idProducto',
+                    '$cantidad'
+                )
+                ";
 
-                    mysqli_query($conn,$sqlUso);
-
-                    /* DESCONTAR STOCK */
-
-                    mysqli_query(
-                        $conn,
-                        "
-                        UPDATE inventario
-                        SET stock = stock - $cantidad
-                        WHERE id_insumo='$idProducto'
-                        "
-                    );
+                if(!mysqli_query($conn,$sqlUso)){
+                    die(mysqli_error($conn));
                 }
+
+                mysqli_query(
+                    $conn,
+                    "
+                    UPDATE producto
+                    SET stock = stock - $cantidad
+                    WHERE id_producto='$idProducto'
+                    "
+                );
             }
         }
-
-        /* FINALIZAR CITA */
+    }
+        
+    /* FINALIZAR CITA */
 
         mysqli_query(
             $conn,

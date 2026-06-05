@@ -66,6 +66,39 @@ if(isset($_POST['eliminar'])){
 
     mysqli_query($conn,$sqlPagos);
 
+    $sqlUso = "
+
+    DELETE uso_inventario
+    FROM uso_inventario
+
+    INNER JOIN ficha_grooming
+    ON uso_inventario.id_ficha = ficha_grooming.id_ficha
+
+    INNER JOIN cita
+    ON ficha_grooming.id_cita = cita.id_cita
+
+    WHERE cita.id_mascota='$idMascota'
+
+    ";
+
+    mysqli_query($conn,$sqlUso);
+
+    /* ELIMINAR FICHAS GROOMING */
+
+    $sqlFichas = "
+
+    DELETE ficha_grooming
+    FROM ficha_grooming
+
+    INNER JOIN cita
+    ON ficha_grooming.id_cita = cita.id_cita
+
+    WHERE cita.id_mascota='$idMascota'
+
+    ";
+
+    mysqli_query($conn,$sqlFichas);
+
     /* ELIMINAR CITAS */
 
     $sqlCitas = "

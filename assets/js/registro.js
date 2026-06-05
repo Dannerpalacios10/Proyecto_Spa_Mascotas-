@@ -137,7 +137,7 @@ confirmPassword.addEventListener("keyup",()=>{
     if(password.value === confirmPassword.value){
 
         match.innerHTML =
-        "✔ Las contraseñas coinciden";
+        "Las contraseñas coinciden";
 
         match.style.color =
         "#22c55e";
@@ -145,7 +145,7 @@ confirmPassword.addEventListener("keyup",()=>{
     }else{
 
         match.innerHTML =
-        "✖ Las contraseñas no coinciden";
+        "Las contraseñas no coinciden";
 
         match.style.color =
         "#ef4444";

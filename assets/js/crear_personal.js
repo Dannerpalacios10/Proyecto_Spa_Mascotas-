@@ -92,7 +92,7 @@ confirmarPassword.addEventListener("keyup",function(){
     if(confirmarPassword.value === password.value){
 
         passwordMatch.innerHTML =
-        "✅ Las contraseñas coinciden";
+        "Las contraseñas coinciden";
 
         passwordMatch.style.color =
         "#22c55e";
@@ -100,7 +100,7 @@ confirmarPassword.addEventListener("keyup",function(){
     }else{
 
         passwordMatch.innerHTML =
-        "❌ Las contraseñas no coinciden";
+        "Las contraseñas no coinciden";
 
         passwordMatch.style.color =
         "#ef4444";

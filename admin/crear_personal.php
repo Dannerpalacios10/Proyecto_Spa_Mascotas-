@@ -260,6 +260,10 @@ rel="stylesheet"
 href="../assets/css/crear_personal.css?v=2">
 
 <link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link
 href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
 rel="stylesheet">
 
@@ -288,7 +292,7 @@ rel="stylesheet">
                 </a>
             </li>
 
-            <li>
+            <li class="active">
                 <a href="crear_personal.php">
                     <i class="fa-solid fa-user-plus"></i>
                     <span>Registrar Personal</span>
@@ -631,7 +635,7 @@ rel="stylesheet">
 
 </div>
 
-<script src="../assets/js/crear_personal.js?v=2"></script>
+<script src="../assets/js/crear_personal.js?v=4"></script>
 
 </body>
 </html>

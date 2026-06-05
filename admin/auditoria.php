@@ -60,6 +60,10 @@ rel="stylesheet"
 href="../assets/css/auditoria.css?v=2">
 
 <link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link
 href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
 rel="stylesheet">
 
@@ -102,7 +106,7 @@ rel="stylesheet">
                 </a>
             </li>
 
-            <li>
+            <li class="active">
                 <a href="auditoria.php">
                     <i class="fa-solid fa-clipboard-list"></i>
                     <span>Auditoría</span>
@@ -228,13 +232,9 @@ rel="stylesheet">
                 <?php else: ?>
 
                     <tr>
-
-                        <td colspan="6">
-
-                            No existen registros.
-
+                       <td colspan="6" class="empty-table">
+                            No existen registros de auditoría.
                         </td>
-
                     </tr>
 
                 <?php endif; ?>

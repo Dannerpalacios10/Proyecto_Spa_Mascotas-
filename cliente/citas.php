@@ -20,7 +20,6 @@ date_default_timezone_set('America/La_Paz');
 
 $idCliente = $_SESSION['id_usuario'];
 $nombre = $_SESSION['nombre'];
-
 $mensaje = "";
 $tipo = "";
 
@@ -105,7 +104,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 (
                     $hora >= "14:00"
                     &&
-                    $hora <= "18:00"
+                    $hora <= "23:00"
                 )
             ){
 
@@ -162,7 +161,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     if(
                         $hora < "12:00"
                         &&
-                        $horaFin > "12:00"
+                        $horaFin > "23:00"
                     ){
 
                         $mensaje =
@@ -174,7 +173,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
                     /* VALIDAR CIERRE */
 
-                    elseif($horaFin > "18:00"){
+                    elseif($horaFin > "23:00"){
 
                         $mensaje =
                         "El servicio termina fuera del horario de atención.";
@@ -249,7 +248,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                                 (
                                     $hora < "14:00"
                                     ||
-                                    $hora >= "18:00"
+                                    $hora >= "23:00"
                                 )
                             ){
 
@@ -796,26 +795,25 @@ rel="stylesheet">
                             <!-- MAÑANA -->
 
                             <option value="08:00">08:00 AM</option>
-
                             <option value="09:00">09:00 AM</option>
-
                             <option value="10:00">10:00 AM</option>
-
                             <option value="11:00">11:00 AM</option>
-
                             <option value="12:00">12:00 PM</option>
 
                             <!-- TARDE -->
+                             
+                            <option value="14:00"> 02:00 PM</option>
+                            <option value="15:00"> 03:00 PM</option>
+                            <option value="16:00"> 04:00 PM</option>
+                            <option value="17:00"> 05:00 PM</option>
+                            <option value="18:00"> 06:00 PM</option>
+                            <option value="19:00"> 07:00 PM</option>
+                            <option value="20:00"> 08:00 PM</option>
+                            <option value="21:00"> 09:00 PM</option>
+                            <option value="22:00"> 10:00 PM</option>
+                            <option value="23:00"> 11:00 PM</option>
+                            <option value="00:00"> 12:00 PM</option>
 
-                            <option value="14:00">02:00 PM</option>
-
-                            <option value="15:00">03:00 PM</option>
-
-                            <option value="16:00">04:00 PM</option>
-
-                            <option value="17:00">05:00 PM</option>
-
-                            <option value="18:00">06:00 PM</option>
 
                         </select>
 

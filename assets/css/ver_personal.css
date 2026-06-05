@@ -7,18 +7,17 @@
 
 body{
     background:#f4f7fb;
-    min-height:100vh;
 }
 
 .container{
     display:flex;
+    min-height:100vh;
 }
 
 /* SIDEBAR */
 
 .sidebar{
     width:260px;
-    min-height:100vh;
     background:#1f2937;
     color:white;
     display:flex;
@@ -27,6 +26,7 @@ body{
     position:fixed;
     left:0;
     top:0;
+    height:100vh;
 }
 
 .logo{
@@ -36,8 +36,8 @@ body{
 }
 
 .logo h2{
-    color:white;
     font-size:22px;
+    color:white;
 }
 
 .menu{
@@ -64,7 +64,7 @@ body{
     color:white;
 }
 
-.menu li.active a{
+.menu .active a{
     background:#2563eb;
     color:white;
     border-left:5px solid #60a5fa;
@@ -76,8 +76,8 @@ body{
 
 .logout a{
     display:block;
-    text-decoration:none;
     text-align:center;
+    text-decoration:none;
     background:#dc2626;
     color:white;
     padding:12px;
@@ -127,10 +127,14 @@ body{
 
 .panel-header{
     margin-bottom:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .panel-header h2{
-    color:#1f4e79;
+    color:#1f2937;
+    font-size:22px;
 }
 
 /* TABLA */
@@ -141,30 +145,38 @@ table{
 }
 
 thead{
-    background:#1f4e79;
+    background:#2563eb;
     color:white;
 }
 
 th{
-    padding:15px;
+    padding:16px;
     text-align:left;
+    font-size:14px;
     font-weight:600;
 }
 
 td{
-    padding:15px;
+    padding:16px;
     border-bottom:1px solid #e5e7eb;
+    color:#374151;
+    font-size:14px;
+}
+
+tbody tr{
+    transition:.3s;
 }
 
 tbody tr:hover{
-    background:#f9fafb;
+    background:#f8fafc;
 }
 
 /* BADGES */
 
 .badge{
-    padding:6px 12px;
-    border-radius:20px;
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:30px;
     font-size:12px;
     font-weight:600;
 }
@@ -188,31 +200,33 @@ tbody tr:hover{
 
 .btn-toggle{
     display:inline-block;
-    text-decoration:none;
     background:#2563eb;
     color:white;
-    padding:8px 14px;
+    text-decoration:none;
+    padding:9px 16px;
     border-radius:8px;
-    font-size:14px;
+    font-size:13px;
+    font-weight:500;
     transition:.3s;
 }
 
 .btn-toggle:hover{
     background:#1d4ed8;
+    transform:translateY(-2px);
 }
 
 /* RESPONSIVE */
 
 @media(max-width:900px){
 
+    .container{
+        flex-direction:column;
+    }
+
     .sidebar{
         position:relative;
         width:100%;
-        min-height:auto;
-    }
-
-    .container{
-        flex-direction:column;
+        height:auto;
     }
 
     .main-content{
@@ -220,8 +234,15 @@ tbody tr:hover{
         padding:15px;
     }
 
-    table{
-        display:block;
+    .topbar{
+        padding:20px;
+    }
+
+    .panel{
         overflow-x:auto;
+    }
+
+    table{
+        min-width:850px;
     }
 }

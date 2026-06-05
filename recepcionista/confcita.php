@@ -120,6 +120,17 @@ mysqli_num_rows($resultBloqueo) > 0
 
     mysqli_query($conn,$sqlConfirmar);
 
+    $sqlTest = "
+    SELECT estado
+    FROM cita
+    WHERE id_cita='$idCita'
+    ";
+
+    $resultTest = mysqli_query($conn,$sqlTest);
+    $test = mysqli_fetch_assoc($resultTest);
+
+    die("Estado después de confirmar: " . $test['estado']);
+
     $_SESSION['success'] =
     "Cita confirmada correctamente.";
 }
